@@ -28,14 +28,13 @@ import java.util.TimerTask;
  */
 public class Estatisticas implements Runnable {
 
-    private int totalClientes = 0;
     private int totalCompra = 0;
     private int totalVenda = 0;
     private int totalRecRemessa = 0;
     private int totalEnvRemessa = 0;
     private int totalSwift = 0;
     private int totalSeguro = 0;
-    
+
     public Estatisticas() {
 
         new Thread(this).start();
@@ -44,8 +43,6 @@ public class Estatisticas implements Runnable {
     @Override
     public void run() {
 
-        
-        
         Timer tarefa = new Timer();
         TimerTask tarefaTask = new TimerTask() {
             @Override
@@ -69,20 +66,29 @@ public class Estatisticas implements Runnable {
                     if (cliente.getServico().toString().equals("SeguroViagem")) {
                         totalSeguro++;
                     }
-                    totalClientes++;
-                    //ATUALIZAR AS LABELS DA TELA
-                    TelaAtendimento.jLabelTotalCompra.setText(""+totalCompra);
-                    TelaAtendimento.jLabelTotalVenda.setText(""+totalVenda);
-                    TelaAtendimento.jLabelTotalRecRemessa.setText(""+totalRecRemessa);
-                    TelaAtendimento.jLabelTotalEnvRemessa.setText(""+totalEnvRemessa);
-                    TelaAtendimento.jLabelTotalSwift.setText(""+totalSwift);
-                    TelaAtendimento.jLabelTotalSeguro.setText(""+totalSeguro);
-                    TelaAtendimento.jLabelTotalClientesAtendidos.setText(""+totalClientes);
-                    //ATUALIZAR AS LABELS DA TELA
                 }
+                //ATUALIZAR AS LABELS DA TELA
+                TelaAtendimento.jLabelTotalCompra.setText("" + totalCompra);
+                TelaAtendimento.jLabelTotalVenda.setText("" + totalVenda);
+                TelaAtendimento.jLabelTotalRecRemessa.setText("" + totalRecRemessa);
+                TelaAtendimento.jLabelTotalEnvRemessa.setText("" + totalEnvRemessa);
+                TelaAtendimento.jLabelTotalSwift.setText("" + totalSwift);
+                TelaAtendimento.jLabelTotalSeguro.setText("" + totalSeguro);
+                TelaAtendimento.jLabelTotalClientesAtendidos.setText("" + TelaAtendimento.listaDeAtendidos.size());
+                //ATUALIZAR AS LABELS DA TELA
+
+                //ZERANDO AS VARIAVEIS PARA A PROXIMA TAREFA
+                totalCompra = 0;
+                totalVenda = 0;
+                totalRecRemessa = 0;
+                totalEnvRemessa = 0;
+                totalSwift = 0;
+                totalSeguro = 0;
+                //ZERANDO AS VARIAVEIS PARA A PROXIMA TAREFA
             }
         };
-        tarefa.scheduleAtFixedRate(tarefaTask, 5000, 5000);
+        tarefa.scheduleAtFixedRate(tarefaTask,
+                5000, 5000);
     }
 
 }

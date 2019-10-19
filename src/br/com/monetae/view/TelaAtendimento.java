@@ -39,6 +39,7 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -199,12 +200,12 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
         jLabelRecRemessaCx3 = new javax.swing.JLabel();
         jLabelSwiftCx3 = new javax.swing.JLabel();
         jLabelSeguroCx3 = new javax.swing.JLabel();
-        jLabelSeguroCx4 = new javax.swing.JLabel();
-        jLabelSwiftCx4 = new javax.swing.JLabel();
-        jLabelRecRemessaCx4 = new javax.swing.JLabel();
-        jLabelEnvRemessaCx4 = new javax.swing.JLabel();
-        jLabelVendaCx4 = new javax.swing.JLabel();
         jLabelCompraCx4 = new javax.swing.JLabel();
+        jLabelVendaCx4 = new javax.swing.JLabel();
+        jLabelEnvRemessaCx4 = new javax.swing.JLabel();
+        jLabelRecRemessaCx4 = new javax.swing.JLabel();
+        jLabelSwiftCx4 = new javax.swing.JLabel();
+        jLabelSeguroCx4 = new javax.swing.JLabel();
         jLabelCompraCx5 = new javax.swing.JLabel();
         jLabelVendaCx5 = new javax.swing.JLabel();
         jLabelEnvRemessaCx5 = new javax.swing.JLabel();
@@ -223,12 +224,12 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
         jLabelRecRemessaCx7 = new javax.swing.JLabel();
         jLabelSwiftCx7 = new javax.swing.JLabel();
         jLabelSeguroCx7 = new javax.swing.JLabel();
-        jLabelSeguroCx8 = new javax.swing.JLabel();
-        jLabelSwiftCx8 = new javax.swing.JLabel();
-        jLabelRecRemessaCx8 = new javax.swing.JLabel();
-        jLabelEnvRemessaCx8 = new javax.swing.JLabel();
-        jLabelVendaCx8 = new javax.swing.JLabel();
         jLabelCompraCx8 = new javax.swing.JLabel();
+        jLabelVendaCx8 = new javax.swing.JLabel();
+        jLabelEnvRemessaCx8 = new javax.swing.JLabel();
+        jLabelRecRemessaCx8 = new javax.swing.JLabel();
+        jLabelSwiftCx8 = new javax.swing.JLabel();
+        jLabelSeguroCx8 = new javax.swing.JLabel();
         jPanelLog = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         logDoPrograma = new javax.swing.JTextArea();
@@ -247,7 +248,7 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
-        jLabelTotalCompra = new javax.swing.JLabel();
+        jLabelTotalAtCx1 = new javax.swing.JLabel();
         jLabelTotalVenda = new javax.swing.JLabel();
         jLabelTotalEnvRemessa = new javax.swing.JLabel();
         jLabelTotalRecRemessa = new javax.swing.JLabel();
@@ -256,6 +257,23 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
         jLabelTotalClientesAtendidos = new javax.swing.JLabel();
         jRadioButtonComAnexo = new javax.swing.JRadioButton();
         jRadioButtonSemAnexo = new javax.swing.JRadioButton();
+        jLabel22 = new javax.swing.JLabel();
+        jLabelTotalCompra = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabelTotalAtCx2 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabelTotalAtCx4 = new javax.swing.JLabel();
+        jLabelTotalAtCx3 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
+        jLabelTotalAtCx5 = new javax.swing.JLabel();
+        jLabelTotalAtCx6 = new javax.swing.JLabel();
+        jLabelTotalAtCx7 = new javax.swing.JLabel();
+        jLabelTotalAtCx8 = new javax.swing.JLabel();
 
         setClosable(true);
         setMaximizable(true);
@@ -375,7 +393,7 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
 
         jLabelCaixa1.setText("XXX");
 
-        jLabelServicoCx1.setText("Seguro Viagem");
+        jLabelServicoCx1.setText("XXX");
 
         javax.swing.GroupLayout jPanelCaixa1Layout = new javax.swing.GroupLayout(jPanelCaixa1);
         jPanelCaixa1.setLayout(jPanelCaixa1Layout);
@@ -410,7 +428,7 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
 
         jLabelCaixa2.setText("XXX");
 
-        jLabelServicoCx2.setText("Seguro Viagem");
+        jLabelServicoCx2.setText("XXX");
 
         javax.swing.GroupLayout jPanelCaixa2Layout = new javax.swing.GroupLayout(jPanelCaixa2);
         jPanelCaixa2.setLayout(jPanelCaixa2Layout);
@@ -444,7 +462,7 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
 
         jLabelCaixa3.setText("XXX");
 
-        jLabelServicoCx3.setText("Seguro Viagem");
+        jLabelServicoCx3.setText("XXX");
 
         javax.swing.GroupLayout jPanelCaixa3Layout = new javax.swing.GroupLayout(jPanelCaixa3);
         jPanelCaixa3.setLayout(jPanelCaixa3Layout);
@@ -456,7 +474,7 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
                 .addComponent(jLabelTempoClienteDaVezCx3)
                 .addGap(56, 56, 56)
                 .addComponent(jLabelCaixa3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 133, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 186, Short.MAX_VALUE)
                 .addComponent(jLabelServicoCx3)
                 .addGap(45, 45, 45))
         );
@@ -477,7 +495,7 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
 
         jLabelCaixa4.setText("XXX");
 
-        jLabelServicoCx4.setText("Seguro Viagem");
+        jLabelServicoCx4.setText("XXX");
 
         javax.swing.GroupLayout jPanelCaixa4Layout = new javax.swing.GroupLayout(jPanelCaixa4);
         jPanelCaixa4.setLayout(jPanelCaixa4Layout);
@@ -510,7 +528,7 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
 
         jLabelCaixa5.setText("XXX");
 
-        jLabelServicoCx5.setText("Seguro Viagem");
+        jLabelServicoCx5.setText("XXX");
 
         javax.swing.GroupLayout jPanelCaixa5Layout = new javax.swing.GroupLayout(jPanelCaixa5);
         jPanelCaixa5.setLayout(jPanelCaixa5Layout);
@@ -544,7 +562,7 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
 
         jLabelCaixa6.setText("XXX");
 
-        jLabelServicoCx6.setText("Seguro Viagem");
+        jLabelServicoCx6.setText("XXX");
 
         javax.swing.GroupLayout jPanelCaixa6Layout = new javax.swing.GroupLayout(jPanelCaixa6);
         jPanelCaixa6.setLayout(jPanelCaixa6Layout);
@@ -578,7 +596,7 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
 
         jLabelCaixa7.setText("XXX");
 
-        jLabelServicoCx7.setText("Seguro Viagem");
+        jLabelServicoCx7.setText("XXX");
 
         javax.swing.GroupLayout jPanelCaixa7Layout = new javax.swing.GroupLayout(jPanelCaixa7);
         jPanelCaixa7.setLayout(jPanelCaixa7Layout);
@@ -611,7 +629,7 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
 
         jLabelCaixa8.setText("XXX");
 
-        jLabelServicoCx8.setText("Seguro Viagem");
+        jLabelServicoCx8.setText("XXX");
 
         javax.swing.GroupLayout jPanelCaixa8Layout = new javax.swing.GroupLayout(jPanelCaixa8);
         jPanelCaixa8.setLayout(jPanelCaixa8Layout);
@@ -654,101 +672,149 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
 
         jLabel17.setText("Caixa 05");
 
+        jLabelCompraCx1.setForeground(new java.awt.Color(255, 0, 0));
         jLabelCompraCx1.setText("Compra de Moeda");
 
+        jLabelVendaCx1.setForeground(new java.awt.Color(255, 0, 0));
         jLabelVendaCx1.setText("Venda de Moeda");
 
+        jLabelEnvRemessaCx1.setForeground(new java.awt.Color(255, 0, 0));
         jLabelEnvRemessaCx1.setText("Envio de Remessa");
 
+        jLabelRecRemessaCx1.setForeground(new java.awt.Color(255, 0, 0));
         jLabelRecRemessaCx1.setText("Recebimento de Remessa");
 
+        jLabelSwiftCx1.setForeground(new java.awt.Color(255, 0, 0));
         jLabelSwiftCx1.setText("Contratos Swift");
 
+        jLabelSeguroCx1.setForeground(new java.awt.Color(255, 0, 0));
         jLabelSeguroCx1.setText("Seguro Viagem");
 
+        jLabelCompraCx2.setForeground(new java.awt.Color(255, 0, 0));
         jLabelCompraCx2.setText("Compra de Moeda");
 
+        jLabelVendaCx2.setForeground(new java.awt.Color(255, 0, 0));
         jLabelVendaCx2.setText("Venda de Moeda");
 
+        jLabelEnvRemessaCx2.setForeground(new java.awt.Color(255, 0, 0));
         jLabelEnvRemessaCx2.setText("Envio de Remessa");
 
+        jLabelRecRemessaCx2.setForeground(new java.awt.Color(255, 0, 0));
         jLabelRecRemessaCx2.setText("Recebimento de Remessa");
 
+        jLabelSwiftCx2.setForeground(new java.awt.Color(255, 0, 0));
         jLabelSwiftCx2.setText("Contratos Swift");
 
+        jLabelSeguroCx2.setForeground(new java.awt.Color(255, 0, 0));
         jLabelSeguroCx2.setText("Seguro Viagem");
 
+        jLabelCompraCx3.setForeground(new java.awt.Color(255, 0, 0));
         jLabelCompraCx3.setText("Compra de Moeda");
 
+        jLabelVendaCx3.setForeground(new java.awt.Color(255, 0, 0));
         jLabelVendaCx3.setText("Venda de Moeda");
 
+        jLabelEnvRemessaCx3.setForeground(new java.awt.Color(255, 0, 0));
         jLabelEnvRemessaCx3.setText("Envio de Remessa");
 
+        jLabelRecRemessaCx3.setForeground(new java.awt.Color(255, 0, 0));
         jLabelRecRemessaCx3.setText("Recebimento de Remessa");
 
+        jLabelSwiftCx3.setForeground(new java.awt.Color(255, 0, 0));
         jLabelSwiftCx3.setText("Contratos Swift");
 
+        jLabelSeguroCx3.setForeground(new java.awt.Color(255, 0, 0));
         jLabelSeguroCx3.setText("Seguro Viagem");
 
-        jLabelSeguroCx4.setText("Seguro Viagem");
-
-        jLabelSwiftCx4.setText("Contratos Swift");
-
-        jLabelRecRemessaCx4.setText("Recebimento de Remessa");
-
-        jLabelEnvRemessaCx4.setText("Envio de Remessa");
-
-        jLabelVendaCx4.setText("Venda de Moeda");
-
+        jLabelCompraCx4.setForeground(new java.awt.Color(255, 0, 0));
         jLabelCompraCx4.setText("Compra de Moeda");
 
+        jLabelVendaCx4.setForeground(new java.awt.Color(255, 0, 0));
+        jLabelVendaCx4.setText("Venda de Moeda");
+
+        jLabelEnvRemessaCx4.setForeground(new java.awt.Color(255, 0, 0));
+        jLabelEnvRemessaCx4.setText("Envio de Remessa");
+
+        jLabelRecRemessaCx4.setForeground(new java.awt.Color(255, 0, 0));
+        jLabelRecRemessaCx4.setText("Recebimento de Remessa");
+
+        jLabelSwiftCx4.setForeground(new java.awt.Color(255, 0, 0));
+        jLabelSwiftCx4.setText("Contratos Swift");
+
+        jLabelSeguroCx4.setForeground(new java.awt.Color(255, 0, 0));
+        jLabelSeguroCx4.setText("Seguro Viagem");
+
+        jLabelCompraCx5.setForeground(new java.awt.Color(255, 0, 0));
         jLabelCompraCx5.setText("Compra de Moeda");
 
+        jLabelVendaCx5.setForeground(new java.awt.Color(255, 0, 0));
         jLabelVendaCx5.setText("Venda de Moeda");
 
+        jLabelEnvRemessaCx5.setForeground(new java.awt.Color(255, 0, 0));
         jLabelEnvRemessaCx5.setText("Envio de Remessa");
 
+        jLabelRecRemessaCx5.setForeground(new java.awt.Color(255, 0, 0));
         jLabelRecRemessaCx5.setText("Recebimento de Remessa");
 
+        jLabelSwiftCx5.setForeground(new java.awt.Color(255, 0, 0));
         jLabelSwiftCx5.setText("Contratos Swift");
 
+        jLabelSeguroCx5.setForeground(new java.awt.Color(255, 0, 0));
         jLabelSeguroCx5.setText("Seguro Viagem");
 
+        jLabelCompraCx6.setForeground(new java.awt.Color(255, 0, 0));
         jLabelCompraCx6.setText("Compra de Moeda");
 
+        jLabelVendaCx6.setForeground(new java.awt.Color(255, 0, 0));
         jLabelVendaCx6.setText("Venda de Moeda");
 
+        jLabelEnvRemessaCx6.setForeground(new java.awt.Color(255, 0, 0));
         jLabelEnvRemessaCx6.setText("Envio de Remessa");
 
+        jLabelRecRemessaCx6.setForeground(new java.awt.Color(255, 0, 0));
         jLabelRecRemessaCx6.setText("Recebimento de Remessa");
 
+        jLabelSwiftCx6.setForeground(new java.awt.Color(255, 0, 0));
         jLabelSwiftCx6.setText("Contratos Swift");
 
+        jLabelSeguroCx6.setForeground(new java.awt.Color(255, 0, 0));
         jLabelSeguroCx6.setText("Seguro Viagem");
 
+        jLabelCompraCx7.setForeground(new java.awt.Color(255, 0, 0));
         jLabelCompraCx7.setText("Compra de Moeda");
 
+        jLabelVendaCx7.setForeground(new java.awt.Color(255, 0, 0));
         jLabelVendaCx7.setText("Venda de Moeda");
 
+        jLabelEnvRemessaCx7.setForeground(new java.awt.Color(255, 0, 0));
         jLabelEnvRemessaCx7.setText("Envio de Remessa");
 
+        jLabelRecRemessaCx7.setForeground(new java.awt.Color(255, 0, 0));
         jLabelRecRemessaCx7.setText("Recebimento de Remessa");
 
+        jLabelSwiftCx7.setForeground(new java.awt.Color(255, 0, 0));
         jLabelSwiftCx7.setText("Contratos Swift");
 
+        jLabelSeguroCx7.setForeground(new java.awt.Color(255, 0, 0));
         jLabelSeguroCx7.setText("Seguro Viagem");
 
-        jLabelSeguroCx8.setText("Seguro Viagem");
+        jLabelCompraCx8.setForeground(new java.awt.Color(255, 0, 0));
+        jLabelCompraCx8.setText("Compra de Moeda");
 
-        jLabelSwiftCx8.setText("Contratos Swift");
-
-        jLabelRecRemessaCx8.setText("Recebimento de Remessa");
-
-        jLabelEnvRemessaCx8.setText("Envio de Remessa");
-
+        jLabelVendaCx8.setForeground(new java.awt.Color(255, 0, 0));
         jLabelVendaCx8.setText("Venda de Moeda");
 
-        jLabelCompraCx8.setText("Compra de Moeda");
+        jLabelEnvRemessaCx8.setForeground(new java.awt.Color(255, 0, 0));
+        jLabelEnvRemessaCx8.setText("Envio de Remessa");
+
+        jLabelRecRemessaCx8.setForeground(new java.awt.Color(255, 0, 0));
+        jLabelRecRemessaCx8.setText("Recebimento de Remessa");
+
+        jLabelSwiftCx8.setForeground(new java.awt.Color(255, 0, 0));
+        jLabelSwiftCx8.setText("Contratos Swift");
+
+        jLabelSeguroCx8.setForeground(new java.awt.Color(255, 0, 0));
+        jLabelSeguroCx8.setText("Seguro Viagem");
 
         javax.swing.GroupLayout jPanelServicosDisponiveisLayout = new javax.swing.GroupLayout(jPanelServicosDisponiveis);
         jPanelServicosDisponiveis.setLayout(jPanelServicosDisponiveisLayout);
@@ -766,103 +832,105 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
                     .addComponent(jLabel15)
                     .addComponent(jLabel14))
                 .addGap(29, 29, 29)
-                .addGroup(jPanelServicosDisponiveisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelServicosDisponiveisLayout.createSequentialGroup()
-                        .addComponent(jLabelCompraCx8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelVendaCx8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelEnvRemessaCx8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelRecRemessaCx8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelSwiftCx8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelSeguroCx8))
-                    .addGroup(jPanelServicosDisponiveisLayout.createSequentialGroup()
-                        .addComponent(jLabelCompraCx7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelVendaCx7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelEnvRemessaCx7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelRecRemessaCx7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelSwiftCx7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelSeguroCx7))
-                    .addGroup(jPanelServicosDisponiveisLayout.createSequentialGroup()
-                        .addComponent(jLabelCompraCx6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelVendaCx6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelEnvRemessaCx6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelRecRemessaCx6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelSwiftCx6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelSeguroCx6))
-                    .addGroup(jPanelServicosDisponiveisLayout.createSequentialGroup()
-                        .addComponent(jLabelCompraCx5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelVendaCx5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelEnvRemessaCx5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelRecRemessaCx5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelSwiftCx5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelSeguroCx5))
-                    .addGroup(jPanelServicosDisponiveisLayout.createSequentialGroup()
-                        .addComponent(jLabelCompraCx4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelVendaCx4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelEnvRemessaCx4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelRecRemessaCx4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelSwiftCx4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelSeguroCx4))
-                    .addGroup(jPanelServicosDisponiveisLayout.createSequentialGroup()
-                        .addComponent(jLabelCompraCx3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelVendaCx3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelEnvRemessaCx3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelRecRemessaCx3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelSwiftCx3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelSeguroCx3))
-                    .addGroup(jPanelServicosDisponiveisLayout.createSequentialGroup()
-                        .addComponent(jLabelCompraCx2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelVendaCx2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelEnvRemessaCx2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelRecRemessaCx2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelSwiftCx2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelSeguroCx2))
-                    .addGroup(jPanelServicosDisponiveisLayout.createSequentialGroup()
-                        .addComponent(jLabelCompraCx1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelVendaCx1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelEnvRemessaCx1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelRecRemessaCx1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelSwiftCx1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelSeguroCx1)))
+                .addGroup(jPanelServicosDisponiveisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanelServicosDisponiveisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanelServicosDisponiveisLayout.createSequentialGroup()
+                            .addComponent(jLabelCompraCx1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabelVendaCx1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabelEnvRemessaCx1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabelRecRemessaCx1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabelSwiftCx1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabelSeguroCx1))
+                        .addGroup(jPanelServicosDisponiveisLayout.createSequentialGroup()
+                            .addComponent(jLabelCompraCx2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabelVendaCx2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabelEnvRemessaCx2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabelRecRemessaCx2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabelSwiftCx2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabelSeguroCx2))
+                        .addGroup(jPanelServicosDisponiveisLayout.createSequentialGroup()
+                            .addComponent(jLabelCompraCx3)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabelVendaCx3)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabelEnvRemessaCx3)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabelRecRemessaCx3)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabelSwiftCx3)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabelSeguroCx3))
+                        .addGroup(jPanelServicosDisponiveisLayout.createSequentialGroup()
+                            .addComponent(jLabelCompraCx4)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabelVendaCx4)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabelEnvRemessaCx4)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabelRecRemessaCx4)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabelSwiftCx4)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabelSeguroCx4)))
+                    .addGroup(jPanelServicosDisponiveisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanelServicosDisponiveisLayout.createSequentialGroup()
+                            .addComponent(jLabelCompraCx5)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabelVendaCx5)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabelEnvRemessaCx5)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabelRecRemessaCx5)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabelSwiftCx5)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabelSeguroCx5))
+                        .addGroup(jPanelServicosDisponiveisLayout.createSequentialGroup()
+                            .addComponent(jLabelCompraCx6)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabelVendaCx6)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabelEnvRemessaCx6)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabelRecRemessaCx6)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabelSwiftCx6)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabelSeguroCx6))
+                        .addGroup(jPanelServicosDisponiveisLayout.createSequentialGroup()
+                            .addComponent(jLabelCompraCx7)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabelVendaCx7)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabelEnvRemessaCx7)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabelRecRemessaCx7)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabelSwiftCx7)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabelSeguroCx7))
+                        .addGroup(jPanelServicosDisponiveisLayout.createSequentialGroup()
+                            .addComponent(jLabelCompraCx8)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabelVendaCx8)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabelEnvRemessaCx8)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabelRecRemessaCx8)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabelSwiftCx8)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabelSeguroCx8))))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
         jPanelServicosDisponiveisLayout.setVerticalGroup(
@@ -1132,7 +1200,7 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
             });
 
             jLabel7.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-            jLabel7.setText("Compra de Moeda Estrangeira");
+            jLabel7.setText("Caixa 01:");
 
             jLabel10.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
             jLabel10.setText("Recebimento de Remessa");
@@ -1152,8 +1220,8 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
             jLabel20.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
             jLabel20.setText("Total de Clientes Atendidos");
 
-            jLabelTotalCompra.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-            jLabelTotalCompra.setText("9999");
+            jLabelTotalAtCx1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+            jLabelTotalAtCx1.setText("9999");
 
             jLabelTotalVenda.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
             jLabelTotalVenda.setText("9999");
@@ -1185,6 +1253,57 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
             jRadioButtonSemAnexo.setSelected(true);
             jRadioButtonSemAnexo.setText("Não anexar");
 
+            jLabel22.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+            jLabel22.setText("Quantidade de atendimento por caixa");
+
+            jLabelTotalCompra.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+            jLabelTotalCompra.setText("9999");
+
+            jLabel23.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+            jLabel23.setText("Compra de Moeda Estrangeira");
+
+            jLabel24.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+            jLabel24.setText("Caixa 02:");
+
+            jLabelTotalAtCx2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+            jLabelTotalAtCx2.setText("9999");
+
+            jLabel25.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+            jLabel25.setText("Caixa 03:");
+
+            jLabel26.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+            jLabel26.setText("Caixa 04:");
+
+            jLabelTotalAtCx4.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+            jLabelTotalAtCx4.setText("9999");
+
+            jLabelTotalAtCx3.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+            jLabelTotalAtCx3.setText("9999");
+
+            jLabel27.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+            jLabel27.setText("Caixa 05:");
+
+            jLabel28.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+            jLabel28.setText("Caixa 06:");
+
+            jLabel29.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+            jLabel29.setText("Caixa 07:");
+
+            jLabel30.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+            jLabel30.setText("Caixa 08:");
+
+            jLabelTotalAtCx5.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+            jLabelTotalAtCx5.setText("9999");
+
+            jLabelTotalAtCx6.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+            jLabelTotalAtCx6.setText("9999");
+
+            jLabelTotalAtCx7.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+            jLabelTotalAtCx7.setText("9999");
+
+            jLabelTotalAtCx8.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+            jLabelTotalAtCx8.setText("9999");
+
             javax.swing.GroupLayout jPanelRelatoriosLayout = new javax.swing.GroupLayout(jPanelRelatorios);
             jPanelRelatorios.setLayout(jPanelRelatoriosLayout);
             jPanelRelatoriosLayout.setHorizontalGroup(
@@ -1195,24 +1314,82 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
                 .addGroup(jPanelRelatoriosLayout.createSequentialGroup()
                     .addGroup(jPanelRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanelRelatoriosLayout.createSequentialGroup()
-                            .addGap(24, 24, 24)
                             .addGroup(jPanelRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel7)
-                                .addComponent(jLabel11)
-                                .addComponent(jLabel12)
-                                .addComponent(jLabel10)
-                                .addComponent(jLabel18)
-                                .addComponent(jLabel19)
-                                .addComponent(jLabel20))
-                            .addGap(18, 18, 18)
+                                .addGroup(jPanelRelatoriosLayout.createSequentialGroup()
+                                    .addGap(24, 24, 24)
+                                    .addGroup(jPanelRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel11)
+                                        .addComponent(jLabel12)
+                                        .addComponent(jLabel10)
+                                        .addComponent(jLabel18)
+                                        .addComponent(jLabel19)
+                                        .addComponent(jLabel20))
+                                    .addGap(30, 30, 30))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelRelatoriosLayout.createSequentialGroup()
+                                    .addContainerGap()
+                                    .addComponent(jLabel23)
+                                    .addGap(18, 18, 18)))
                             .addGroup(jPanelRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabelTotalClientesAtendidos)
                                 .addComponent(jLabelTotalSeguro)
-                                .addComponent(jLabelTotalSwift)
-                                .addComponent(jLabelTotalRecRemessa)
-                                .addComponent(jLabelTotalEnvRemessa)
-                                .addComponent(jLabelTotalVenda)
-                                .addComponent(jLabelTotalCompra)))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelRelatoriosLayout.createSequentialGroup()
+                                    .addGroup(jPanelRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanelRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanelRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelRelatoriosLayout.createSequentialGroup()
+                                                    .addGap(0, 0, Short.MAX_VALUE)
+                                                    .addComponent(jLabelTotalClientesAtendidos)
+                                                    .addGap(67, 67, 67))
+                                                .addGroup(jPanelRelatoriosLayout.createSequentialGroup()
+                                                    .addGroup(jPanelRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(jLabelTotalVenda)
+                                                        .addComponent(jLabelTotalCompra))
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                            .addGroup(jPanelRelatoriosLayout.createSequentialGroup()
+                                                .addComponent(jLabelTotalEnvRemessa)
+                                                .addGap(67, 67, 67)))
+                                        .addGroup(jPanelRelatoriosLayout.createSequentialGroup()
+                                            .addGroup(jPanelRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabelTotalSwift)
+                                                .addComponent(jLabelTotalRecRemessa))
+                                            .addGap(67, 67, 67)))
+                                    .addGroup(jPanelRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel22)
+                                        .addGroup(jPanelRelatoriosLayout.createSequentialGroup()
+                                            .addGroup(jPanelRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(jPanelRelatoriosLayout.createSequentialGroup()
+                                                    .addComponent(jLabel26)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(jLabelTotalAtCx4))
+                                                .addGroup(jPanelRelatoriosLayout.createSequentialGroup()
+                                                    .addComponent(jLabel25)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(jLabelTotalAtCx3))
+                                                .addGroup(jPanelRelatoriosLayout.createSequentialGroup()
+                                                    .addComponent(jLabel24)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(jLabelTotalAtCx2))
+                                                .addGroup(jPanelRelatoriosLayout.createSequentialGroup()
+                                                    .addComponent(jLabel7)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(jLabelTotalAtCx1)))
+                                            .addGap(28, 28, 28)
+                                            .addGroup(jPanelRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(jPanelRelatoriosLayout.createSequentialGroup()
+                                                    .addComponent(jLabel30)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(jLabelTotalAtCx8))
+                                                .addGroup(jPanelRelatoriosLayout.createSequentialGroup()
+                                                    .addComponent(jLabel29)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(jLabelTotalAtCx7))
+                                                .addGroup(jPanelRelatoriosLayout.createSequentialGroup()
+                                                    .addComponent(jLabel28)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(jLabelTotalAtCx6))
+                                                .addGroup(jPanelRelatoriosLayout.createSequentialGroup()
+                                                    .addComponent(jLabel27)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(jLabelTotalAtCx5))))))))
                         .addGroup(jPanelRelatoriosLayout.createSequentialGroup()
                             .addGap(50, 50, 50)
                             .addGroup(jPanelRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1222,31 +1399,64 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(jButton7))
                                 .addComponent(jRadioButtonSemAnexo))))
-                    .addContainerGap(1025, Short.MAX_VALUE))
+                    .addContainerGap(660, Short.MAX_VALUE))
             );
             jPanelRelatoriosLayout.setVerticalGroup(
                 jPanelRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelRelatoriosLayout.createSequentialGroup()
                     .addGap(28, 28, 28)
                     .addGroup(jPanelRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel7)
+                        .addComponent(jLabel22)
+                        .addComponent(jLabel23)
                         .addComponent(jLabelTotalCompra))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addGroup(jPanelRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel11)
-                        .addComponent(jLabelTotalVenda))
-                    .addGap(5, 5, 5)
-                    .addGroup(jPanelRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel12)
-                        .addComponent(jLabelTotalEnvRemessa))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addGroup(jPanelRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel10)
-                        .addComponent(jLabelTotalRecRemessa))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addGroup(jPanelRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel18)
-                        .addComponent(jLabelTotalSwift))
+                    .addGroup(jPanelRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanelRelatoriosLayout.createSequentialGroup()
+                            .addGroup(jPanelRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel11)
+                                .addComponent(jLabelTotalVenda)
+                                .addComponent(jLabelTotalAtCx1)
+                                .addComponent(jLabel7))
+                            .addGap(5, 5, 5)
+                            .addGroup(jPanelRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel12)
+                                .addComponent(jLabelTotalEnvRemessa)
+                                .addComponent(jLabelTotalAtCx2)
+                                .addComponent(jLabel24))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(jPanelRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanelRelatoriosLayout.createSequentialGroup()
+                                    .addGroup(jPanelRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel10)
+                                        .addComponent(jLabelTotalRecRemessa))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(jPanelRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel18)
+                                        .addComponent(jLabelTotalSwift)))
+                                .addGroup(jPanelRelatoriosLayout.createSequentialGroup()
+                                    .addGroup(jPanelRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabelTotalAtCx3)
+                                        .addComponent(jLabel25))
+                                    .addGap(5, 5, 5)
+                                    .addGroup(jPanelRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabelTotalAtCx4)
+                                        .addComponent(jLabel26)))))
+                        .addGroup(jPanelRelatoriosLayout.createSequentialGroup()
+                            .addGroup(jPanelRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabelTotalAtCx5)
+                                .addComponent(jLabel27))
+                            .addGap(5, 5, 5)
+                            .addGroup(jPanelRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabelTotalAtCx6)
+                                .addComponent(jLabel28))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(jPanelRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabelTotalAtCx7)
+                                .addComponent(jLabel29))
+                            .addGap(5, 5, 5)
+                            .addGroup(jPanelRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabelTotalAtCx8)
+                                .addComponent(jLabel30))))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addGroup(jPanelRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel19)
@@ -1380,7 +1590,7 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        int[] quantidade = {Integer.parseInt(jLabelTotalCompra.getText()), Integer.parseInt(jLabelTotalVenda.getText()),
+        int[] quantidade = {Integer.parseInt(jLabelTotalAtCx1.getText()), Integer.parseInt(jLabelTotalVenda.getText()),
             Integer.parseInt(jLabelTotalEnvRemessa.getText()), Integer.parseInt(jLabelTotalRecRemessa.getText()),
             Integer.parseInt(jLabelTotalSwift.getText()), Integer.parseInt(jLabelTotalSeguro.getText()), Integer.parseInt(jLabelTotalClientesAtendidos.getText())};
         
@@ -1421,7 +1631,7 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
 
-        int[] dados = {Integer.parseInt(jLabelTotalCompra.getText()), Integer.parseInt(jLabelTotalVenda.getText()),
+        int[] dados = {Integer.parseInt(jLabelTotalAtCx1.getText()), Integer.parseInt(jLabelTotalVenda.getText()),
             Integer.parseInt(jLabelTotalEnvRemessa.getText()), Integer.parseInt(jLabelTotalRecRemessa.getText()),
             Integer.parseInt(jLabelTotalSwift.getText()), Integer.parseInt(jLabelTotalSeguro.getText()), Integer.parseInt(jLabelTotalClientesAtendidos.getText())};
 
@@ -1498,7 +1708,16 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1513,43 +1732,43 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
     public static javax.swing.JLabel jLabelCaixa6;
     public static javax.swing.JLabel jLabelCaixa7;
     public static javax.swing.JLabel jLabelCaixa8;
-    private javax.swing.JLabel jLabelCompraCx1;
-    private javax.swing.JLabel jLabelCompraCx2;
-    private javax.swing.JLabel jLabelCompraCx3;
-    private javax.swing.JLabel jLabelCompraCx4;
-    private javax.swing.JLabel jLabelCompraCx5;
-    private javax.swing.JLabel jLabelCompraCx6;
-    private javax.swing.JLabel jLabelCompraCx7;
-    private javax.swing.JLabel jLabelCompraCx8;
+    public static javax.swing.JLabel jLabelCompraCx1;
+    public static javax.swing.JLabel jLabelCompraCx2;
+    public static javax.swing.JLabel jLabelCompraCx3;
+    public static javax.swing.JLabel jLabelCompraCx4;
+    public static javax.swing.JLabel jLabelCompraCx5;
+    public static javax.swing.JLabel jLabelCompraCx6;
+    public static javax.swing.JLabel jLabelCompraCx7;
+    public static javax.swing.JLabel jLabelCompraCx8;
     public static javax.swing.JLabel jLabelCronometro;
-    private javax.swing.JLabel jLabelEnvRemessaCx1;
-    private javax.swing.JLabel jLabelEnvRemessaCx2;
-    private javax.swing.JLabel jLabelEnvRemessaCx3;
-    private javax.swing.JLabel jLabelEnvRemessaCx4;
-    private javax.swing.JLabel jLabelEnvRemessaCx5;
-    private javax.swing.JLabel jLabelEnvRemessaCx6;
-    private javax.swing.JLabel jLabelEnvRemessaCx7;
-    private javax.swing.JLabel jLabelEnvRemessaCx8;
+    public static javax.swing.JLabel jLabelEnvRemessaCx1;
+    public static javax.swing.JLabel jLabelEnvRemessaCx2;
+    public static javax.swing.JLabel jLabelEnvRemessaCx3;
+    public static javax.swing.JLabel jLabelEnvRemessaCx4;
+    public static javax.swing.JLabel jLabelEnvRemessaCx5;
+    public static javax.swing.JLabel jLabelEnvRemessaCx6;
+    public static javax.swing.JLabel jLabelEnvRemessaCx7;
+    public static javax.swing.JLabel jLabelEnvRemessaCx8;
     private javax.swing.JLabel jLabelLocalDoLog;
     private javax.swing.JLabel jLabelLogo;
     private javax.swing.JLabel jLabelLogo1;
     private javax.swing.JLabel jLabelLogo2;
-    private javax.swing.JLabel jLabelRecRemessaCx1;
-    private javax.swing.JLabel jLabelRecRemessaCx2;
-    private javax.swing.JLabel jLabelRecRemessaCx3;
-    private javax.swing.JLabel jLabelRecRemessaCx4;
-    private javax.swing.JLabel jLabelRecRemessaCx5;
-    private javax.swing.JLabel jLabelRecRemessaCx6;
-    private javax.swing.JLabel jLabelRecRemessaCx7;
-    private javax.swing.JLabel jLabelRecRemessaCx8;
-    private javax.swing.JLabel jLabelSeguroCx1;
-    private javax.swing.JLabel jLabelSeguroCx2;
-    private javax.swing.JLabel jLabelSeguroCx3;
-    private javax.swing.JLabel jLabelSeguroCx4;
-    private javax.swing.JLabel jLabelSeguroCx5;
-    private javax.swing.JLabel jLabelSeguroCx6;
-    private javax.swing.JLabel jLabelSeguroCx7;
-    private javax.swing.JLabel jLabelSeguroCx8;
+    public static javax.swing.JLabel jLabelRecRemessaCx1;
+    public static javax.swing.JLabel jLabelRecRemessaCx2;
+    public static javax.swing.JLabel jLabelRecRemessaCx3;
+    public static javax.swing.JLabel jLabelRecRemessaCx4;
+    public static javax.swing.JLabel jLabelRecRemessaCx5;
+    public static javax.swing.JLabel jLabelRecRemessaCx6;
+    public static javax.swing.JLabel jLabelRecRemessaCx7;
+    public static javax.swing.JLabel jLabelRecRemessaCx8;
+    public static javax.swing.JLabel jLabelSeguroCx1;
+    public static javax.swing.JLabel jLabelSeguroCx2;
+    public static javax.swing.JLabel jLabelSeguroCx3;
+    public static javax.swing.JLabel jLabelSeguroCx4;
+    public static javax.swing.JLabel jLabelSeguroCx5;
+    public static javax.swing.JLabel jLabelSeguroCx6;
+    public static javax.swing.JLabel jLabelSeguroCx7;
+    public static javax.swing.JLabel jLabelSeguroCx8;
     public static javax.swing.JLabel jLabelServicoCx1;
     public static javax.swing.JLabel jLabelServicoCx2;
     public static javax.swing.JLabel jLabelServicoCx3;
@@ -1558,14 +1777,14 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
     public static javax.swing.JLabel jLabelServicoCx6;
     public static javax.swing.JLabel jLabelServicoCx7;
     public static javax.swing.JLabel jLabelServicoCx8;
-    private javax.swing.JLabel jLabelSwiftCx1;
-    private javax.swing.JLabel jLabelSwiftCx2;
-    private javax.swing.JLabel jLabelSwiftCx3;
-    private javax.swing.JLabel jLabelSwiftCx4;
-    private javax.swing.JLabel jLabelSwiftCx5;
-    private javax.swing.JLabel jLabelSwiftCx6;
-    private javax.swing.JLabel jLabelSwiftCx7;
-    private javax.swing.JLabel jLabelSwiftCx8;
+    public static javax.swing.JLabel jLabelSwiftCx1;
+    public static javax.swing.JLabel jLabelSwiftCx2;
+    public static javax.swing.JLabel jLabelSwiftCx3;
+    public static javax.swing.JLabel jLabelSwiftCx4;
+    public static javax.swing.JLabel jLabelSwiftCx5;
+    public static javax.swing.JLabel jLabelSwiftCx6;
+    public static javax.swing.JLabel jLabelSwiftCx7;
+    public static javax.swing.JLabel jLabelSwiftCx8;
     public static javax.swing.JLabel jLabelTempoClienteDaVezCx1;
     public static javax.swing.JLabel jLabelTempoClienteDaVezCx2;
     public static javax.swing.JLabel jLabelTempoClienteDaVezCx3;
@@ -1574,6 +1793,14 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
     public static javax.swing.JLabel jLabelTempoClienteDaVezCx6;
     public static javax.swing.JLabel jLabelTempoClienteDaVezCx7;
     public static javax.swing.JLabel jLabelTempoClienteDaVezCx8;
+    public static javax.swing.JLabel jLabelTotalAtCx1;
+    public static javax.swing.JLabel jLabelTotalAtCx2;
+    public static javax.swing.JLabel jLabelTotalAtCx3;
+    public static javax.swing.JLabel jLabelTotalAtCx4;
+    public static javax.swing.JLabel jLabelTotalAtCx5;
+    public static javax.swing.JLabel jLabelTotalAtCx6;
+    public static javax.swing.JLabel jLabelTotalAtCx7;
+    public static javax.swing.JLabel jLabelTotalAtCx8;
     public static javax.swing.JLabel jLabelTotalClientesAtendidos;
     public static javax.swing.JLabel jLabelTotalCompra;
     public static javax.swing.JLabel jLabelTotalEnvRemessa;
@@ -1581,14 +1808,14 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
     public static javax.swing.JLabel jLabelTotalSeguro;
     public static javax.swing.JLabel jLabelTotalSwift;
     public static javax.swing.JLabel jLabelTotalVenda;
-    private javax.swing.JLabel jLabelVendaCx1;
-    private javax.swing.JLabel jLabelVendaCx2;
-    private javax.swing.JLabel jLabelVendaCx3;
-    private javax.swing.JLabel jLabelVendaCx4;
-    private javax.swing.JLabel jLabelVendaCx5;
-    private javax.swing.JLabel jLabelVendaCx6;
-    private javax.swing.JLabel jLabelVendaCx7;
-    private javax.swing.JLabel jLabelVendaCx8;
+    public static javax.swing.JLabel jLabelVendaCx1;
+    public static javax.swing.JLabel jLabelVendaCx2;
+    public static javax.swing.JLabel jLabelVendaCx3;
+    public static javax.swing.JLabel jLabelVendaCx4;
+    public static javax.swing.JLabel jLabelVendaCx5;
+    public static javax.swing.JLabel jLabelVendaCx6;
+    public static javax.swing.JLabel jLabelVendaCx7;
+    public static javax.swing.JLabel jLabelVendaCx8;
     private javax.swing.JPanel jPanelAtendimento;
     private javax.swing.JPanel jPanelCaixa1;
     private javax.swing.JPanel jPanelCaixa2;
