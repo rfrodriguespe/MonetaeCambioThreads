@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package br.com.monetae.control;
+package br.com.monetae.model;
 
 import br.com.monetae.model.Cliente;
 import br.com.monetae.view.TelaAtendimento;

@@ -58,7 +58,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         subMenuIdiomaEN = new javax.swing.JMenuItem();
         menuAbout = new javax.swing.JMenu();
         submenuSobre = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Monetae Câmbio - Gerenciamento de Atendimento (Projeto P1 - TAP)");
@@ -163,14 +162,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         menuTelaPrincipal.add(menuAbout);
 
-        jMenu1.setText("TESTES");
-        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu1MouseClicked(evt);
-            }
-        });
-        menuTelaPrincipal.add(jMenu1);
-
         setJMenuBar(menuTelaPrincipal);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -214,13 +205,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_subMenuSairActionPerformed
-
-    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
-        // TODO add your handling code here:
-        TelaAtendimentoTESTES tela = new TelaAtendimentoTESTES();
-        fundoTelaPrincipal.add(tela);
-        tela.setVisible(true);
-    }//GEN-LAST:event_jMenu1MouseClicked
 
     private void submenuSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submenuSobreActionPerformed
         // TODO add your handling code here:
@@ -267,7 +251,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane fundoTelaPrincipal;
-    private javax.swing.JMenu jMenu1;
     public static javax.swing.JMenu menuAbout;
     public static javax.swing.JMenu menuInicio;
     public static javax.swing.JMenu menuSettings;
