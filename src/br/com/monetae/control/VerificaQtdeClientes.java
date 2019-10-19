@@ -16,28 +16,35 @@
  */
 package br.com.monetae.control;
 
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
+import br.com.monetae.view.TelaAtendimento;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  *
  * @author Rodrigo Ferreira Rodrigues
  * <Email: rodrigo2208@gmail.com GitHub: https://github.com/rfrodriguespe>
  */
-public class TarefasAgendadas {
+public class VerificaQtdeClientes implements Runnable {
 
-    public static void main(String[] args) {
+    private String nome;
 
-        ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
-        Runnable tarefa = new Runnable() {
-            @Override
-            public void run() {
-                System.out.println("Teste");
-            }
-        };
-        scheduler.scheduleAtFixedRate(tarefa, 0, 2, TimeUnit.SECONDS);
-
+    public VerificaQtdeClientes(String nome) {
+        this.nome = nome;
+        new Thread(this, nome).start();
     }
 
+    @Override
+    public void run() {
+        Timer tarefa = new Timer();
+        TimerTask tarefaTask = new TimerTask() {
+            @Override
+            public void run() {
+                if(TelaAtendimento.listaDeClientesGerados.size() < 20 ) {
+                    ClienteControl.geraCliente(20);
+                }   
+            }
+        };
+        tarefa.scheduleAtFixedRate(tarefaTask,0, 1000);
+    }
 }

@@ -16,7 +16,6 @@
  */
 package br.com.monetae.model;
 
-import br.com.monetae.model.Cliente;
 import br.com.monetae.view.TelaAtendimento;
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
@@ -42,6 +41,7 @@ public class CaixaThread implements Runnable {
     //Depois acho que removo
     private JLabel labelClienteDaVez;
     private JLabel tempoCliente;
+    private JLabel servicoCliente;
     
     //
     
@@ -50,15 +50,14 @@ public class CaixaThread implements Runnable {
     private JTextArea areaLog;
     //TESTE PRA CRIAÇÂO DO LOG
 
-    public CaixaThread(String nome, JProgressBar barra, JLabel labelClienteDaVez, JLabel tempoCliente,JTextArea areaLog) {
+    public CaixaThread(String nome, JProgressBar barra, JLabel labelClienteDaVez, JLabel tempoCliente,JTextArea areaLog,JLabel servicoCliente) {
         this.nome = nome;
         this.barra = barra;
         //
         this.labelClienteDaVez = labelClienteDaVez;
         this.tempoCliente = tempoCliente;
-        
+        this.servicoCliente = servicoCliente;
         //
-        
         //LOG
         this.areaLog = areaLog;
         //LOG
@@ -110,6 +109,7 @@ public class CaixaThread implements Runnable {
 
                                 //infromando o nome e id de quem está sendo atendido
                                 labelClienteDaVez.setText("ID: "+clienteEmAtendimento.getId() + ". Nome: " + clienteEmAtendimento.getNome());
+                                servicoCliente.setText(""+clienteDaVez.getServico());
 
                                 //incrementando a barra
                                 for (int i = 0; i <= 100; i++) {
