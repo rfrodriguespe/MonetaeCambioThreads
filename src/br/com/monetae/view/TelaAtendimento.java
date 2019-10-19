@@ -172,6 +172,63 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
         jLabelTempoClienteDaVezCx8 = new javax.swing.JLabel();
         jLabelCaixa8 = new javax.swing.JLabel();
         jLabelServicoCx8 = new javax.swing.JLabel();
+        jPanelServicosDisponiveis = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabelCompraCx1 = new javax.swing.JLabel();
+        jLabelVendaCx1 = new javax.swing.JLabel();
+        jLabelEnvRemessaCx1 = new javax.swing.JLabel();
+        jLabelRecRemessaCx1 = new javax.swing.JLabel();
+        jLabelSwiftCx1 = new javax.swing.JLabel();
+        jLabelSeguroCx1 = new javax.swing.JLabel();
+        jLabelCompraCx2 = new javax.swing.JLabel();
+        jLabelVendaCx2 = new javax.swing.JLabel();
+        jLabelEnvRemessaCx2 = new javax.swing.JLabel();
+        jLabelRecRemessaCx2 = new javax.swing.JLabel();
+        jLabelSwiftCx2 = new javax.swing.JLabel();
+        jLabelSeguroCx2 = new javax.swing.JLabel();
+        jLabelCompraCx3 = new javax.swing.JLabel();
+        jLabelVendaCx3 = new javax.swing.JLabel();
+        jLabelEnvRemessaCx3 = new javax.swing.JLabel();
+        jLabelRecRemessaCx3 = new javax.swing.JLabel();
+        jLabelSwiftCx3 = new javax.swing.JLabel();
+        jLabelSeguroCx3 = new javax.swing.JLabel();
+        jLabelSeguroCx4 = new javax.swing.JLabel();
+        jLabelSwiftCx4 = new javax.swing.JLabel();
+        jLabelRecRemessaCx4 = new javax.swing.JLabel();
+        jLabelEnvRemessaCx4 = new javax.swing.JLabel();
+        jLabelVendaCx4 = new javax.swing.JLabel();
+        jLabelCompraCx4 = new javax.swing.JLabel();
+        jLabelCompraCx5 = new javax.swing.JLabel();
+        jLabelVendaCx5 = new javax.swing.JLabel();
+        jLabelEnvRemessaCx5 = new javax.swing.JLabel();
+        jLabelRecRemessaCx5 = new javax.swing.JLabel();
+        jLabelSwiftCx5 = new javax.swing.JLabel();
+        jLabelSeguroCx5 = new javax.swing.JLabel();
+        jLabelCompraCx6 = new javax.swing.JLabel();
+        jLabelVendaCx6 = new javax.swing.JLabel();
+        jLabelEnvRemessaCx6 = new javax.swing.JLabel();
+        jLabelRecRemessaCx6 = new javax.swing.JLabel();
+        jLabelSwiftCx6 = new javax.swing.JLabel();
+        jLabelSeguroCx6 = new javax.swing.JLabel();
+        jLabelCompraCx7 = new javax.swing.JLabel();
+        jLabelVendaCx7 = new javax.swing.JLabel();
+        jLabelEnvRemessaCx7 = new javax.swing.JLabel();
+        jLabelRecRemessaCx7 = new javax.swing.JLabel();
+        jLabelSwiftCx7 = new javax.swing.JLabel();
+        jLabelSeguroCx7 = new javax.swing.JLabel();
+        jLabelSeguroCx8 = new javax.swing.JLabel();
+        jLabelSwiftCx8 = new javax.swing.JLabel();
+        jLabelRecRemessaCx8 = new javax.swing.JLabel();
+        jLabelEnvRemessaCx8 = new javax.swing.JLabel();
+        jLabelVendaCx8 = new javax.swing.JLabel();
+        jLabelCompraCx8 = new javax.swing.JLabel();
         jPanelLog = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         logDoPrograma = new javax.swing.JTextArea();
@@ -331,7 +388,7 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
                 .addComponent(jLabelTempoClienteDaVezCx1)
                 .addGap(53, 53, 53)
                 .addComponent(jLabelCaixa1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 223, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabelServicoCx1)
                 .addGap(37, 37, 37))
         );
@@ -367,7 +424,7 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
                 .addComponent(jLabelCaixa2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabelServicoCx2)
-                .addGap(36, 36, 36))
+                .addGap(42, 42, 42))
         );
         jPanelCaixa2Layout.setVerticalGroup(
             jPanelCaixa2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -399,9 +456,9 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
                 .addComponent(jLabelTempoClienteDaVezCx3)
                 .addGap(56, 56, 56)
                 .addComponent(jLabelCaixa3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 223, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 133, Short.MAX_VALUE)
                 .addComponent(jLabelServicoCx3)
-                .addGap(36, 36, 36))
+                .addGap(45, 45, 45))
         );
         jPanelCaixa3Layout.setVerticalGroup(
             jPanelCaixa3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -434,7 +491,7 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
                 .addComponent(jLabelCaixa4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabelServicoCx4)
-                .addGap(32, 32, 32))
+                .addGap(41, 41, 41))
         );
         jPanelCaixa4Layout.setVerticalGroup(
             jPanelCaixa4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -467,7 +524,7 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
                 .addComponent(jLabelCaixa5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabelServicoCx5)
-                .addGap(31, 31, 31))
+                .addGap(40, 40, 40))
         );
         jPanelCaixa5Layout.setVerticalGroup(
             jPanelCaixa5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -501,7 +558,7 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
                 .addComponent(jLabelCaixa6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabelServicoCx6)
-                .addGap(31, 31, 31))
+                .addGap(42, 42, 42))
         );
         jPanelCaixa6Layout.setVerticalGroup(
             jPanelCaixa6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -535,7 +592,7 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
                 .addComponent(jLabelCaixa7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabelServicoCx7)
-                .addGap(32, 32, 32))
+                .addGap(38, 38, 38))
         );
         jPanelCaixa7Layout.setVerticalGroup(
             jPanelCaixa7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -566,9 +623,9 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
                 .addComponent(jLabelTempoClienteDaVezCx8)
                 .addGap(59, 59, 59)
                 .addComponent(jLabelCaixa8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 224, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabelServicoCx8)
-                .addGap(32, 32, 32))
+                .addGap(35, 35, 35))
         );
         jPanelCaixa8Layout.setVerticalGroup(
             jPanelCaixa8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -579,56 +636,372 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
                 .addComponent(barraProgressoCx8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        jPanelServicosDisponiveis.setBorder(javax.swing.BorderFactory.createTitledBorder("Serviços Disponíveis"));
+
+        jLabel1.setText("Caixa 01");
+
+        jLabel6.setText("Caixa 02");
+
+        jLabel8.setText("Caixa 04");
+
+        jLabel9.setText("Caixa 03");
+
+        jLabel14.setText("Caixa 08");
+
+        jLabel15.setText("Caixa 07");
+
+        jLabel16.setText("Caixa 06");
+
+        jLabel17.setText("Caixa 05");
+
+        jLabelCompraCx1.setText("Compra de Moeda");
+
+        jLabelVendaCx1.setText("Venda de Moeda");
+
+        jLabelEnvRemessaCx1.setText("Envio de Remessa");
+
+        jLabelRecRemessaCx1.setText("Recebimento de Remessa");
+
+        jLabelSwiftCx1.setText("Contratos Swift");
+
+        jLabelSeguroCx1.setText("Seguro Viagem");
+
+        jLabelCompraCx2.setText("Compra de Moeda");
+
+        jLabelVendaCx2.setText("Venda de Moeda");
+
+        jLabelEnvRemessaCx2.setText("Envio de Remessa");
+
+        jLabelRecRemessaCx2.setText("Recebimento de Remessa");
+
+        jLabelSwiftCx2.setText("Contratos Swift");
+
+        jLabelSeguroCx2.setText("Seguro Viagem");
+
+        jLabelCompraCx3.setText("Compra de Moeda");
+
+        jLabelVendaCx3.setText("Venda de Moeda");
+
+        jLabelEnvRemessaCx3.setText("Envio de Remessa");
+
+        jLabelRecRemessaCx3.setText("Recebimento de Remessa");
+
+        jLabelSwiftCx3.setText("Contratos Swift");
+
+        jLabelSeguroCx3.setText("Seguro Viagem");
+
+        jLabelSeguroCx4.setText("Seguro Viagem");
+
+        jLabelSwiftCx4.setText("Contratos Swift");
+
+        jLabelRecRemessaCx4.setText("Recebimento de Remessa");
+
+        jLabelEnvRemessaCx4.setText("Envio de Remessa");
+
+        jLabelVendaCx4.setText("Venda de Moeda");
+
+        jLabelCompraCx4.setText("Compra de Moeda");
+
+        jLabelCompraCx5.setText("Compra de Moeda");
+
+        jLabelVendaCx5.setText("Venda de Moeda");
+
+        jLabelEnvRemessaCx5.setText("Envio de Remessa");
+
+        jLabelRecRemessaCx5.setText("Recebimento de Remessa");
+
+        jLabelSwiftCx5.setText("Contratos Swift");
+
+        jLabelSeguroCx5.setText("Seguro Viagem");
+
+        jLabelCompraCx6.setText("Compra de Moeda");
+
+        jLabelVendaCx6.setText("Venda de Moeda");
+
+        jLabelEnvRemessaCx6.setText("Envio de Remessa");
+
+        jLabelRecRemessaCx6.setText("Recebimento de Remessa");
+
+        jLabelSwiftCx6.setText("Contratos Swift");
+
+        jLabelSeguroCx6.setText("Seguro Viagem");
+
+        jLabelCompraCx7.setText("Compra de Moeda");
+
+        jLabelVendaCx7.setText("Venda de Moeda");
+
+        jLabelEnvRemessaCx7.setText("Envio de Remessa");
+
+        jLabelRecRemessaCx7.setText("Recebimento de Remessa");
+
+        jLabelSwiftCx7.setText("Contratos Swift");
+
+        jLabelSeguroCx7.setText("Seguro Viagem");
+
+        jLabelSeguroCx8.setText("Seguro Viagem");
+
+        jLabelSwiftCx8.setText("Contratos Swift");
+
+        jLabelRecRemessaCx8.setText("Recebimento de Remessa");
+
+        jLabelEnvRemessaCx8.setText("Envio de Remessa");
+
+        jLabelVendaCx8.setText("Venda de Moeda");
+
+        jLabelCompraCx8.setText("Compra de Moeda");
+
+        javax.swing.GroupLayout jPanelServicosDisponiveisLayout = new javax.swing.GroupLayout(jPanelServicosDisponiveis);
+        jPanelServicosDisponiveis.setLayout(jPanelServicosDisponiveisLayout);
+        jPanelServicosDisponiveisLayout.setHorizontalGroup(
+            jPanelServicosDisponiveisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelServicosDisponiveisLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelServicosDisponiveisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel17)
+                    .addComponent(jLabel16)
+                    .addComponent(jLabel15)
+                    .addComponent(jLabel14))
+                .addGap(29, 29, 29)
+                .addGroup(jPanelServicosDisponiveisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelServicosDisponiveisLayout.createSequentialGroup()
+                        .addComponent(jLabelCompraCx8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelVendaCx8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelEnvRemessaCx8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelRecRemessaCx8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelSwiftCx8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelSeguroCx8))
+                    .addGroup(jPanelServicosDisponiveisLayout.createSequentialGroup()
+                        .addComponent(jLabelCompraCx7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelVendaCx7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelEnvRemessaCx7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelRecRemessaCx7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelSwiftCx7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelSeguroCx7))
+                    .addGroup(jPanelServicosDisponiveisLayout.createSequentialGroup()
+                        .addComponent(jLabelCompraCx6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelVendaCx6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelEnvRemessaCx6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelRecRemessaCx6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelSwiftCx6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelSeguroCx6))
+                    .addGroup(jPanelServicosDisponiveisLayout.createSequentialGroup()
+                        .addComponent(jLabelCompraCx5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelVendaCx5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelEnvRemessaCx5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelRecRemessaCx5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelSwiftCx5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelSeguroCx5))
+                    .addGroup(jPanelServicosDisponiveisLayout.createSequentialGroup()
+                        .addComponent(jLabelCompraCx4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelVendaCx4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelEnvRemessaCx4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelRecRemessaCx4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelSwiftCx4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelSeguroCx4))
+                    .addGroup(jPanelServicosDisponiveisLayout.createSequentialGroup()
+                        .addComponent(jLabelCompraCx3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelVendaCx3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelEnvRemessaCx3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelRecRemessaCx3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelSwiftCx3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelSeguroCx3))
+                    .addGroup(jPanelServicosDisponiveisLayout.createSequentialGroup()
+                        .addComponent(jLabelCompraCx2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelVendaCx2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelEnvRemessaCx2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelRecRemessaCx2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelSwiftCx2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelSeguroCx2))
+                    .addGroup(jPanelServicosDisponiveisLayout.createSequentialGroup()
+                        .addComponent(jLabelCompraCx1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelVendaCx1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelEnvRemessaCx1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelRecRemessaCx1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelSwiftCx1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelSeguroCx1)))
+                .addContainerGap(14, Short.MAX_VALUE))
+        );
+        jPanelServicosDisponiveisLayout.setVerticalGroup(
+            jPanelServicosDisponiveisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelServicosDisponiveisLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelServicosDisponiveisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanelServicosDisponiveisLayout.createSequentialGroup()
+                        .addGroup(jPanelServicosDisponiveisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabelCompraCx1)
+                            .addComponent(jLabelVendaCx1)
+                            .addComponent(jLabelEnvRemessaCx1)
+                            .addComponent(jLabelRecRemessaCx1)
+                            .addComponent(jLabelSwiftCx1)
+                            .addComponent(jLabelSeguroCx1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelServicosDisponiveisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabelCompraCx2)
+                            .addComponent(jLabelVendaCx2)
+                            .addComponent(jLabelEnvRemessaCx2)
+                            .addComponent(jLabelRecRemessaCx2)
+                            .addComponent(jLabelSwiftCx2)
+                            .addComponent(jLabelSeguroCx2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel8))
+                    .addGroup(jPanelServicosDisponiveisLayout.createSequentialGroup()
+                        .addGroup(jPanelServicosDisponiveisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelCompraCx3)
+                            .addComponent(jLabelVendaCx3)
+                            .addComponent(jLabelEnvRemessaCx3)
+                            .addComponent(jLabelRecRemessaCx3)
+                            .addComponent(jLabelSwiftCx3)
+                            .addComponent(jLabelSeguroCx3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelServicosDisponiveisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelCompraCx4)
+                            .addComponent(jLabelVendaCx4)
+                            .addComponent(jLabelEnvRemessaCx4)
+                            .addComponent(jLabelRecRemessaCx4)
+                            .addComponent(jLabelSwiftCx4)
+                            .addComponent(jLabelSeguroCx4))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelServicosDisponiveisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanelServicosDisponiveisLayout.createSequentialGroup()
+                        .addComponent(jLabel17)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel16)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel15)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel14))
+                    .addGroup(jPanelServicosDisponiveisLayout.createSequentialGroup()
+                        .addGroup(jPanelServicosDisponiveisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelCompraCx5)
+                            .addComponent(jLabelVendaCx5)
+                            .addComponent(jLabelEnvRemessaCx5)
+                            .addComponent(jLabelRecRemessaCx5)
+                            .addComponent(jLabelSwiftCx5)
+                            .addComponent(jLabelSeguroCx5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelServicosDisponiveisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelCompraCx6)
+                            .addComponent(jLabelVendaCx6)
+                            .addComponent(jLabelEnvRemessaCx6)
+                            .addComponent(jLabelRecRemessaCx6)
+                            .addComponent(jLabelSwiftCx6)
+                            .addComponent(jLabelSeguroCx6))
+                        .addGap(40, 40, 40))
+                    .addGroup(jPanelServicosDisponiveisLayout.createSequentialGroup()
+                        .addGroup(jPanelServicosDisponiveisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelCompraCx7)
+                            .addComponent(jLabelVendaCx7)
+                            .addComponent(jLabelEnvRemessaCx7)
+                            .addComponent(jLabelRecRemessaCx7)
+                            .addComponent(jLabelSwiftCx7)
+                            .addComponent(jLabelSeguroCx7))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelServicosDisponiveisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelCompraCx8)
+                            .addComponent(jLabelVendaCx8)
+                            .addComponent(jLabelEnvRemessaCx8)
+                            .addComponent(jLabelRecRemessaCx8)
+                            .addComponent(jLabelSwiftCx8)
+                            .addComponent(jLabelSeguroCx8))))
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPanelAtendimentoLayout = new javax.swing.GroupLayout(jPanelAtendimento);
         jPanelAtendimento.setLayout(jPanelAtendimentoLayout);
         jPanelAtendimentoLayout.setHorizontalGroup(
             jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(37, 37, 37)
                 .addGroup(jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
                         .addGroup(jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
-                                .addGap(263, 263, 263)
+                                .addGap(236, 236, 236)
                                 .addComponent(jLabel4)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel5)
                                 .addGap(68, 68, 68)
-                                .addComponent(jLabel21)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 409, Short.MAX_VALUE)
-                                .addComponent(jLabelLogo))
-                            .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
-                                .addComponent(jPanelCaixa1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap())
+                                .addComponent(jLabel21))
+                            .addComponent(jPanelServicosDisponiveis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 330, Short.MAX_VALUE)
+                        .addComponent(jLabelLogo))
                     .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
-                        .addGroup(jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jPanelCaixa8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jPanelCaixa6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
-                                .addComponent(jPanelCaixa5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jPanelCaixa4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelAtendimentoLayout.createSequentialGroup()
-                                    .addComponent(jPanelControleCronometro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jPanelCaixa8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanelCaixa7, javax.swing.GroupLayout.DEFAULT_SIZE, 619, Short.MAX_VALUE)
+                            .addComponent(jPanelCaixa6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 619, Short.MAX_VALUE)
+                            .addComponent(jPanelCaixa5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanelCaixa4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanelCaixa3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 619, Short.MAX_VALUE)
+                            .addComponent(jPanelCaixa2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 619, Short.MAX_VALUE)
+                            .addComponent(jPanelCaixa1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(57, 57, 57)
+                        .addGroup(jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanelControleCronometro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
+                                    .addComponent(jLabel2)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(labelClientesGerados, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
+                                    .addComponent(jLabel3)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addGroup(jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
-                                            .addComponent(jLabel2)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(labelClientesGerados, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
-                                            .addComponent(jLabel3)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(labelClientesAtendidos, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(jButton1)
-                                        .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
-                                            .addComponent(jButton3)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(btnAtendimentoSair))))
-                                .addComponent(jPanelCaixa2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
-                                .addComponent(jPanelCaixa3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
-                                .addComponent(jPanelCaixa7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                                    .addComponent(labelClientesAtendidos, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jButton1)
+                                .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
+                                    .addComponent(jButton3)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(btnAtendimentoSair))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanelAtendimentoLayout.setVerticalGroup(
             jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -638,26 +1011,29 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
                     .addComponent(jLabel4)
                     .addComponent(jLabel5)
                     .addComponent(jLabel21))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanelCaixa1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanelCaixa2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanelCaixa3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanelCaixa4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanelCaixa5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanelCaixa6, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanelCaixa7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanelCaixa8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelControleCronometro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
+                        .addGroup(jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jPanelCaixa1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jPanelCaixa2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jPanelCaixa3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jPanelCaixa4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
+                                .addGap(23, 23, 23)
+                                .addComponent(jPanelControleCronometro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanelCaixa5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanelCaixa6, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanelCaixa7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(labelClientesGerados))
@@ -671,9 +1047,17 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
                         .addGroup(jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton3)
                             .addComponent(btnAtendimentoSair))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabelLogo)
-                .addGap(18, 18, 18))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanelCaixa8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabelLogo)
+                        .addGap(18, 18, 18))
+                    .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanelServicosDisponiveis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(37, Short.MAX_VALUE))))
         );
 
         jTabbedPaneAtendimento.addTab("Atendimento", jPanelAtendimento);
@@ -1100,10 +1484,15 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton9;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
@@ -1112,7 +1501,10 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     public static javax.swing.JLabel jLabelCaixa1;
     public static javax.swing.JLabel jLabelCaixa2;
     public static javax.swing.JLabel jLabelCaixa3;
@@ -1121,11 +1513,43 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
     public static javax.swing.JLabel jLabelCaixa6;
     public static javax.swing.JLabel jLabelCaixa7;
     public static javax.swing.JLabel jLabelCaixa8;
+    private javax.swing.JLabel jLabelCompraCx1;
+    private javax.swing.JLabel jLabelCompraCx2;
+    private javax.swing.JLabel jLabelCompraCx3;
+    private javax.swing.JLabel jLabelCompraCx4;
+    private javax.swing.JLabel jLabelCompraCx5;
+    private javax.swing.JLabel jLabelCompraCx6;
+    private javax.swing.JLabel jLabelCompraCx7;
+    private javax.swing.JLabel jLabelCompraCx8;
     public static javax.swing.JLabel jLabelCronometro;
+    private javax.swing.JLabel jLabelEnvRemessaCx1;
+    private javax.swing.JLabel jLabelEnvRemessaCx2;
+    private javax.swing.JLabel jLabelEnvRemessaCx3;
+    private javax.swing.JLabel jLabelEnvRemessaCx4;
+    private javax.swing.JLabel jLabelEnvRemessaCx5;
+    private javax.swing.JLabel jLabelEnvRemessaCx6;
+    private javax.swing.JLabel jLabelEnvRemessaCx7;
+    private javax.swing.JLabel jLabelEnvRemessaCx8;
     private javax.swing.JLabel jLabelLocalDoLog;
     private javax.swing.JLabel jLabelLogo;
     private javax.swing.JLabel jLabelLogo1;
     private javax.swing.JLabel jLabelLogo2;
+    private javax.swing.JLabel jLabelRecRemessaCx1;
+    private javax.swing.JLabel jLabelRecRemessaCx2;
+    private javax.swing.JLabel jLabelRecRemessaCx3;
+    private javax.swing.JLabel jLabelRecRemessaCx4;
+    private javax.swing.JLabel jLabelRecRemessaCx5;
+    private javax.swing.JLabel jLabelRecRemessaCx6;
+    private javax.swing.JLabel jLabelRecRemessaCx7;
+    private javax.swing.JLabel jLabelRecRemessaCx8;
+    private javax.swing.JLabel jLabelSeguroCx1;
+    private javax.swing.JLabel jLabelSeguroCx2;
+    private javax.swing.JLabel jLabelSeguroCx3;
+    private javax.swing.JLabel jLabelSeguroCx4;
+    private javax.swing.JLabel jLabelSeguroCx5;
+    private javax.swing.JLabel jLabelSeguroCx6;
+    private javax.swing.JLabel jLabelSeguroCx7;
+    private javax.swing.JLabel jLabelSeguroCx8;
     public static javax.swing.JLabel jLabelServicoCx1;
     public static javax.swing.JLabel jLabelServicoCx2;
     public static javax.swing.JLabel jLabelServicoCx3;
@@ -1134,6 +1558,14 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
     public static javax.swing.JLabel jLabelServicoCx6;
     public static javax.swing.JLabel jLabelServicoCx7;
     public static javax.swing.JLabel jLabelServicoCx8;
+    private javax.swing.JLabel jLabelSwiftCx1;
+    private javax.swing.JLabel jLabelSwiftCx2;
+    private javax.swing.JLabel jLabelSwiftCx3;
+    private javax.swing.JLabel jLabelSwiftCx4;
+    private javax.swing.JLabel jLabelSwiftCx5;
+    private javax.swing.JLabel jLabelSwiftCx6;
+    private javax.swing.JLabel jLabelSwiftCx7;
+    private javax.swing.JLabel jLabelSwiftCx8;
     public static javax.swing.JLabel jLabelTempoClienteDaVezCx1;
     public static javax.swing.JLabel jLabelTempoClienteDaVezCx2;
     public static javax.swing.JLabel jLabelTempoClienteDaVezCx3;
@@ -1149,6 +1581,14 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
     public static javax.swing.JLabel jLabelTotalSeguro;
     public static javax.swing.JLabel jLabelTotalSwift;
     public static javax.swing.JLabel jLabelTotalVenda;
+    private javax.swing.JLabel jLabelVendaCx1;
+    private javax.swing.JLabel jLabelVendaCx2;
+    private javax.swing.JLabel jLabelVendaCx3;
+    private javax.swing.JLabel jLabelVendaCx4;
+    private javax.swing.JLabel jLabelVendaCx5;
+    private javax.swing.JLabel jLabelVendaCx6;
+    private javax.swing.JLabel jLabelVendaCx7;
+    private javax.swing.JLabel jLabelVendaCx8;
     private javax.swing.JPanel jPanelAtendimento;
     private javax.swing.JPanel jPanelCaixa1;
     private javax.swing.JPanel jPanelCaixa2;
@@ -1161,6 +1601,7 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanelControleCronometro;
     private javax.swing.JPanel jPanelLog;
     private javax.swing.JPanel jPanelRelatorios;
+    private javax.swing.JPanel jPanelServicosDisponiveis;
     private javax.swing.JRadioButton jRadioButtonComAnexo;
     private javax.swing.JRadioButton jRadioButtonSemAnexo;
     private javax.swing.JScrollPane jScrollPane1;
