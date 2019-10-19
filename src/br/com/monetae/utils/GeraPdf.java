@@ -17,12 +17,14 @@
 package br.com.monetae.utils;
 
 import com.lowagie.text.BadElementException;
+import com.lowagie.text.Cell;
 import com.lowagie.text.pdf.PdfWriter;
 import com.lowagie.text.Document;
 import com.lowagie.text.Element;
 import com.lowagie.text.Paragraph;
 import com.lowagie.text.Font;
 import com.lowagie.text.Image;
+import com.lowagie.text.Table;
 import java.awt.Color;
 import java.awt.Desktop;
 import java.io.File;
@@ -42,13 +44,12 @@ import java.util.logging.Logger;
  */
 public class GeraPdf {
 
-    public static String caminho = "c:/temp/teste.pdf";
     public static Font fonteTitulo = new Font(Font.TIMES_ROMAN, 14, Font.BOLD, new Color(0,0,0));
 
-    public static void main(String[] args) {
+    public static void geraPdf(String arquivo, int[] dados) {
         Document meuPdf = new Document();
         try {
-            OutputStream  outPutStream = new FileOutputStream(caminho);
+            OutputStream  outPutStream = new FileOutputStream(arquivo);
             PdfWriter.getInstance(meuPdf, outPutStream);
             meuPdf.open();
             
@@ -60,7 +61,7 @@ public class GeraPdf {
             //
             
             //Colocando a logo da empresa
-            Image logoMonetae = Image.getInstance("c:/temp/logo-monetae.png");
+            Image logoMonetae = Image.getInstance("c:/temp/monetae-logo-270p.png");
             meuPdf.add(logoMonetae);
             //
             
@@ -72,6 +73,29 @@ public class GeraPdf {
             meuPdf.add((Element) new Paragraph("\n"));
             
             
+            // TABELA COM OS DADOS
+            Table table = new Table(7,2);
+            table.addCell(new Cell("Compra de Moeda"));
+            table.addCell(new Cell("Compra de Moeda"));
+            table.addCell(new Cell("Envio de Remessa"));
+            table.addCell(new Cell("Recebimento de Remessa"));
+            table.addCell(new Cell("Contrato Swift"));
+            table.addCell(new Cell("Seguro Viagem"));
+            table.addCell(new Cell("Total de clientes atendidos"));
+            table.addCell(new Cell(""+dados[0]));
+            table.addCell(new Cell(""+dados[1]));
+            table.addCell(new Cell(""+dados[2]));
+            table.addCell(new Cell(""+dados[3]));
+            table.addCell(new Cell(""+dados[4]));
+            table.addCell(new Cell(""+dados[5]));
+            table.addCell(new Cell(""+dados[6]));
+            
+            
+            
+            meuPdf.add(table);
+            // TABELA COM OS DADOS
+            
+            
 
             // Adiciona rodapé com a data e hora atuais
             Date dia = GregorianCalendar.getInstance().getTime();
@@ -80,7 +104,7 @@ public class GeraPdf {
             //
 
             meuPdf.close();
-            Desktop.getDesktop().open(new File(caminho));
+            //Desktop.getDesktop().open(new File(caminho));
         } catch (IOException | BadElementException ex) {
             Logger.getLogger(GeraPdf.class.getName()).log(Level.SEVERE, null, ex);
         } catch (com.lowagie.text.DocumentException ex) {

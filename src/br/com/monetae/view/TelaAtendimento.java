@@ -22,6 +22,8 @@ import br.com.monetae.control.Estatisticas;
 import br.com.monetae.control.VerificaQtdeClientes;
 import br.com.monetae.model.Cliente;
 import br.com.monetae.utils.EnviarEmail;
+import br.com.monetae.utils.GeraPdf;
+import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -36,8 +38,10 @@ import java.util.GregorianCalendar;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -51,18 +55,18 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
     private static final String PASTA_USUARIO = System.getProperty("user.home");
     private static final String BASE_LOGS = PASTA_USUARIO + BARRA + "monetae";
     private static final String ARQUIVO_LOG = BASE_LOGS + BARRA + "monetae-log.txt";
+    private static final String RELATORIO = BASE_LOGS + BARRA + "relatorio.pdf";
     //LOG
 
     //LISTA DOS CLIENTES
     public static ArrayList<Cliente> listaDeClientesGerados = new ArrayList<>();
     public static ArrayList<Cliente> listaDeAtendidos = new ArrayList<>();
     //LISTA DOS CLIENTES
-    
+
     //MONITORAMENTO DA QUANTIDADE DE CLIENTES
     public static VerificaQtdeClientes monitoraClientes;
     //MONITORAMENTO DA QUANTIDADE DE CLIENTES
 
-    
     //CRONOMETRO
     private Timer timer;
     public static int currentSegundo = 0;
@@ -97,7 +101,7 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
         logDoPrograma.append(inicioLog + " Tela de atendimento aberta\n");
         jLabelLocalDoLog.setText(BASE_LOGS);
         //
-        
+
     }
 
     /**
@@ -109,6 +113,7 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroupAnexoEmail = new javax.swing.ButtonGroup();
         jTabbedPaneAtendimento = new javax.swing.JTabbedPane();
         jPanelAtendimento = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -174,7 +179,7 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
         jLabelLocalDoLog = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabelLogo1 = new javax.swing.JLabel();
-        jPanelSobre = new javax.swing.JPanel();
+        jPanelRelatorios = new javax.swing.JPanel();
         jLabelLogo2 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
@@ -192,16 +197,22 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
         jLabelTotalSwift = new javax.swing.JLabel();
         jLabelTotalSeguro = new javax.swing.JLabel();
         jLabelTotalClientesAtendidos = new javax.swing.JLabel();
+        jRadioButtonComAnexo = new javax.swing.JRadioButton();
+        jRadioButtonSemAnexo = new javax.swing.JRadioButton();
 
         setClosable(true);
         setMaximizable(true);
         setTitle("Monetae - Atendimento");
         setToolTipText("");
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Clientes na loja:");
 
-        labelClientesGerados.setText("0");
+        labelClientesGerados.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        labelClientesGerados.setText("9999");
 
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/monetae/imagens/iconOpen32x32.png"))); // NOI18N
         jButton1.setText("Abrir Loja");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -209,9 +220,11 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setText("Clientes atendidos até o momento:");
 
-        labelClientesAtendidos.setText("0");
+        labelClientesAtendidos.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        labelClientesAtendidos.setText("9999");
 
         jLabel4.setText("Tempo de AT");
 
@@ -219,21 +232,24 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
 
         jPanelControleCronometro.setBorder(javax.swing.BorderFactory.createTitledBorder("Cronômetro"));
 
-        jButton4.setText("Pause");
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/monetae/imagens/iconPause32x32.png"))); // NOI18N
+        jButton4.setToolTipText("Pause");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
 
-        jButton5.setText("Play");
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/monetae/imagens/iconPlay32x32.png"))); // NOI18N
+        jButton5.setToolTipText("Play");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
             }
         });
 
-        jButton6.setText("Stop");
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/monetae/imagens/iconStop32x32.png"))); // NOI18N
+        jButton6.setToolTipText("Stop");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
@@ -315,7 +331,7 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
                 .addComponent(jLabelTempoClienteDaVezCx1)
                 .addGap(53, 53, 53)
                 .addComponent(jLabelCaixa1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 163, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 223, Short.MAX_VALUE)
                 .addComponent(jLabelServicoCx1)
                 .addGap(37, 37, 37))
         );
@@ -349,7 +365,7 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
                 .addComponent(jLabelTempoClienteDaVezCx2)
                 .addGap(55, 55, 55)
                 .addComponent(jLabelCaixa2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 164, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabelServicoCx2)
                 .addGap(36, 36, 36))
         );
@@ -383,7 +399,7 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
                 .addComponent(jLabelTempoClienteDaVezCx3)
                 .addGap(56, 56, 56)
                 .addComponent(jLabelCaixa3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 163, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 223, Short.MAX_VALUE)
                 .addComponent(jLabelServicoCx3)
                 .addGap(36, 36, 36))
         );
@@ -449,7 +465,7 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
                 .addComponent(jLabelTempoClienteDaVezCx5)
                 .addGap(56, 56, 56)
                 .addComponent(jLabelCaixa5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 167, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabelServicoCx5)
                 .addGap(31, 31, 31))
         );
@@ -517,7 +533,7 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
                 .addComponent(jLabelTempoClienteDaVezCx7)
                 .addGap(56, 56, 56)
                 .addComponent(jLabelCaixa7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 167, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabelServicoCx7)
                 .addGap(32, 32, 32))
         );
@@ -550,7 +566,7 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
                 .addComponent(jLabelTempoClienteDaVezCx8)
                 .addGap(59, 59, 59)
                 .addComponent(jLabelCaixa8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 224, Short.MAX_VALUE)
                 .addComponent(jLabelServicoCx8)
                 .addGap(32, 32, 32))
         );
@@ -571,54 +587,47 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
-                        .addGroup(jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanelCaixa4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
                                 .addGap(263, 263, 263)
                                 .addComponent(jLabel4)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel5)
                                 .addGap(68, 68, 68)
-                                .addComponent(jLabel21))
-                            .addComponent(jPanelCaixa5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanelCaixa1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanelCaixa6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanelCaixa8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(146, 146, 146)
-                        .addGroup(jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel21)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 409, Short.MAX_VALUE)
+                                .addComponent(jLabelLogo))
                             .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
-                                .addGroup(jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelLogo)
-                                    .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
-                                        .addGap(20, 20, 20)
-                                        .addComponent(jButton1)))
-                                .addContainerGap())
-                            .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
-                                .addGap(54, 54, 54)
-                                .addGroup(jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
-                                        .addComponent(jLabel2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(labelClientesGerados, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(labelClientesAtendidos, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
-                                        .addComponent(btnAtendimentoSair)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton3)))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(jPanelCaixa1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())
                     .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
-                        .addGroup(jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanelCaixa7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
-                                .addGroup(jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jPanelCaixa2, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jPanelCaixa3, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(57, 57, 57)
-                                .addComponent(jPanelControleCronometro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jPanelCaixa8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jPanelCaixa6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
+                                .addComponent(jPanelCaixa5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jPanelCaixa4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelAtendimentoLayout.createSequentialGroup()
+                                    .addComponent(jPanelControleCronometro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGroup(jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
+                                            .addComponent(jLabel2)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(labelClientesGerados, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
+                                            .addComponent(jLabel3)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(labelClientesAtendidos, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jButton1)
+                                        .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
+                                            .addComponent(jButton3)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(btnAtendimentoSair))))
+                                .addComponent(jPanelCaixa2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
+                                .addComponent(jPanelCaixa3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
+                                .addComponent(jPanelCaixa7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanelAtendimentoLayout.setVerticalGroup(
@@ -630,10 +639,25 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
                     .addComponent(jLabel5)
                     .addComponent(jLabel21))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanelCaixa1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanelCaixa2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanelCaixa3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanelCaixa4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanelCaixa5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanelCaixa6, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanelCaixa7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanelCaixa8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanelControleCronometro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
-                        .addComponent(jPanelControleCronometro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                         .addGroup(jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(labelClientesGerados))
@@ -641,31 +665,13 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
                         .addGroup(jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(labelClientesAtendidos))
-                        .addGap(32, 32, 32)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton3)
-                            .addComponent(btnAtendimentoSair))
-                        .addGap(55, 55, 55)
-                        .addComponent(jButton1)
-                        .addGap(145, 145, 145))
-                    .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
-                        .addComponent(jPanelCaixa1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanelCaixa2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanelCaixa3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanelCaixa4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanelCaixa5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanelCaixa6, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanelCaixa7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanelCaixa8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(38, 38, 38)
+                            .addComponent(btnAtendimentoSair))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabelLogo)
                 .addGap(18, 18, 18))
         );
@@ -676,6 +682,7 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
         logDoPrograma.setRows(5);
         jScrollPane1.setViewportView(logDoPrograma);
 
+        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/monetae/imagens/iconSave32x32.png"))); // NOI18N
         jButton9.setText("Salvar Log");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -701,7 +708,7 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
                     .addComponent(jLabel13)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jLabelLocalDoLog)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 585, Short.MAX_VALUE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 696, Short.MAX_VALUE)
                     .addComponent(jLabelLogo1)
                     .addContainerGap())
             );
@@ -709,7 +716,7 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
                 jPanelLogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanelLogLayout.createSequentialGroup()
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 149, Short.MAX_VALUE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
                     .addGroup(jPanelLogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabelLogo1)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLogLayout.createSequentialGroup()
@@ -782,18 +789,30 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
             jLabelTotalClientesAtendidos.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
             jLabelTotalClientesAtendidos.setText("9999");
 
-            javax.swing.GroupLayout jPanelSobreLayout = new javax.swing.GroupLayout(jPanelSobre);
-            jPanelSobre.setLayout(jPanelSobreLayout);
-            jPanelSobreLayout.setHorizontalGroup(
-                jPanelSobreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelSobreLayout.createSequentialGroup()
+            buttonGroupAnexoEmail.add(jRadioButtonComAnexo);
+            jRadioButtonComAnexo.setText("Anexar PDF ao email");
+            jRadioButtonComAnexo.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jRadioButtonComAnexoActionPerformed(evt);
+                }
+            });
+
+            buttonGroupAnexoEmail.add(jRadioButtonSemAnexo);
+            jRadioButtonSemAnexo.setSelected(true);
+            jRadioButtonSemAnexo.setText("Não anexar");
+
+            javax.swing.GroupLayout jPanelRelatoriosLayout = new javax.swing.GroupLayout(jPanelRelatorios);
+            jPanelRelatorios.setLayout(jPanelRelatoriosLayout);
+            jPanelRelatoriosLayout.setHorizontalGroup(
+                jPanelRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelRelatoriosLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(jLabelLogo2))
-                .addGroup(jPanelSobreLayout.createSequentialGroup()
-                    .addGroup(jPanelSobreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanelSobreLayout.createSequentialGroup()
+                .addGroup(jPanelRelatoriosLayout.createSequentialGroup()
+                    .addGroup(jPanelRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanelRelatoriosLayout.createSequentialGroup()
                             .addGap(24, 24, 24)
-                            .addGroup(jPanelSobreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel7)
                                 .addComponent(jLabel11)
                                 .addComponent(jLabel12)
@@ -802,7 +821,7 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
                                 .addComponent(jLabel19)
                                 .addComponent(jLabel20))
                             .addGap(18, 18, 18)
-                            .addGroup(jPanelSobreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabelTotalClientesAtendidos)
                                 .addComponent(jLabelTotalSeguro)
                                 .addComponent(jLabelTotalSwift)
@@ -810,53 +829,61 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
                                 .addComponent(jLabelTotalEnvRemessa)
                                 .addComponent(jLabelTotalVenda)
                                 .addComponent(jLabelTotalCompra)))
-                        .addGroup(jPanelSobreLayout.createSequentialGroup()
+                        .addGroup(jPanelRelatoriosLayout.createSequentialGroup()
                             .addGap(50, 50, 50)
-                            .addComponent(jButton2)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jButton7)))
-                    .addContainerGap(878, Short.MAX_VALUE))
+                            .addGroup(jPanelRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jRadioButtonComAnexo)
+                                .addGroup(jPanelRelatoriosLayout.createSequentialGroup()
+                                    .addComponent(jButton2)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jButton7))
+                                .addComponent(jRadioButtonSemAnexo))))
+                    .addContainerGap(1025, Short.MAX_VALUE))
             );
-            jPanelSobreLayout.setVerticalGroup(
-                jPanelSobreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelSobreLayout.createSequentialGroup()
+            jPanelRelatoriosLayout.setVerticalGroup(
+                jPanelRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelRelatoriosLayout.createSequentialGroup()
                     .addGap(28, 28, 28)
-                    .addGroup(jPanelSobreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(jPanelRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel7)
                         .addComponent(jLabelTotalCompra))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addGroup(jPanelSobreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(jPanelRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel11)
                         .addComponent(jLabelTotalVenda))
                     .addGap(5, 5, 5)
-                    .addGroup(jPanelSobreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(jPanelRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel12)
                         .addComponent(jLabelTotalEnvRemessa))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addGroup(jPanelSobreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(jPanelRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel10)
                         .addComponent(jLabelTotalRecRemessa))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addGroup(jPanelSobreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(jPanelRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel18)
                         .addComponent(jLabelTotalSwift))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addGroup(jPanelSobreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(jPanelRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel19)
                         .addComponent(jLabelTotalSeguro))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addGroup(jPanelSobreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(jPanelRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel20)
                         .addComponent(jLabelTotalClientesAtendidos))
                     .addGap(35, 35, 35)
-                    .addGroup(jPanelSobreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 288, Short.MAX_VALUE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jRadioButtonComAnexo)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jRadioButtonSemAnexo)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 208, Short.MAX_VALUE)
                     .addComponent(jLabelLogo2))
             );
 
-            jTabbedPaneAtendimento.addTab("Relatórios", jPanelSobre);
+            jTabbedPaneAtendimento.addTab("Relatórios", jPanelRelatorios);
 
             javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
             getContentPane().setLayout(layout);
@@ -866,10 +893,10 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
             );
             layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jTabbedPaneAtendimento)
+                .addComponent(jTabbedPaneAtendimento, javax.swing.GroupLayout.PREFERRED_SIZE, 678, javax.swing.GroupLayout.PREFERRED_SIZE)
             );
 
-            setBounds(0, 0, 1226, 735);
+            setBounds(0, 0, 1373, 708);
         }// </editor-fold>//GEN-END:initComponents
 
     private void btnAtendimentoSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtendimentoSairActionPerformed
@@ -880,7 +907,7 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         ClienteControl.geraCliente(20);
-        labelClientesGerados.setText(""+listaDeClientesGerados.size());
+        labelClientesGerados.setText("" + listaDeClientesGerados.size());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -899,43 +926,42 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         timer.restart();
         try {
-            CxT01 = new CaixaThread("01", barraProgressoCx1, jLabelCaixa1, jLabelTempoClienteDaVezCx1,  logDoPrograma,jLabelServicoCx1);
+            CxT01 = new CaixaThread("01", barraProgressoCx1, jLabelCaixa1, jLabelTempoClienteDaVezCx1, logDoPrograma, jLabelServicoCx1);
             Thread.sleep(10);
-            CxT02 = new CaixaThread("02", barraProgressoCx2, jLabelCaixa2, jLabelTempoClienteDaVezCx2,  logDoPrograma,jLabelServicoCx2);
+            CxT02 = new CaixaThread("02", barraProgressoCx2, jLabelCaixa2, jLabelTempoClienteDaVezCx2, logDoPrograma, jLabelServicoCx2);
             Thread.sleep(10);
-            CxT03 = new CaixaThread("03", barraProgressoCx3, jLabelCaixa3, jLabelTempoClienteDaVezCx3,  logDoPrograma,jLabelServicoCx3);
+            CxT03 = new CaixaThread("03", barraProgressoCx3, jLabelCaixa3, jLabelTempoClienteDaVezCx3, logDoPrograma, jLabelServicoCx3);
             Thread.sleep(10);
-            CxT04 = new CaixaThread("04", barraProgressoCx4, jLabelCaixa4, jLabelTempoClienteDaVezCx4,  logDoPrograma,jLabelServicoCx4);
+            CxT04 = new CaixaThread("04", barraProgressoCx4, jLabelCaixa4, jLabelTempoClienteDaVezCx4, logDoPrograma, jLabelServicoCx4);
             Thread.sleep(10);
-            CxT05 = new CaixaThread("05", barraProgressoCx5, jLabelCaixa5, jLabelTempoClienteDaVezCx5,  logDoPrograma,jLabelServicoCx5);
+            CxT05 = new CaixaThread("05", barraProgressoCx5, jLabelCaixa5, jLabelTempoClienteDaVezCx5, logDoPrograma, jLabelServicoCx5);
             Thread.sleep(10);
-            CxT06 = new CaixaThread("06", barraProgressoCx6, jLabelCaixa6, jLabelTempoClienteDaVezCx6,  logDoPrograma,jLabelServicoCx6);
+            CxT06 = new CaixaThread("06", barraProgressoCx6, jLabelCaixa6, jLabelTempoClienteDaVezCx6, logDoPrograma, jLabelServicoCx6);
             Thread.sleep(10);
-            CxT07 = new CaixaThread("07", barraProgressoCx7, jLabelCaixa7, jLabelTempoClienteDaVezCx7,  logDoPrograma,jLabelServicoCx7);
+            CxT07 = new CaixaThread("07", barraProgressoCx7, jLabelCaixa7, jLabelTempoClienteDaVezCx7, logDoPrograma, jLabelServicoCx7);
             Thread.sleep(10);
-            CxT08 = new CaixaThread("08", barraProgressoCx8, jLabelCaixa8, jLabelTempoClienteDaVezCx8,  logDoPrograma,jLabelServicoCx8);
-            
+            CxT08 = new CaixaThread("08", barraProgressoCx8, jLabelCaixa8, jLabelTempoClienteDaVezCx8, logDoPrograma, jLabelServicoCx8);
+
         } catch (InterruptedException ex) {
             Logger.getLogger(TelaAtendimento.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         //INICIAR A THREAD DE ESTATISTICAS APOS INICAR ATENDIMENTO
         Estatisticas threadEstatisticas = new Estatisticas();
         //INICIAR A THREAD DE ESTATISTICAS APOS INICAR ATENDIMENTO
-        
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
 
-        
         //VERIFICA CAMINHO DA PASTA
         File pastaLogs = new File(BASE_LOGS);
         if (!pastaLogs.exists()) {
             pastaLogs.mkdirs();
         }
         //VERIFICA CAMINHO DA PASTA
-        
+
         //SALVA LOG
         File arquivoLog = new File(ARQUIVO_LOG);
         if (!arquivoLog.exists()) {
@@ -946,12 +972,12 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
             }
         } else {
             try {
-                
+
                 //PEGANDO O CONTEUDO ATUAL DO LOG
                 FileReader fr = new FileReader(arquivoLog);
                 BufferedReader br = new BufferedReader(fr);
                 Vector logAtual = new Vector();
-                while(br.ready()){
+                while (br.ready()) {
                     logAtual.add(br.readLine());
                 }
                 //PEGANDO O CONTEUDO ATUAL DO LOG
@@ -970,39 +996,90 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        int[] quantidade = {Integer.parseInt(jLabelTotalCompra.getText()), Integer.parseInt(jLabelTotalVenda.getText()),
+            Integer.parseInt(jLabelTotalEnvRemessa.getText()), Integer.parseInt(jLabelTotalRecRemessa.getText()),
+            Integer.parseInt(jLabelTotalSwift.getText()), Integer.parseInt(jLabelTotalSeguro.getText()), Integer.parseInt(jLabelTotalClientesAtendidos.getText())};
+        
         String email = JOptionPane.showInputDialog("Digite o email");
-        JOptionPane.showMessageDialog(this, "Email enviado para " + email);
-        EnviarEmail.envia(email);
+        
+        //GERA O PDF QUE IRA EM ANEXO CASO USUARIO OPTE
+        if (jRadioButtonComAnexo.isSelected()) {
+            //VERIFICA CAMINHO DA PASTA
+            File pastaRelatorio = new File(BASE_LOGS);
+            if (!pastaRelatorio.exists()) {
+                pastaRelatorio.mkdirs();
+            }
+            //VERIFICA CAMINHO DA PASTA
+
+            //VERIFICA SE O ARQUIVO EXISTE, SE NAO EXISTIR, O CRIA
+            File arquivoRelatorio = new File(RELATORIO);
+            if (!arquivoRelatorio.exists()) {
+                try {
+                    arquivoRelatorio.createNewFile();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            } else {
+                GeraPdf.geraPdf(RELATORIO, quantidade);
+                EnviarEmail.enviaComAnexo(email, quantidade,RELATORIO);
+            }
+            //GERA O PDF QUE IRA EM ANEXO CASO USUARIO OPTE
+        }
+        if (jRadioButtonSemAnexo.isSelected()){
+            //ENVIA EMAIL SEM O RELATORIO EM ANEXO
+            JOptionPane.showMessageDialog(this, "Email enviado para " + email);
+            EnviarEmail.envia(email, quantidade);
+            //ENVIA EMAIL SEM O RELATORIO EM ANEXO
+        }
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
-//        JFileChooser relatorio = new JFileChooser();
-//        relatorio.setDialogTitle("Salvar Relatório");
-//        relatorio.setFileSelectionMode(JFileChooser.FILES_ONLY);
-//        relatorio.setAcceptAllFileFilterUsed(false);
-//        FileNameExtensionFilter filter = new FileNameExtensionFilter("Arquivo PDF", ".pdf");
-//        relatorio.setFileFilter(filter);
-//        int resultado = relatorio.showSaveDialog(this);
-//
-//        if (resultado == JFileChooser.APPROVE_OPTION) {
-//            File file = relatorio.getSelectedFile();
-//            if (file.exists()) {
-//                int selecionaOpcao = JOptionPane.showConfirmDialog(null,
-//                    " O arquivo já existe, deseja sobrescreve-lo? ", null,
-//                    JOptionPane.OK_CANCEL_OPTION);
-//                if (selecionaOpcao == JOptionPane.OK_OPTION) {
-//                    geraPdf(file.getPath() + ".pdf");
-//                } else if (selecionaOpcao == JOptionPane.CANCEL_OPTION) {
-//                    JOptionPane.showMessageDialog(this, "Ação Cancelada");
-//                }
-//            } else {
-//                geraPdf(file.getPath() + ".pdf");
-//            }
-//        } else if (resultado == JFileChooser.CANCEL_OPTION) {
-//            JOptionPane.showMessageDialog(this, "Ação Cancelada");
-//        }
+
+        int[] dados = {Integer.parseInt(jLabelTotalCompra.getText()), Integer.parseInt(jLabelTotalVenda.getText()),
+            Integer.parseInt(jLabelTotalEnvRemessa.getText()), Integer.parseInt(jLabelTotalRecRemessa.getText()),
+            Integer.parseInt(jLabelTotalSwift.getText()), Integer.parseInt(jLabelTotalSeguro.getText()), Integer.parseInt(jLabelTotalClientesAtendidos.getText())};
+
+        JFileChooser relatorio = new JFileChooser();
+        relatorio.setDialogTitle("Salvar Relatório");
+        relatorio.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        relatorio.setAcceptAllFileFilterUsed(false);
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Arquivo PDF", ".pdf");
+        relatorio.setFileFilter(filter);
+        int resultado = relatorio.showSaveDialog(this);
+        if (resultado == JFileChooser.APPROVE_OPTION) {
+            File file = relatorio.getSelectedFile();
+            if (file.exists()) {
+                int selecionaOpcao = JOptionPane.showConfirmDialog(null,
+                        " O arquivo já existe, deseja sobrescreve-lo? ", null,
+                        JOptionPane.OK_CANCEL_OPTION);
+                if (selecionaOpcao == JOptionPane.OK_OPTION) {
+                    GeraPdf.geraPdf(file.getPath() + ".pdf", dados);
+                    try {
+                        Desktop.getDesktop().open(new File(file.getPath() + ".pdf"));
+                    } catch (IOException ex) {
+                        Logger.getLogger(TelaAtendimento.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } else if (selecionaOpcao == JOptionPane.CANCEL_OPTION) {
+                    JOptionPane.showMessageDialog(this, "Ação Cancelada");
+                }
+            } else {
+                GeraPdf.geraPdf(file.getPath() + ".pdf", dados);
+                try {
+                    Desktop.getDesktop().open(new File(file.getPath() + ".pdf"));
+                } catch (IOException ex) {
+                    Logger.getLogger(TelaAtendimento.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        } else if (resultado == JFileChooser.CANCEL_OPTION) {
+            JOptionPane.showMessageDialog(this, "Ação Cancelada");
+        }
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jRadioButtonComAnexoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonComAnexoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButtonComAnexoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JProgressBar barraProgressoCx1;
@@ -1014,6 +1091,7 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
     public static javax.swing.JProgressBar barraProgressoCx7;
     public static javax.swing.JProgressBar barraProgressoCx8;
     public static javax.swing.JButton btnAtendimentoSair;
+    private javax.swing.ButtonGroup buttonGroupAnexoEmail;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -1082,7 +1160,9 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanelCaixa8;
     private javax.swing.JPanel jPanelControleCronometro;
     private javax.swing.JPanel jPanelLog;
-    private javax.swing.JPanel jPanelSobre;
+    private javax.swing.JPanel jPanelRelatorios;
+    private javax.swing.JRadioButton jRadioButtonComAnexo;
+    private javax.swing.JRadioButton jRadioButtonSemAnexo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPaneAtendimento;
     public static javax.swing.JLabel labelClientesAtendidos;

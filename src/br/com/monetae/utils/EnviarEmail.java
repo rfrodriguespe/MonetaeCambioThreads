@@ -34,16 +34,57 @@ import java.util.Map;
 
 public class EnviarEmail {
 
+    public static void enviaComAnexo(String destinatario, int[] quantidade, String RELATORIO) {
+         //
+        //
+        MailJava mj = new MailJava();
+        //configuracoes de envio
+        mj.setSmtpHostMail("smtp.gmail.com");
+        mj.setSmtpPortMail("587");
+        mj.setSmtpAuth("true");
+        mj.setSmtpStarttls("true");
+        mj.setUserMail("monetaecambio@gmail.com");
+        mj.setFromNameMail("Monetae Câmbio Recife");
+        mj.setPassMail("rfr017450");
+        mj.setCharsetMail("ISO-8859-1");
+        mj.setSubjectMail("Monetae Câmbio - Relatório de Atendimento");
+        //mj.setBodyMail(htmlMessage());
+        mj.setBodyMail(htmlMessage(quantidade));
+        mj.setTypeTextMail(MailJava.TYPE_TEXT_HTML);
+
+        //sete quantos destinatarios desejar
+        Map<String, String> map = new HashMap<String, String>();
+        map.put(destinatario, "email gmail");
+
+        mj.setToMailsUsers(map);
+
+        //seta quatos anexos desejar
+        List<String> files = new ArrayList<String>();
+        files.add(RELATORIO);
+
+        mj.setFileMails(files);
+
+        try {
+            new MailJavaSender().senderMail(mj);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private int[] quantidade;
+
     public static String data() {
         Date data = new Date();
         Locale local = new Locale("pt", "BR");
-        DateFormat formato = new SimpleDateFormat("dd 'de' MMMM 'de' yyyy", local);
+        DateFormat formato = new SimpleDateFormat("dd 'de' MMMM 'de' yyyy - HH:mm:ss", local);
         String dataFormatada = formato.format(data);
         
         return dataFormatada;
     }
 
-    public static void envia(String destinatario) {
+    public static void envia(String destinatario, int[] quantidade) {
 
         //
         //
@@ -59,7 +100,7 @@ public class EnviarEmail {
         mj.setCharsetMail("ISO-8859-1");
         mj.setSubjectMail("Monetae Câmbio - Relatório de Atendimento");
         //mj.setBodyMail(htmlMessage());
-        mj.setBodyMail(htmlMessage());
+        mj.setBodyMail(htmlMessage(quantidade));
         mj.setTypeTextMail(MailJava.TYPE_TEXT_HTML);
 
         //sete quantos destinatarios desejar
@@ -70,7 +111,7 @@ public class EnviarEmail {
 
         //seta quatos anexos desejar
         List<String> files = new ArrayList<String>();
-        files.add("C:/temp/relatorio.pdf");
+        //files.add("C:/temp/relatorio.pdf");
 
         mj.setFileMails(files);
 
@@ -84,12 +125,10 @@ public class EnviarEmail {
     }
 
     private static String textMessage() {
-        return "Leia o novo tutorial JavaMail do Programando com Java.n"
-                + "Saiba como enviar emails com anexo, em formato texto e html.n"
-                + "Envie seu email para mais de um destinatario.";
+        return "Alterar esse corpo caso deseja utilizar formatação simples";
     }
 
-    private static String htmlMessage() {
+    private static String htmlMessage(int[] quantidade) {
         return "<html> "
                 + "<head>"
                 + "<title>Email no formato HTML com Javamail!</title> "
@@ -100,7 +139,9 @@ public class EnviarEmail {
                 + "<h2>Relat&oacute;rio de Atendimento</h2>"
                 + "<p>&nbsp;</p>"
                 + "<pre>\n"
-                + "Voc&ecirc; est&aacute; recebendo esse email com o relat&oacute;rio de atendimento gerado pelo nosso programa em anexo.</pre>"
+                +"<p>Voc&ecirc; est&aacute; recebendo esse email com o relat&oacute;rio de atendimento gerado pelo nosso programa</p>"
+                +"<p>O mesmo tamb&eacute;m segue em anexo como PDF</p>"
+                //+ "Voc&ecirc; est&aacute; recebendo esse email com o relat&oacute;rio de atendimento gerado pelo nosso programa em anexo.</pre>"
                 + "<table border=\"1\" cellpadding=\"1\" cellspacing=\"1\" style=\"width:600px\">"
                 + "<thead>"
                 + "<tr>"
@@ -113,13 +154,13 @@ public class EnviarEmail {
                 + "<th scope=\"col\">Total de Clientes atendidos</th>"
                 + "</tr>"
                 + "<tr>"
-                + "<th scope=\"col\">10</th>"
-                + "<th scope=\"col\">11</th>"
-                + "<th scope=\"col\">12</th>"
-                + "<th scope=\"col\">13</th>"
-                + "<th scope=\"col\">14</th>"
-                + "<th scope=\"col\">15</th>"
-                + "<th scope=\"col\">75</th>"
+                + "<th scope=\"col\">"+quantidade[0]+"</th>"
+                + "<th scope=\"col\">"+quantidade[1]+"</th>"
+                + "<th scope=\"col\">"+quantidade[2]+"</th>"
+                + "<th scope=\"col\">"+quantidade[3]+"</th>"
+                + "<th scope=\"col\">"+quantidade[4]+"</th>"
+                + "<th scope=\"col\">"+quantidade[5]+"</th>"
+                + "<th scope=\"col\">"+quantidade[6]+"</th>"
                 + "</tr>"
                 + "</thead>"
                 + "<tbody>"
