@@ -40,7 +40,7 @@ public final class Cliente {
         this.nome = geraNome();
         this.ehBrasileiro = geraNacionalidade();
         this.servico = geraServico();
-        this.tempoAtendimento = (isEhBrasileiro()) ? 1500 + getServico().getTempoServico() : getServico().getTempoServico() + 1700;
+        this.tempoAtendimento = (isEhBrasileiro()) ? 1000 + getServico().getTempoServico() : getServico().getTempoServico() + 1500;
     }
 
     public int getId() {

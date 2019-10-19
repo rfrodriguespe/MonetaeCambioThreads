@@ -26,12 +26,12 @@ public enum Servicos {
     /**
      * O Serviço Venda de moeda tem tempo de atendimento definido em 900 ms.
      */
-    VendaMoeda(1900),
+    VendaMoeda(1000),
 
     /**
      * O Serviço Compra de moeda tem tempo de atendimento definido em 700 ms.
      */
-    CompraMoeda(1700),
+    CompraMoeda(1300),
 
     /**
      * O Serviço Recebimento de remessa tem tempo de atendimento definido em 1100 ms.
@@ -41,17 +41,17 @@ public enum Servicos {
     /**
      * O Serviço Envio de remessa tem tempo de atendimento definido em 1000 ms.
      */
-    EnvRemessa(2000),
+    EnvRemessa(2500),
 
     /**
      * O serviço de swift tem tempo de atendimento definido em 1500 ms.
      */
-    Swift(2500),
+    Swift(3500),
 
     /**
      * O serviço de contratação de Seguro de viagem tem tempo definido em 1600 ms.
      */
-    SeguroViagem(2600);
+    SeguroViagem(3700);
 
     private int tempoServico;
 
