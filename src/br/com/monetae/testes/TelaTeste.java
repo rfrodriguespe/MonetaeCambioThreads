@@ -16,10 +16,9 @@
  */
 package br.com.monetae.testes;
 
-import br.com.monetae.model.CaixaThread;
 import br.com.monetae.control.ClienteControl;
-import br.com.monetae.control.Estatisticas;
-import br.com.monetae.control.VerificaQtdeClientes;
+import br.com.monetae.control.EstatisticasTESTE;
+import br.com.monetae.control.VerificaQtdeClientesTESTES;
 import br.com.monetae.model.Cliente;
 import br.com.monetae.utils.EnviarEmail;
 import br.com.monetae.utils.GeraPdf;
@@ -64,7 +63,7 @@ public class TelaTeste extends javax.swing.JInternalFrame {
     //LISTA DOS CLIENTES
 
     //MONITORAMENTO DA QUANTIDADE DE CLIENTES
-    public static VerificaQtdeClientes monitoraClientes;
+    public static VerificaQtdeClientesTESTES monitoraClientes;
     //MONITORAMENTO DA QUANTIDADE DE CLIENTES
 
     //CRONOMETRO
@@ -74,17 +73,6 @@ public class TelaTeste extends javax.swing.JInternalFrame {
     public static int currentHora = 0;
     private int velocidade = 1000;
     //CRONOMETRO
-
-    //CAIXAS
-    public static CaixaThread CxT01;
-    public static CaixaThread CxT02;
-    public static CaixaThread CxT03;
-    public static CaixaThread CxT04;
-    public static CaixaThread CxT05;
-    public static CaixaThread CxT06;
-    public static CaixaThread CxT07;
-    public static CaixaThread CxT08;
-    //CAIXAS
 
     //CAIXAS
     public static CaixaThreadStop TesteCxT01;
@@ -97,23 +85,12 @@ public class TelaTeste extends javax.swing.JInternalFrame {
     public static CaixaThreadStop TesteCxT08;
     //CAIXAS
 
-    //NESSA ÁREA TESTAREI AS THREAS COM START SUSPEND E STOP
-    SuspendResumeStop testeCx1 = new SuspendResumeStop("#01");
-    SuspendResumeStop testeCx2 = new SuspendResumeStop("#02");
-    SuspendResumeStop testeCx3 = new SuspendResumeStop("#03");
-    SuspendResumeStop testeCx4 = new SuspendResumeStop("#04");
-    SuspendResumeStop testeCx5 = new SuspendResumeStop("#05");
-    SuspendResumeStop testeCx6 = new SuspendResumeStop("#06");
-    SuspendResumeStop testeCx7 = new SuspendResumeStop("#07");
-    SuspendResumeStop testeCx8 = new SuspendResumeStop("#08");
-    //NESSA ÁREA TESTAREI AS THREAS COM START SUSPEND E STOP
-
     /**
      * Creates new form TelaAtendimento
      */
     public TelaTeste() {
         initComponents();
-        monitoraClientes = new VerificaQtdeClientes("Thread Clientes #01");
+        monitoraClientes = new VerificaQtdeClientesTESTES("Thread Clientes #01");
         iniciarContagem();
         timer.stop();
         // Adiciona rodapé com a data e hora atuais
@@ -123,17 +100,6 @@ public class TelaTeste extends javax.swing.JInternalFrame {
         logDoPrograma.append(inicioLog + " Tela de atendimento aberta\n");
         jLabelLocalDoLog.setText(BASE_LOGS);
         //
-
-        //INSTANCIA DOS CAIXAS
-        TesteCxT01 = new CaixaThreadStop("01", barraProgressoCx1, jLabelCaixa1, jLabelTempoClienteDaVezCx1, logDoPrograma, jLabelServicoCx1);
-        TesteCxT02 = new CaixaThreadStop("02", barraProgressoCx2, jLabelCaixa2, jLabelTempoClienteDaVezCx2, logDoPrograma, jLabelServicoCx2);
-        TesteCxT03 = new CaixaThreadStop("03", barraProgressoCx3, jLabelCaixa3, jLabelTempoClienteDaVezCx3, logDoPrograma, jLabelServicoCx3);
-        TesteCxT04 = new CaixaThreadStop("04", barraProgressoCx4, jLabelCaixa4, jLabelTempoClienteDaVezCx4, logDoPrograma, jLabelServicoCx4);
-        TesteCxT05 = new CaixaThreadStop("05", barraProgressoCx5, jLabelCaixa5, jLabelTempoClienteDaVezCx5, logDoPrograma, jLabelServicoCx5);
-        TesteCxT06 = new CaixaThreadStop("06", barraProgressoCx6, jLabelCaixa6, jLabelTempoClienteDaVezCx6, logDoPrograma, jLabelServicoCx6);
-        TesteCxT07 = new CaixaThreadStop("07", barraProgressoCx7, jLabelCaixa7, jLabelTempoClienteDaVezCx7, logDoPrograma, jLabelServicoCx7);
-        TesteCxT08 = new CaixaThreadStop("08", barraProgressoCx8, jLabelCaixa8, jLabelTempoClienteDaVezCx8, logDoPrograma, jLabelServicoCx8);
-        //INSTANCIA DOS CAIXAS
 
     }
 
@@ -1601,7 +1567,7 @@ public class TelaTeste extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        ClienteControl.geraCliente(20);
+        ClienteControl.geraClienteTelaTeste(20);
         labelClientesGerados.setText("" + listaDeClientesGerados.size());
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -1619,32 +1585,6 @@ public class TelaTeste extends javax.swing.JInternalFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        timer.restart();
-        try {
-            CxT01 = new CaixaThread("01", barraProgressoCx1, jLabelCaixa1, jLabelTempoClienteDaVezCx1, logDoPrograma, jLabelServicoCx1);
-            Thread.sleep(10);
-            CxT02 = new CaixaThread("02", barraProgressoCx2, jLabelCaixa2, jLabelTempoClienteDaVezCx2, logDoPrograma, jLabelServicoCx2);
-            Thread.sleep(10);
-            CxT03 = new CaixaThread("03", barraProgressoCx3, jLabelCaixa3, jLabelTempoClienteDaVezCx3, logDoPrograma, jLabelServicoCx3);
-            Thread.sleep(10);
-            CxT04 = new CaixaThread("04", barraProgressoCx4, jLabelCaixa4, jLabelTempoClienteDaVezCx4, logDoPrograma, jLabelServicoCx4);
-            Thread.sleep(10);
-            CxT05 = new CaixaThread("05", barraProgressoCx5, jLabelCaixa5, jLabelTempoClienteDaVezCx5, logDoPrograma, jLabelServicoCx5);
-            Thread.sleep(10);
-            CxT06 = new CaixaThread("06", barraProgressoCx6, jLabelCaixa6, jLabelTempoClienteDaVezCx6, logDoPrograma, jLabelServicoCx6);
-            Thread.sleep(10);
-            CxT07 = new CaixaThread("07", barraProgressoCx7, jLabelCaixa7, jLabelTempoClienteDaVezCx7, logDoPrograma, jLabelServicoCx7);
-            Thread.sleep(10);
-            CxT08 = new CaixaThread("08", barraProgressoCx8, jLabelCaixa8, jLabelTempoClienteDaVezCx8, logDoPrograma, jLabelServicoCx8);
-
-        } catch (InterruptedException ex) {
-            Logger.getLogger(TelaTeste.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        //INICIAR A THREAD DE ESTATISTICAS APOS INICAR ATENDIMENTO
-        Estatisticas threadEstatisticas = new Estatisticas();
-        //INICIAR A THREAD DE ESTATISTICAS APOS INICAR ATENDIMENTO
-
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -1778,68 +1718,72 @@ public class TelaTeste extends javax.swing.JInternalFrame {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
-
-        ClienteControl.geraClienteTelaTeste(20);
-        labelClientesGerados.setText("" + listaDeClientesGerados.size());
-
+        
         timer.restart();
- 
-            
-            TesteCxT01.run();
-            
+        try {
+            TesteCxT01 = new CaixaThreadStop("01", barraProgressoCx1, jLabelCaixa1, jLabelTempoClienteDaVezCx1, logDoPrograma, jLabelServicoCx1);
+            Thread.sleep(10);
+            TesteCxT02 = new CaixaThreadStop("02", barraProgressoCx2, jLabelCaixa2, jLabelTempoClienteDaVezCx2, logDoPrograma, jLabelServicoCx2);
+            Thread.sleep(10);
+            TesteCxT03 = new CaixaThreadStop("03", barraProgressoCx3, jLabelCaixa3, jLabelTempoClienteDaVezCx3, logDoPrograma, jLabelServicoCx3);
+            Thread.sleep(10);
+            TesteCxT04 = new CaixaThreadStop("04", barraProgressoCx4, jLabelCaixa4, jLabelTempoClienteDaVezCx4, logDoPrograma, jLabelServicoCx4);
+            Thread.sleep(10);
+            TesteCxT05 = new CaixaThreadStop("05", barraProgressoCx5, jLabelCaixa5, jLabelTempoClienteDaVezCx5, logDoPrograma, jLabelServicoCx5);
+            Thread.sleep(10);
+            TesteCxT06 = new CaixaThreadStop("06", barraProgressoCx6, jLabelCaixa6, jLabelTempoClienteDaVezCx6, logDoPrograma, jLabelServicoCx6);
+            Thread.sleep(10);
+            TesteCxT07 = new CaixaThreadStop("07", barraProgressoCx7, jLabelCaixa7, jLabelTempoClienteDaVezCx7, logDoPrograma, jLabelServicoCx7);
+            Thread.sleep(10);
+            TesteCxT08 = new CaixaThreadStop("08", barraProgressoCx8, jLabelCaixa8, jLabelTempoClienteDaVezCx8, logDoPrograma, jLabelServicoCx8);
+
+        } catch (InterruptedException ex) {
+            Logger.getLogger(TelaTeste.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         //INICIAR A THREAD DE ESTATISTICAS APOS INICAR ATENDIMENTO
-        Estatisticas threadEstatisticas = new Estatisticas();
+        EstatisticasTESTE threadEstatisticas = new EstatisticasTESTE();
         //INICIAR A THREAD DE ESTATISTICAS APOS INICAR ATENDIMENTO
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
-        new Thread() {
-            public void run() {
-                testeCx1.suspend();
-                testeCx2.suspend();
-                testeCx3.suspend();
-                testeCx4.suspend();
-                testeCx5.suspend();
-                testeCx6.suspend();
-                testeCx7.suspend();
-                testeCx8.suspend();
-            }
-        }.start();
+        TesteCxT01.suspend();
+        TesteCxT02.suspend();
+        TesteCxT03.suspend();
+        TesteCxT04.suspend();
+        TesteCxT05.suspend();
+        TesteCxT06.suspend();
+        TesteCxT07.suspend();
+        TesteCxT08.suspend();
+        timer.stop();
+
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         // TODO add your handling code here:
-        new Thread() {
-            public void run() {
-                testeCx1.resume();
-                testeCx2.resume();
-                testeCx3.resume();
-                testeCx4.resume();
-                testeCx5.resume();
-                testeCx6.resume();
-                testeCx7.resume();
-                testeCx8.resume();
-            }
-        }.start();
+        TesteCxT01.resume();
+        TesteCxT02.resume();
+        TesteCxT03.resume();
+        TesteCxT04.resume();
+        TesteCxT05.resume();
+        TesteCxT06.resume();;
+        TesteCxT07.resume();
+        TesteCxT08.resume();
+        timer.restart();
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         // TODO add your handling code here:
-        new Thread() {
-            public void run() {
-                TesteCxT01.stop();
-                TesteCxT02.stop();
-                TesteCxT03.stop();
-                TesteCxT04.stop();
-                TesteCxT05.stop();
-                TesteCxT06.stop();
-                TesteCxT07.stop();
-                TesteCxT08.stop();
-                timer.stop();
-            }
-        }.start();
+        TesteCxT01.stop();
+        TesteCxT02.stop();
+        TesteCxT03.stop();
+        TesteCxT04.stop();
+        TesteCxT05.stop();
+        TesteCxT06.stop();
+        TesteCxT07.stop();
+        TesteCxT08.stop();
+        timer.stop();
     }//GEN-LAST:event_jButton11ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

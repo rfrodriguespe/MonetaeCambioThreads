@@ -90,8 +90,7 @@
                               </Group>
                               <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jPanelControleCronometro" min="-2" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="32767" attributes="0"/>
@@ -109,6 +108,14 @@
                                           <Component id="btnAtendimentoSair" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jPanelControleCronometro" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jButton8" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jButton10" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
                               </Group>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
@@ -120,14 +127,14 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel21" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel21" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
@@ -151,8 +158,12 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jPanelCaixa7" min="-2" pref="40" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
+                              <Component id="jButton8" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jButton10" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="labelClientesGerados" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -430,7 +441,7 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabelTempoClienteDaVezCx1">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="0000"/>
+                    <Property name="text" type="java.lang.String" value="----"/>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -438,7 +449,7 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabelCaixa1">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="XXX"/>
+                    <Property name="text" type="java.lang.String" value="----"/>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -446,7 +457,7 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabelServicoCx1">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="XXX"/>
+                    <Property name="text" type="java.lang.String" value="----"/>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -503,7 +514,7 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabelTempoClienteDaVezCx2">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="0000"/>
+                    <Property name="text" type="java.lang.String" value="----"/>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -511,7 +522,7 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabelCaixa2">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="XXX"/>
+                    <Property name="text" type="java.lang.String" value="----"/>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -519,7 +530,7 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabelServicoCx2">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="XXX"/>
+                    <Property name="text" type="java.lang.String" value="----"/>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -548,7 +559,7 @@
                           <Component id="jLabelTempoClienteDaVezCx3" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                           <Component id="jLabelCaixa3" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="186" max="32767" attributes="0"/>
+                          <EmptySpace pref="198" max="32767" attributes="0"/>
                           <Component id="jLabelServicoCx3" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                       </Group>
@@ -576,7 +587,7 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabelTempoClienteDaVezCx3">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="0000"/>
+                    <Property name="text" type="java.lang.String" value="----"/>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -584,7 +595,7 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabelCaixa3">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="XXX"/>
+                    <Property name="text" type="java.lang.String" value="----"/>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -592,7 +603,7 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabelServicoCx3">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="XXX"/>
+                    <Property name="text" type="java.lang.String" value="----"/>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -646,7 +657,7 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabelTempoClienteDaVezCx4">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="0000"/>
+                    <Property name="text" type="java.lang.String" value="----"/>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -654,7 +665,7 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabelCaixa4">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="XXX"/>
+                    <Property name="text" type="java.lang.String" value="----"/>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -662,7 +673,7 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabelServicoCx4">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="XXX"/>
+                    <Property name="text" type="java.lang.String" value="----"/>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -716,7 +727,7 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabelTempoClienteDaVezCx5">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="0000"/>
+                    <Property name="text" type="java.lang.String" value="----"/>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -724,7 +735,7 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabelCaixa5">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="XXX"/>
+                    <Property name="text" type="java.lang.String" value="----"/>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -732,7 +743,7 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabelServicoCx5">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="XXX"/>
+                    <Property name="text" type="java.lang.String" value="----"/>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -789,7 +800,7 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabelTempoClienteDaVezCx6">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="0000"/>
+                    <Property name="text" type="java.lang.String" value="----"/>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -797,7 +808,7 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabelCaixa6">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="XXX"/>
+                    <Property name="text" type="java.lang.String" value="----"/>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -805,7 +816,7 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabelServicoCx6">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="XXX"/>
+                    <Property name="text" type="java.lang.String" value="----"/>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -862,7 +873,7 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabelTempoClienteDaVezCx7">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="0000"/>
+                    <Property name="text" type="java.lang.String" value="----"/>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -870,7 +881,7 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabelCaixa7">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="XXX"/>
+                    <Property name="text" type="java.lang.String" value="----"/>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -878,7 +889,7 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabelServicoCx7">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="XXX"/>
+                    <Property name="text" type="java.lang.String" value="----"/>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -936,7 +947,7 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabelTempoClienteDaVezCx8">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="0000"/>
+                    <Property name="text" type="java.lang.String" value="----"/>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -944,7 +955,7 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabelCaixa8">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="XXX"/>
+                    <Property name="text" type="java.lang.String" value="----"/>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -952,7 +963,7 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabelServicoCx8">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="XXX"/>
+                    <Property name="text" type="java.lang.String" value="----"/>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -1776,6 +1787,22 @@
                 </Component>
               </SubComponents>
             </Container>
+            <Component class="javax.swing.JButton" name="jButton8">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="PARAR TUDO"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton8ActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButton10">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="VOLTAQR TUDO"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton10ActionPerformed"/>
+              </Events>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="jPanelLog">
@@ -2009,7 +2036,7 @@
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="660" max="32767" attributes="0"/>
+                      <EmptySpace pref="676" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -2202,7 +2229,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="18" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="9999"/>
+                <Property name="text" type="java.lang.String" value="----"/>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -2213,7 +2240,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="18" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="9999"/>
+                <Property name="text" type="java.lang.String" value="----"/>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -2224,7 +2251,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="18" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="9999"/>
+                <Property name="text" type="java.lang.String" value="----"/>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -2235,7 +2262,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="18" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="9999"/>
+                <Property name="text" type="java.lang.String" value="----"/>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -2246,7 +2273,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="18" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="9999"/>
+                <Property name="text" type="java.lang.String" value="----"/>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -2257,7 +2284,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="18" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="9999"/>
+                <Property name="text" type="java.lang.String" value="----"/>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -2268,7 +2295,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="18" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="9999"/>
+                <Property name="text" type="java.lang.String" value="----"/>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -2307,7 +2334,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="18" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="9999"/>
+                <Property name="text" type="java.lang.String" value="----"/>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -2334,7 +2361,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="18" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="9999"/>
+                <Property name="text" type="java.lang.String" value="----"/>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -2361,7 +2388,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="18" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="9999"/>
+                <Property name="text" type="java.lang.String" value="----"/>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -2372,7 +2399,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="18" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="9999"/>
+                <Property name="text" type="java.lang.String" value="----"/>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -2415,7 +2442,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="18" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="9999"/>
+                <Property name="text" type="java.lang.String" value="----"/>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -2426,7 +2453,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="18" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="9999"/>
+                <Property name="text" type="java.lang.String" value="----"/>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -2437,7 +2464,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="18" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="9999"/>
+                <Property name="text" type="java.lang.String" value="----"/>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -2448,7 +2475,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="18" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="9999"/>
+                <Property name="text" type="java.lang.String" value="----"/>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>

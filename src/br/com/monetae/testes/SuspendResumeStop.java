@@ -28,13 +28,11 @@ public class SuspendResumeStop implements Runnable {
     public static Thread t;
     
     private String nome;
-    private Cliente cliente;
     private boolean estaSuspensa;
     private boolean foiTerminada;
 
     public SuspendResumeStop(String nome) {
         this.nome = nome;
-        this.cliente = cliente;
         this.estaSuspensa = false;
         this.t = new Thread(this, nome);
     }
@@ -47,22 +45,14 @@ public class SuspendResumeStop implements Runnable {
         this.nome = nome;
     }
 
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
-
     @Override
     public void run() {        
         System.out.println("A thread "+nome+" inicou sua execução");
         try {
-            
             while(!foiTerminada){
                 int i = 1;
                 System.out.println("Thread "+nome+" está contando "+(i++));
+                System.out.println("Current Thread "+Thread.currentThread().getName());
                 Thread.sleep(500);
                 synchronized(this){
                     while(estaSuspensa){
@@ -74,8 +64,6 @@ public class SuspendResumeStop implements Runnable {
                     }
                 }
             }
-            
-            
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -85,7 +73,7 @@ public class SuspendResumeStop implements Runnable {
 
     }
 
-    public void suspend() {
+    public synchronized void suspend() {
         this.estaSuspensa = true;
     }
 

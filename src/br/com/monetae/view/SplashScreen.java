@@ -63,7 +63,7 @@ public class SplashScreen extends javax.swing.JFrame {
                 }
             }
         };
-        t = new Timer(5, al);
+        t = new Timer(20, al);
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/br/com/monetae/imagens/monetae-icone-91x91.png")));
         initComponents();
         AWTUtilities.setWindowOpaque(this, false);

@@ -120,7 +120,10 @@ public class CaixaThread implements Runnable {
         this.tempoCliente = tempoCliente;
         this.servicoCliente = servicoCliente;
         this.areaLog = areaLog;
-        new Thread(this, nome).start();
+        //new Thread(this, nome).start();
+
+        Thread t = new Thread(this);
+        t.start();
     }
 
     public ArrayList<Servicos> getListaServicos() {
@@ -179,7 +182,7 @@ public class CaixaThread implements Runnable {
                                 servicoCliente.setText("" + clienteDaVez.getServico());
 
                                 //incrementando a barra
-                                for (int i = 0; i <= 100; i++) {
+                                for (int i = 0; i <= barra.getMaximum(); i++) {
                                     barra.setValue(i);
                                     Thread.sleep(tCliente / 100);
                                 }
@@ -191,6 +194,14 @@ public class CaixaThread implements Runnable {
                                 //ADD AO LOG
                                 areaLog.append(inicioLog + " Caixa: " + nome + " terminou o atendimento do cliente ID: " + clienteEmAtendimento.getId() + "\n");
                                 //ADD AO LOG
+                                
+                                //ZERA OS DADOS DO CLIENTE DA VEZ PARA ESPERAR O OUTRO
+                                barra.setValue(0);
+                                servicoCliente.setText("----");
+                                tempoCliente.setText("----");
+                                servicoCliente.setText("----");
+                                labelClienteDaVez.setText("----");
+                                //ZERA OS DADOS DO CLIENTE DA VEZ PARA ESPERAR O OUTRO
 
                                 //ALIMENTA A ESTATISTICA DE ATEDNDIMENTO INDIVIDUAL POR CAIXA
                                 switch (getNome()) {

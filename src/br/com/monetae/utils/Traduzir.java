@@ -53,7 +53,7 @@ public class Traduzir {
     
     
     public static void traduzir(int idioma) {
-
+        
         String[] inicio = {"Iníco","Start"};
         TelaPrincipal.menuInicio.setText(inicio[idioma]);
         String[] subMenuCostumer = {"Atendimento ao Cliente","Costumer Service"};
