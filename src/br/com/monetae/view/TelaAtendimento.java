@@ -70,9 +70,6 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
     public static ArrayList<Cliente> listaDeAtendidos = new ArrayList<>();
     //LISTA DOS CLIENTES
 
-//    //MONITORAMENTO DA QUANTIDADE DE CLIENTES
-//    public static VerificaQtdeClientes monitoraClientes;
-//    //MONITORAMENTO DA QUANTIDADE DE CLIENTES
     //CRONOMETRO
     private Timer timer;
     public static int currentSegundo = 0;
@@ -80,7 +77,12 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
     public static int currentHora = 0;
     private int velocidade = 1000;
     //CRONOMETRO
-
+    
+    // CONDIÇÃO DE ENCERRAMENTO DO PROGRAMA
+    public static boolean encerrandoAtividades;
+    public static String tempoEstabelecido = "00:00:17"; //String pois compara com uma jLabel
+    // CONDIÇÃO DE ENCERRAMENTO DO PROGRAMA
+    
     //CAIXAS
     public static CaixaThread CxT01;
     public static CaixaThread CxT02;
@@ -97,8 +99,7 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
      */
     public TelaAtendimento() {
         initComponents();
-        //monitoraClientes = new VerificaQtdeClientes("Thread Clientes #01");
-        ClienteControl.geraCliente(20);
+        ClienteControl.geraCliente(12);
         monitorarAtividades();
         timer.stop();
         // Adiciona rodapé com a data e hora atuais
@@ -1893,13 +1894,17 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
         currentSegundo = 0;
         //jLabelCronometro.setText("00:00:00");
     }
+    
+    private boolean tempoExeceu(){
+        return jLabelCronometro.getText().equals(tempoEstabelecido);
+    }
 
     private void monitorarAtividades() {
         ActionListener action = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // BLOCO RESPONSÁVEL POR MONITORAR CLIENTES NA LOJA
-                if (TelaAtendimento.listaDeClientesGerados.size() < 20) {
-                    ClienteControl.geraCliente(20);
+                if (TelaAtendimento.listaDeClientesGerados.size() < 10 && !tempoExeceu()) {
+                    ClienteControl.geraCliente(10);
                 }
                 // BLOCO RESPONSÁVEL POR MONITORAR CLIENTES NA LOJA
 
@@ -1921,11 +1926,13 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
                 String seg = currentSegundo <= 9 ? "0" + currentSegundo : currentSegundo + "";
 
                 jLabelCronometro.setText(hr + ":" + min + ":" + seg);
-
-                if (jLabelCronometro.getText().equals("00:00:17")) {
-                    pararCaixas();
-                }
                 //BLOCO RESPONSÁVEL PELO CRONÔOMETRO
+                
+                // MONITORA SE O TEMPO EXECEU E SE AINDA HÁ CLIENTES A SEREM ATENDIDOS
+                if (tempoExeceu() && !listaDeClientesGerados.isEmpty()) {
+                    pararCaixas();
+                    JOptionPane.showMessageDialog(null, "Atividades Encerradas pelo Timer de 17s");
+                }
 
                 //BLOCO RESPONSÁVEL POR ALIMENTAR AS ESTATÍSTICAS
                 for (Cliente cliente : TelaAtendimento.listaDeAtendidos) {
@@ -2018,19 +2025,19 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
         timer.restart();
         try {
             CxT01 = new CaixaThread("01", barraProgressoCx1, jLabelCaixa1, jLabelTempoClienteDaVezCx1, logDoPrograma, jLabelServicoCx1);
-            Thread.sleep(10);
+            Thread.sleep(30);
             CxT02 = new CaixaThread("02", barraProgressoCx2, jLabelCaixa2, jLabelTempoClienteDaVezCx2, logDoPrograma, jLabelServicoCx2);
-            Thread.sleep(10);
+            Thread.sleep(30);
             CxT03 = new CaixaThread("03", barraProgressoCx3, jLabelCaixa3, jLabelTempoClienteDaVezCx3, logDoPrograma, jLabelServicoCx3);
-            Thread.sleep(10);
+            Thread.sleep(30);
             CxT04 = new CaixaThread("04", barraProgressoCx4, jLabelCaixa4, jLabelTempoClienteDaVezCx4, logDoPrograma, jLabelServicoCx4);
-            Thread.sleep(10);
+            Thread.sleep(30);
             CxT05 = new CaixaThread("05", barraProgressoCx5, jLabelCaixa5, jLabelTempoClienteDaVezCx5, logDoPrograma, jLabelServicoCx5);
-            Thread.sleep(10);
+            Thread.sleep(30);
             CxT06 = new CaixaThread("06", barraProgressoCx6, jLabelCaixa6, jLabelTempoClienteDaVezCx6, logDoPrograma, jLabelServicoCx6);
-            Thread.sleep(10);
+            Thread.sleep(30);
             CxT07 = new CaixaThread("07", barraProgressoCx7, jLabelCaixa7, jLabelTempoClienteDaVezCx7, logDoPrograma, jLabelServicoCx7);
-            Thread.sleep(10);
+            Thread.sleep(30);
             CxT08 = new CaixaThread("08", barraProgressoCx8, jLabelCaixa8, jLabelTempoClienteDaVezCx8, logDoPrograma, jLabelServicoCx8);
         } catch (InterruptedException ex) {
             Logger.getLogger(TelaAtendimento.class.getName()).log(Level.SEVERE, null, ex);
