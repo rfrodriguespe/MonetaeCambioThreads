@@ -175,12 +175,10 @@ public class CaixaThreadStop implements Runnable {
 
     @Override
     public void run() {
-        System.out.println("A thread " + nome + " inicou sua execução");
         try {
             while (!foiTerminada) {
                 synchronized (this) {
                     while (estaSuspensa) {
-                        System.out.println(getNome() + " está suspensa");
                         wait();
                     }
                     if (this.foiTerminada) {
@@ -188,7 +186,6 @@ public class CaixaThreadStop implements Runnable {
                     }
                 }
                 if (!TelaTeste.listaDeClientesGerados.isEmpty()) {
-                    System.out.println("A thread " + nome + " entrou na tarefa");
                     try {
                         //Pegando o cliente fa vez//
                         Cliente clienteDaVez = TelaTeste.listaDeClientesGerados.get(0);
@@ -270,30 +267,20 @@ public class CaixaThreadStop implements Runnable {
                                     default:
                                         break;
                                 }
-
-                                //}
                                 //ALIMENTA A ESTATISTICA DE ATEDNDIMENTO INDIVIDUAL POR CAIXA
                             }
-                            //Tentativa de sincronizar o cliente
                         } else {
 //                            JOptionPane.showMessageDialog(null, "Não há mais clientes para atender");
-//                            tarefa.cancel();
                         }
                     } catch (InterruptedException ex) {
                         Logger.getLogger(CaixaThreadStop.class.getName()).log(Level.SEVERE, null, ex);
                     }
-
                 } else {
                     JOptionPane.showMessageDialog(null, "Não há clientes para atender");
                 }
-                // VOLTAR ESTA SUSPENSA AQUI
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-        System.out.println("A thread " + nome + " foi terminada");
-        //FIM BLOCO TESTE
-
     }
 }

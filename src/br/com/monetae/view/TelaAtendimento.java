@@ -16,10 +16,8 @@
  */
 package br.com.monetae.view;
 
-import br.com.monetae.model.CaixaThread;
+import br.com.monetae.control.CaixaThread;
 import br.com.monetae.control.ClienteControl;
-import br.com.monetae.control.Estatisticas;
-import br.com.monetae.control.VerificaQtdeClientes;
 import br.com.monetae.model.Cliente;
 import br.com.monetae.utils.EnviarEmail;
 import br.com.monetae.utils.GeraPdf;
@@ -50,6 +48,15 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class TelaAtendimento extends javax.swing.JInternalFrame {
 
+    // ESTATÍSTICAS
+    public static int totalCompra = 0;
+    public static int totalVenda = 0;
+    public static int totalRecRemessa = 0;
+    public static int totalEnvRemessa = 0;
+    public static int totalSwift = 0;
+    public static int totalSeguro = 0;
+    // ESTATÍSTICAS
+
     //LOG
     private static final String BARRA = System.getProperty("file.separator");
     private static final String PASTA_USUARIO = System.getProperty("user.home");
@@ -63,10 +70,9 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
     public static ArrayList<Cliente> listaDeAtendidos = new ArrayList<>();
     //LISTA DOS CLIENTES
 
-    //MONITORAMENTO DA QUANTIDADE DE CLIENTES
-    public static VerificaQtdeClientes monitoraClientes;
-    //MONITORAMENTO DA QUANTIDADE DE CLIENTES
-
+//    //MONITORAMENTO DA QUANTIDADE DE CLIENTES
+//    public static VerificaQtdeClientes monitoraClientes;
+//    //MONITORAMENTO DA QUANTIDADE DE CLIENTES
     //CRONOMETRO
     private Timer timer;
     public static int currentSegundo = 0;
@@ -91,8 +97,9 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
      */
     public TelaAtendimento() {
         initComponents();
-        monitoraClientes = new VerificaQtdeClientes("Thread Clientes #01");
-        iniciarContagem();
+        //monitoraClientes = new VerificaQtdeClientes("Thread Clientes #01");
+        ClienteControl.geraCliente(20);
+        monitorarAtividades();
         timer.stop();
         // Adiciona rodapé com a data e hora atuais
         String cabecalhoLog = "Monetae Câmbio - Log de eventos\n";
@@ -124,11 +131,7 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jPanelControleCronometro = new javax.swing.JPanel();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
         jLabelCronometro = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
         btnAtendimentoSair = new javax.swing.JButton();
         jLabelLogo = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
@@ -229,8 +232,11 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
         jLabelRecRemessaCx8 = new javax.swing.JLabel();
         jLabelSwiftCx8 = new javax.swing.JLabel();
         jLabelSeguroCx8 = new javax.swing.JLabel();
-        jButton8 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
+        jPanelControleAtendimentos = new javax.swing.JPanel();
+        jButtonIniciar = new javax.swing.JButton();
+        jButtonPausar = new javax.swing.JButton();
+        jButtonParar = new javax.swing.JButton();
+        jToggleButton1 = new javax.swing.JToggleButton();
         jPanelLog = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         logDoPrograma = new javax.swing.JTextArea();
@@ -275,6 +281,7 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
         jLabelTotalAtCx6 = new javax.swing.JLabel();
         jLabelTotalAtCx7 = new javax.swing.JLabel();
         jLabelTotalAtCx8 = new javax.swing.JLabel();
+        jToggleButton2 = new javax.swing.JToggleButton();
 
         setClosable(true);
         setMaximizable(true);
@@ -285,7 +292,7 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
         jLabel2.setText("Clientes na loja:");
 
         labelClientesGerados.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        labelClientesGerados.setText("9999");
+        labelClientesGerados.setText("----");
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/monetae/imagens/iconOpen32x32.png"))); // NOI18N
@@ -297,40 +304,16 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
         });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel3.setText("Clientes atendidos até o momento:");
+        jLabel3.setText("Clientes atendidos:");
 
         labelClientesAtendidos.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        labelClientesAtendidos.setText("9999");
+        labelClientesAtendidos.setText("----");
 
         jLabel4.setText("Tempo de AT");
 
         jLabel5.setText("Cliente em atendimento");
 
         jPanelControleCronometro.setBorder(javax.swing.BorderFactory.createTitledBorder("Cronômetro"));
-
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/monetae/imagens/iconPause32x32.png"))); // NOI18N
-        jButton4.setToolTipText("Pause");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/monetae/imagens/iconPlay32x32.png"))); // NOI18N
-        jButton5.setToolTipText("Play");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/monetae/imagens/iconStop32x32.png"))); // NOI18N
-        jButton6.setToolTipText("Stop");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
 
         jLabelCronometro.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
         jLabelCronometro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -342,17 +325,8 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
         jPanelControleCronometroLayout.setHorizontalGroup(
             jPanelControleCronometroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelControleCronometroLayout.createSequentialGroup()
-                .addGroup(jPanelControleCronometroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelControleCronometroLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabelCronometro, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelControleCronometroLayout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jButton5)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton6)))
+                .addContainerGap()
+                .addComponent(jLabelCronometro, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(28, Short.MAX_VALUE))
         );
         jPanelControleCronometroLayout.setVerticalGroup(
@@ -360,22 +334,10 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
             .addGroup(jPanelControleCronometroLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabelCronometro, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanelControleCronometroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5)
-                    .addComponent(jButton6))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton3.setText("Iniciar os atendimento");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
-        btnAtendimentoSair.setText("Fechar Janela");
+        btnAtendimentoSair.setText("Fechar");
         btnAtendimentoSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAtendimentoSairActionPerformed(evt);
@@ -1023,17 +985,62 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
-        jButton8.setText("PARAR TUDO");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        jPanelControleAtendimentos.setBorder(javax.swing.BorderFactory.createTitledBorder("Controle dos Atendimentos"));
+
+        jButtonIniciar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/monetae/imagens/iconPlay32x32.png"))); // NOI18N
+        jButtonIniciar.setToolTipText("Play");
+        jButtonIniciar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                jButtonIniciarActionPerformed(evt);
             }
         });
 
-        jButton10.setText("VOLTAQR TUDO");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
+        jButtonPausar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/monetae/imagens/iconPause32x32.png"))); // NOI18N
+        jButtonPausar.setToolTipText("Pause");
+        jButtonPausar.setEnabled(false);
+        jButtonPausar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+                jButtonPausarActionPerformed(evt);
+            }
+        });
+
+        jButtonParar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/monetae/imagens/iconStop32x32.png"))); // NOI18N
+        jButtonParar.setToolTipText("Stop");
+        jButtonParar.setEnabled(false);
+        jButtonParar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPararActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanelControleAtendimentosLayout = new javax.swing.GroupLayout(jPanelControleAtendimentos);
+        jPanelControleAtendimentos.setLayout(jPanelControleAtendimentosLayout);
+        jPanelControleAtendimentosLayout.setHorizontalGroup(
+            jPanelControleAtendimentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelControleAtendimentosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButtonIniciar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonPausar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonParar)
+                .addContainerGap(40, Short.MAX_VALUE))
+        );
+        jPanelControleAtendimentosLayout.setVerticalGroup(
+            jPanelControleAtendimentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelControleAtendimentosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelControleAtendimentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButtonParar)
+                    .addComponent(jButtonPausar)
+                    .addComponent(jButtonIniciar))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jToggleButton1.setText("RESETAR TUDO");
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
             }
         });
 
@@ -1045,87 +1052,87 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
                 .addGap(37, 37, 37)
                 .addGroup(jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
-                        .addGroup(jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
-                                .addGap(236, 236, 236)
-                                .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel5)
-                                .addGap(68, 68, 68)
-                                .addComponent(jLabel21))
-                            .addComponent(jPanelServicosDisponiveis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 330, Short.MAX_VALUE)
+                        .addGap(236, 236, 236)
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel5)
+                        .addGap(68, 68, 68)
+                        .addComponent(jLabel21)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 409, Short.MAX_VALUE)
                         .addComponent(jLabelLogo))
                     .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
-                        .addGroup(jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jPanelCaixa8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanelCaixa7, javax.swing.GroupLayout.DEFAULT_SIZE, 619, Short.MAX_VALUE)
-                            .addComponent(jPanelCaixa6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 619, Short.MAX_VALUE)
-                            .addComponent(jPanelCaixa5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanelCaixa4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanelCaixa3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 619, Short.MAX_VALUE)
-                            .addComponent(jPanelCaixa2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 619, Short.MAX_VALUE)
-                            .addComponent(jPanelCaixa1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(57, 57, 57)
                         .addGroup(jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
-                                    .addComponent(jLabel2)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(labelClientesGerados, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
-                                    .addComponent(jLabel3)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(labelClientesAtendidos, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jButton1)
-                                .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
-                                    .addComponent(jButton3)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(btnAtendimentoSair)))
+                            .addGroup(jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jPanelCaixa8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jPanelCaixa7, javax.swing.GroupLayout.DEFAULT_SIZE, 619, Short.MAX_VALUE)
+                                .addComponent(jPanelCaixa6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 619, Short.MAX_VALUE)
+                                .addComponent(jPanelCaixa5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jPanelCaixa4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jPanelCaixa3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 619, Short.MAX_VALUE)
+                                .addComponent(jPanelCaixa2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 619, Short.MAX_VALUE)
+                                .addComponent(jPanelCaixa1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jPanelServicosDisponiveis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(16, 16, 16)
+                        .addGroup(jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanelControleAtendimentos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanelControleCronometro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
-                                .addComponent(jPanelControleCronometro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(73, 73, 73)
-                                .addGroup(jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton8)
-                                    .addComponent(jButton10))))
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(labelClientesGerados, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(labelClientesAtendidos, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
+                                .addComponent(jButton1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnAtendimentoSair))
+                            .addComponent(jToggleButton1))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanelAtendimentoLayout.setVerticalGroup(
             jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
-                .addGroup(jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addContainerGap()
+                .addGroup(jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel21))
+                .addGroup(jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel21))
-                        .addGroup(jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPanelCaixa1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPanelCaixa2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPanelCaixa3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPanelCaixa4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
-                                .addGap(23, 23, 23)
-                                .addComponent(jPanelControleCronometro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanelCaixa1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanelCaixa2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanelCaixa3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanelCaixa4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanelCaixa5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanelCaixa6, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanelCaixa7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanelCaixa7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jPanelCaixa8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jPanelServicosDisponiveis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(37, Short.MAX_VALUE))
+                            .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabelLogo)
+                                .addGap(18, 18, 18))))
                     .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
-                        .addGap(81, 81, 81)
-                        .addComponent(jButton8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(23, 23, 23)
+                        .addComponent(jPanelControleCronometro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanelControleAtendimentos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(labelClientesGerados))
@@ -1134,22 +1141,12 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
                             .addComponent(jLabel3)
                             .addComponent(labelClientesAtendidos))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
+                        .addGroup(jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1)
+                            .addComponent(btnAtendimentoSair))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton3)
-                            .addComponent(btnAtendimentoSair))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanelCaixa8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabelLogo)
-                        .addGap(18, 18, 18))
-                    .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanelServicosDisponiveis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(37, Short.MAX_VALUE))))
+                        .addComponent(jToggleButton1)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
 
         jTabbedPaneAtendimento.addTab("Atendimento", jPanelAtendimento);
@@ -1328,6 +1325,13 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
             jLabelTotalAtCx8.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
             jLabelTotalAtCx8.setText("----");
 
+            jToggleButton2.setText("RESETAR TUDO");
+            jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jToggleButton2ActionPerformed(evt);
+                }
+            });
+
             javax.swing.GroupLayout jPanelRelatoriosLayout = new javax.swing.GroupLayout(jPanelRelatorios);
             jPanelRelatorios.setLayout(jPanelRelatoriosLayout);
             jPanelRelatoriosLayout.setHorizontalGroup(
@@ -1413,7 +1417,10 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
                                                 .addGroup(jPanelRelatoriosLayout.createSequentialGroup()
                                                     .addComponent(jLabel27)
                                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(jLabelTotalAtCx5))))))))
+                                                    .addComponent(jLabelTotalAtCx5))))
+                                        .addGroup(jPanelRelatoriosLayout.createSequentialGroup()
+                                            .addGap(57, 57, 57)
+                                            .addComponent(jToggleButton2))))))
                         .addGroup(jPanelRelatoriosLayout.createSequentialGroup()
                             .addGap(50, 50, 50)
                             .addGroup(jPanelRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1488,8 +1495,9 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addGroup(jPanelRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel20)
-                        .addComponent(jLabelTotalClientesAtendidos))
-                    .addGap(35, 35, 35)
+                        .addComponent(jLabelTotalClientesAtendidos)
+                        .addComponent(jToggleButton2))
+                    .addGap(32, 32, 32)
                     .addGroup(jPanelRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1528,47 +1536,50 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
         labelClientesGerados.setText("" + listaDeClientesGerados.size());
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        timer.stop();
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        timer.restart();
-    }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        stopTime();
-    }//GEN-LAST:event_jButton6ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        timer.restart();
-        try {
-            CxT01 = new CaixaThread("01", barraProgressoCx1, jLabelCaixa1, jLabelTempoClienteDaVezCx1, logDoPrograma, jLabelServicoCx1);
-            Thread.sleep(10);
-            CxT02 = new CaixaThread("02", barraProgressoCx2, jLabelCaixa2, jLabelTempoClienteDaVezCx2, logDoPrograma, jLabelServicoCx2);
-            Thread.sleep(10);
-            CxT03 = new CaixaThread("03", barraProgressoCx3, jLabelCaixa3, jLabelTempoClienteDaVezCx3, logDoPrograma, jLabelServicoCx3);
-            Thread.sleep(10);
-            CxT04 = new CaixaThread("04", barraProgressoCx4, jLabelCaixa4, jLabelTempoClienteDaVezCx4, logDoPrograma, jLabelServicoCx4);
-            Thread.sleep(10);
-            CxT05 = new CaixaThread("05", barraProgressoCx5, jLabelCaixa5, jLabelTempoClienteDaVezCx5, logDoPrograma, jLabelServicoCx5);
-            Thread.sleep(10);
-            CxT06 = new CaixaThread("06", barraProgressoCx6, jLabelCaixa6, jLabelTempoClienteDaVezCx6, logDoPrograma, jLabelServicoCx6);
-            Thread.sleep(10);
-            CxT07 = new CaixaThread("07", barraProgressoCx7, jLabelCaixa7, jLabelTempoClienteDaVezCx7, logDoPrograma, jLabelServicoCx7);
-            Thread.sleep(10);
-            CxT08 = new CaixaThread("08", barraProgressoCx8, jLabelCaixa8, jLabelTempoClienteDaVezCx8, logDoPrograma, jLabelServicoCx8);
-
-        } catch (InterruptedException ex) {
-            Logger.getLogger(TelaAtendimento.class.getName()).log(Level.SEVERE, null, ex);
+    private void jButtonPausarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPausarActionPerformed
+        if (!CxT01.estaSuspensa() && !CxT02.estaSuspensa() && !CxT03.estaSuspensa()
+                && !CxT04.estaSuspensa() && !CxT05.estaSuspensa() && !CxT06.estaSuspensa()
+                && !CxT07.estaSuspensa() && !CxT08.estaSuspensa()) {
+            timer.stop();
+            CxT01.suspend();
+            CxT02.suspend();
+            CxT03.suspend();
+            CxT04.suspend();
+            CxT05.suspend();
+            CxT06.suspend();
+            CxT07.suspend();
+            CxT08.suspend();
+            // ALTERANDO O ESTADO DOS BOTÕES
+            jButtonIniciar.setEnabled(false);
+            jButtonParar.setEnabled(true);
+            jButtonPausar.setEnabled(true);
+            // ALTERANDO O ESTADO DOS BOTÕES
+        } else {
+            timer.restart();
+            CxT01.resume();
+            CxT02.resume();
+            CxT03.resume();
+            CxT04.resume();
+            CxT05.resume();
+            CxT06.resume();
+            CxT07.resume();
+            CxT08.resume();
+            // ALTERANDO O ESTADO DOS BOTÕES
+            jButtonIniciar.setEnabled(false);
+            jButtonParar.setEnabled(true);
+            jButtonPausar.setEnabled(true);
+            // ALTERANDO O ESTADO DOS BOTÕES
         }
 
-        //INICIAR A THREAD DE ESTATISTICAS APOS INICAR ATENDIMENTO
-        Estatisticas threadEstatisticas = new Estatisticas();
-        //INICIAR A THREAD DE ESTATISTICAS APOS INICAR ATENDIMENTO
+    }//GEN-LAST:event_jButtonPausarActionPerformed
 
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void jButtonIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIniciarActionPerformed
+        iniciarCaixas();
+    }//GEN-LAST:event_jButtonIniciarActionPerformed
+
+    private void jButtonPararActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPararActionPerformed
+        pararCaixas();
+    }//GEN-LAST:event_jButtonPararActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
@@ -1699,15 +1710,16 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButtonComAnexoActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         // TODO add your handling code here:
-        pararTudo();
-    }//GEN-LAST:event_jButton8ActionPerformed
+        resetarLabels();
 
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
+
+    private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
         // TODO add your handling code here:
-
-    }//GEN-LAST:event_jButton10ActionPerformed
+        resetarLabels();
+    }//GEN-LAST:event_jToggleButton2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JProgressBar barraProgressoCx1;
@@ -1721,15 +1733,12 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
     public static javax.swing.JButton btnAtendimentoSair;
     private javax.swing.ButtonGroup buttonGroupAnexoEmail;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
+    public static javax.swing.JButton jButtonIniciar;
+    public static javax.swing.JButton jButtonParar;
+    public static javax.swing.JButton jButtonPausar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1861,6 +1870,7 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanelCaixa6;
     private javax.swing.JPanel jPanelCaixa7;
     private javax.swing.JPanel jPanelCaixa8;
+    private javax.swing.JPanel jPanelControleAtendimentos;
     private javax.swing.JPanel jPanelControleCronometro;
     private javax.swing.JPanel jPanelLog;
     private javax.swing.JPanel jPanelRelatorios;
@@ -1869,6 +1879,8 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButton jRadioButtonSemAnexo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPaneAtendimento;
+    private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JToggleButton jToggleButton2;
     public static javax.swing.JLabel labelClientesAtendidos;
     public static javax.swing.JLabel labelClientesGerados;
     public static javax.swing.JTextArea logDoPrograma;
@@ -1879,12 +1891,19 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
         currentHora = 0;
         currentMinuto = 0;
         currentSegundo = 0;
-        jLabelCronometro.setText("00:00:00");
+        //jLabelCronometro.setText("00:00:00");
     }
 
-    private void iniciarContagem() {
+    private void monitorarAtividades() {
         ActionListener action = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                // BLOCO RESPONSÁVEL POR MONITORAR CLIENTES NA LOJA
+                if (TelaAtendimento.listaDeClientesGerados.size() < 20) {
+                    ClienteControl.geraCliente(20);
+                }
+                // BLOCO RESPONSÁVEL POR MONITORAR CLIENTES NA LOJA
+
+                //BLOCO RESPONSÁVEL PELO CRONÔMETRO
                 currentSegundo++;
 
                 if (currentSegundo == 60) {
@@ -1902,37 +1921,124 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
                 String seg = currentSegundo <= 9 ? "0" + currentSegundo : currentSegundo + "";
 
                 jLabelCronometro.setText(hr + ":" + min + ":" + seg);
+
+                if (jLabelCronometro.getText().equals("00:00:17")) {
+                    pararCaixas();
+                }
+                //BLOCO RESPONSÁVEL PELO CRONÔOMETRO
+
+                //BLOCO RESPONSÁVEL POR ALIMENTAR AS ESTATÍSTICAS
+                for (Cliente cliente : TelaAtendimento.listaDeAtendidos) {
+                    if (cliente.getServico().toString().equals("CompraMoeda")) {
+                        totalCompra++;
+                    }
+                    if (cliente.getServico().toString().equals("VendaMoeda")) {
+                        totalVenda++;
+                    }
+                    if (cliente.getServico().toString().equals("RecRemessa")) {
+                        totalRecRemessa++;
+                    }
+                    if (cliente.getServico().toString().equals("EnvRemessa")) {
+                        totalEnvRemessa++;
+                    }
+                    if (cliente.getServico().toString().equals("Swift")) {
+                        totalSwift++;
+                    }
+                    if (cliente.getServico().toString().equals("SeguroViagem")) {
+                        totalSeguro++;
+                    }
+                }
+                //ATUALIZAR AS LABELS DA TELA
+                TelaAtendimento.jLabelTotalCompra.setText("" + totalCompra);
+                TelaAtendimento.jLabelTotalVenda.setText("" + totalVenda);
+                TelaAtendimento.jLabelTotalRecRemessa.setText("" + totalRecRemessa);
+                TelaAtendimento.jLabelTotalEnvRemessa.setText("" + totalEnvRemessa);
+                TelaAtendimento.jLabelTotalSwift.setText("" + totalSwift);
+                TelaAtendimento.jLabelTotalSeguro.setText("" + totalSeguro);
+                TelaAtendimento.jLabelTotalClientesAtendidos.setText("" + TelaAtendimento.listaDeAtendidos.size());
+                //ATUALIZAR AS LABELS DA TELA
+
+                //ZERANDO AS VARIAVEIS PARA A PROXIMA TAREFA
+                totalCompra = 0;
+                totalVenda = 0;
+                totalRecRemessa = 0;
+                totalEnvRemessa = 0;
+                totalSwift = 0;
+                totalSeguro = 0;
+                //BLOCO RESPONSÁVEL POR ALIMENTAR AS ESTATÍSTICAS
             }
         };
         this.timer = new Timer(velocidade, action);
         this.timer.start();
     }
 
-    private synchronized void pararTudo() {
-        try {
-            wait();
-//        new Thread() {
-//            @Override
-//            public void run() {
-//                try {
-//                    CxT01.wait();
-//                    CxT02.wait();
-//                    CxT03.wait();
-//                    CxT04.wait();
-//                    CxT05.wait();
-//                    CxT06.wait();
-//                    CxT07.wait();
-//                    CxT08.wait();
-//                    timer.stop();
-//
-//                } catch (InterruptedException ex) {
-//                    Logger.getLogger(TelaAtendimento.class.getName()).log(Level.SEVERE, null, ex);
-//                }
-//            }
-//        }.start();
-        } catch (InterruptedException ex) {
-            Logger.getLogger(TelaAtendimento.class.getName()).log(Level.SEVERE, null, ex);
+    private void resetarLabels() {
+        String cabecalhoLog = "Monetae Câmbio - Log de eventos\n";
+        String inicioLog = "" + new SimpleDateFormat("[dd'/'MM'/'yyyy - HH:mm:ss]").format(GregorianCalendar.getInstance().getTime());
+        logDoPrograma.setText("");
+        logDoPrograma.append(cabecalhoLog);
+        logDoPrograma.append(inicioLog + " Tela de atendimento aberta\n");
+        jLabelCronometro.setText("00:00:00");
+        jLabelTotalAtCx1.setText("----");
+        jLabelTotalAtCx2.setText("----");
+        jLabelTotalAtCx3.setText("----");
+        jLabelTotalAtCx4.setText("----");
+        jLabelTotalAtCx5.setText("----");
+        jLabelTotalAtCx6.setText("----");
+        jLabelTotalAtCx7.setText("----");
+        jLabelTotalAtCx8.setText("----");
+        labelClientesGerados.setText("----");
+        labelClientesAtendidos.setText("----");
+        listaDeAtendidos.removeAll(listaDeAtendidos);
+        listaDeClientesGerados.removeAll(listaDeClientesGerados);
+    }
+
+    private void pararCaixas() {
+        if (!CxT01.isFoiTerminada() && !CxT02.isFoiTerminada() && !CxT03.isFoiTerminada()
+                && !CxT04.isFoiTerminada() && !CxT05.isFoiTerminada() && !CxT06.isFoiTerminada()
+                && !CxT07.isFoiTerminada() && !CxT08.isFoiTerminada()) {
+            stopTime();
+            CxT01.stop();
+            CxT02.stop();
+            CxT03.stop();
+            CxT04.stop();
+            CxT05.stop();
+            CxT06.stop();
+            CxT07.stop();
+            CxT08.stop();
+            // ALTERANDO O ESTADO DOS BOTÕES
+            jButtonIniciar.setEnabled(true);
+            jButtonParar.setEnabled(false);
+            jButtonPausar.setEnabled(false);
+            // ALTERANDO O ESTADO DOS BOTÕES
         }
     }
 
+    private void iniciarCaixas() {
+        timer.restart();
+        try {
+            CxT01 = new CaixaThread("01", barraProgressoCx1, jLabelCaixa1, jLabelTempoClienteDaVezCx1, logDoPrograma, jLabelServicoCx1);
+            Thread.sleep(10);
+            CxT02 = new CaixaThread("02", barraProgressoCx2, jLabelCaixa2, jLabelTempoClienteDaVezCx2, logDoPrograma, jLabelServicoCx2);
+            Thread.sleep(10);
+            CxT03 = new CaixaThread("03", barraProgressoCx3, jLabelCaixa3, jLabelTempoClienteDaVezCx3, logDoPrograma, jLabelServicoCx3);
+            Thread.sleep(10);
+            CxT04 = new CaixaThread("04", barraProgressoCx4, jLabelCaixa4, jLabelTempoClienteDaVezCx4, logDoPrograma, jLabelServicoCx4);
+            Thread.sleep(10);
+            CxT05 = new CaixaThread("05", barraProgressoCx5, jLabelCaixa5, jLabelTempoClienteDaVezCx5, logDoPrograma, jLabelServicoCx5);
+            Thread.sleep(10);
+            CxT06 = new CaixaThread("06", barraProgressoCx6, jLabelCaixa6, jLabelTempoClienteDaVezCx6, logDoPrograma, jLabelServicoCx6);
+            Thread.sleep(10);
+            CxT07 = new CaixaThread("07", barraProgressoCx7, jLabelCaixa7, jLabelTempoClienteDaVezCx7, logDoPrograma, jLabelServicoCx7);
+            Thread.sleep(10);
+            CxT08 = new CaixaThread("08", barraProgressoCx8, jLabelCaixa8, jLabelTempoClienteDaVezCx8, logDoPrograma, jLabelServicoCx8);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(TelaAtendimento.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        // ALTERANDO O ESTADO DOS BOTÕES
+        jButtonIniciar.setEnabled(false);
+        jButtonParar.setEnabled(true);
+        jButtonPausar.setEnabled(true);
+        // ALTERANDO O ESTADO DOS BOTÕES
+    }
 }

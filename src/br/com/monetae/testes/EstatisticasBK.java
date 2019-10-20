@@ -14,10 +14,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package br.com.monetae.control;
+package br.com.monetae.testes;
 
 import br.com.monetae.model.Cliente;
-import br.com.monetae.testes.TelaTeste;
+import br.com.monetae.view.TelaAtendimento;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -26,7 +26,7 @@ import java.util.TimerTask;
  * @author Rodrigo Ferreira Rodrigues
  * <Email: rodrigo2208@gmail.com GitHub: https://github.com/rfrodriguespe>
  */
-public class EstatisticasTESTE implements Runnable {
+public class EstatisticasBK implements Runnable {
 
     private int totalCompra = 0;
     private int totalVenda = 0;
@@ -35,7 +35,7 @@ public class EstatisticasTESTE implements Runnable {
     private int totalSwift = 0;
     private int totalSeguro = 0;
 
-    public EstatisticasTESTE() {
+    public EstatisticasBK() {
 
         new Thread(this).start();
     }
@@ -47,7 +47,7 @@ public class EstatisticasTESTE implements Runnable {
         TimerTask tarefaTask = new TimerTask() {
             @Override
             public void run() {
-                for (Cliente cliente : TelaTeste.listaDeAtendidos) {
+                for (Cliente cliente : TelaAtendimento.listaDeAtendidos) {
                     if (cliente.getServico().toString().equals("CompraMoeda")) {
                         totalCompra++;
                     }
@@ -68,13 +68,13 @@ public class EstatisticasTESTE implements Runnable {
                     }
                 }
                 //ATUALIZAR AS LABELS DA TELA
-                TelaTeste.jLabelTotalCompra.setText("" + totalCompra);
-                TelaTeste.jLabelTotalVenda.setText("" + totalVenda);
-                TelaTeste.jLabelTotalRecRemessa.setText("" + totalRecRemessa);
-                TelaTeste.jLabelTotalEnvRemessa.setText("" + totalEnvRemessa);
-                TelaTeste.jLabelTotalSwift.setText("" + totalSwift);
-                TelaTeste.jLabelTotalSeguro.setText("" + totalSeguro);
-                TelaTeste.jLabelTotalClientesAtendidos.setText("" + TelaTeste.listaDeAtendidos.size());
+                TelaAtendimento.jLabelTotalCompra.setText("" + totalCompra);
+                TelaAtendimento.jLabelTotalVenda.setText("" + totalVenda);
+                TelaAtendimento.jLabelTotalRecRemessa.setText("" + totalRecRemessa);
+                TelaAtendimento.jLabelTotalEnvRemessa.setText("" + totalEnvRemessa);
+                TelaAtendimento.jLabelTotalSwift.setText("" + totalSwift);
+                TelaAtendimento.jLabelTotalSeguro.setText("" + totalSeguro);
+                TelaAtendimento.jLabelTotalClientesAtendidos.setText("" + TelaAtendimento.listaDeAtendidos.size());
                 //ATUALIZAR AS LABELS DA TELA
 
                 //ZERANDO AS VARIAVEIS PARA A PROXIMA TAREFA

@@ -14,15 +14,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package br.com.monetae.model;
+package br.com.monetae.control;
 
+import br.com.monetae.model.*;
 import br.com.monetae.view.TelaAtendimento;
 import java.awt.Color;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
@@ -38,6 +37,11 @@ import javax.swing.JTextArea;
 public class CaixaThread implements Runnable {
 
     private String nome;
+    private boolean estaSuspensa;
+    private int flagSuspensao = 0;
+    private int flagInicio = 0;
+    private boolean foiTerminada;
+
     private ArrayList<Servicos> listaServicos = new ArrayList<>();
     private final JProgressBar barra;
     private final JLabel labelClienteDaVez;
@@ -120,10 +124,24 @@ public class CaixaThread implements Runnable {
         this.tempoCliente = tempoCliente;
         this.servicoCliente = servicoCliente;
         this.areaLog = areaLog;
-        //new Thread(this, nome).start();
+        this.foiTerminada = false;
+        new Thread(this, nome).start();
+    }
 
-        Thread t = new Thread(this);
-        t.start();
+    public boolean isEstaSuspensa() {
+        return estaSuspensa;
+    }
+
+    public void setEstaSuspensa(boolean estaSuspensa) {
+        this.estaSuspensa = estaSuspensa;
+    }
+
+    public boolean isFoiTerminada() {
+        return foiTerminada;
+    }
+
+    public void setFoiTerminada(boolean foiTerminada) {
+        this.foiTerminada = foiTerminada;
     }
 
     public ArrayList<Servicos> getListaServicos() {
@@ -142,14 +160,41 @@ public class CaixaThread implements Runnable {
         this.nome = nome;
     }
 
+    public void suspend() {
+        //ADD AO LOG
+        areaLog.append(inicioLog + " Caixa: " + nome + " pausou as suas atividades.\n");
+        //ADD AO LOG
+        this.estaSuspensa = true;
+    }
+
+    public synchronized void resume() {
+        //ADD AO LOG
+        areaLog.append(inicioLog + " Caixa: " + nome + " retornou às suas atividades.\n");
+        //ADD AO LOG
+        this.estaSuspensa = false;
+        notify();
+    }
+
+    public synchronized void stop() {
+        //ADD AO LOG
+        areaLog.append(inicioLog + " Caixa: " + nome + " encerrou as suas atividades.\n");
+        //ADD AO LOG
+        this.foiTerminada = true;
+        notify();
+    }
+
+    public boolean estaSuspensa() {
+        return estaSuspensa;
+    }
+
     @Override
     public void run() {
-
-        if (!TelaAtendimento.listaDeClientesGerados.isEmpty()) {
-            Timer tarefa = new Timer();
-            TimerTask tarefaTask = new TimerTask() {
-                @Override
-                public void run() {
+        //ADD AO LOG
+        areaLog.append(inicioLog + " Caixa: " + nome + " iniciou as suas atividades.\n");
+        //ADD AO LOG
+        try {
+            while (!foiTerminada) {
+                if (!TelaAtendimento.listaDeClientesGerados.isEmpty()) {
                     try {
                         //Pegando o cliente fa vez//
                         Cliente clienteDaVez = TelaAtendimento.listaDeClientesGerados.get(0);
@@ -157,7 +202,6 @@ public class CaixaThread implements Runnable {
                         if (listaServicos.contains(clienteDaVez.getServico())) {
                             //Tentativa de sincronizar o cliente
                             synchronized (clienteDaVez) {
-
                                 //ADD AO LOG
                                 areaLog.append(inicioLog + " Caixa: " + nome + " está atendendo o cliente: " + clienteDaVez + "\n");
                                 //ADD AO LOG
@@ -182,7 +226,7 @@ public class CaixaThread implements Runnable {
                                 servicoCliente.setText("" + clienteDaVez.getServico());
 
                                 //incrementando a barra
-                                for (int i = 0; i <= barra.getMaximum(); i++) {
+                                for (int i = 0; i <= 100; i++) {
                                     barra.setValue(i);
                                     Thread.sleep(tCliente / 100);
                                 }
@@ -194,14 +238,6 @@ public class CaixaThread implements Runnable {
                                 //ADD AO LOG
                                 areaLog.append(inicioLog + " Caixa: " + nome + " terminou o atendimento do cliente ID: " + clienteEmAtendimento.getId() + "\n");
                                 //ADD AO LOG
-                                
-                                //ZERA OS DADOS DO CLIENTE DA VEZ PARA ESPERAR O OUTRO
-                                barra.setValue(0);
-                                servicoCliente.setText("----");
-                                tempoCliente.setText("----");
-                                servicoCliente.setText("----");
-                                labelClienteDaVez.setText("----");
-                                //ZERA OS DADOS DO CLIENTE DA VEZ PARA ESPERAR O OUTRO
 
                                 //ALIMENTA A ESTATISTICA DE ATEDNDIMENTO INDIVIDUAL POR CAIXA
                                 switch (getNome()) {
@@ -240,25 +276,28 @@ public class CaixaThread implements Runnable {
                                     default:
                                         break;
                                 }
-
-                                //}
                                 //ALIMENTA A ESTATISTICA DE ATEDNDIMENTO INDIVIDUAL POR CAIXA
                             }
-                            //Tentativa de sincronizar o cliente
                         } else {
 //                            JOptionPane.showMessageDialog(null, "Não há mais clientes para atender");
-//                            tarefa.cancel();
                         }
                     } catch (InterruptedException ex) {
                         Logger.getLogger(CaixaThread.class.getName()).log(Level.SEVERE, null, ex);
                     }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Não há clientes para atender");
                 }
-            };
-            tarefa.scheduleAtFixedRate(tarefaTask, 0, 4000);
-
-        } else {
-            JOptionPane.showMessageDialog(null, "Não há clientes para atender");
+                synchronized (this) {
+                    while (estaSuspensa) {
+                        wait();
+                    }
+                    if (this.foiTerminada) {
+                        break;
+                    }
+                }
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
-
     }
 }

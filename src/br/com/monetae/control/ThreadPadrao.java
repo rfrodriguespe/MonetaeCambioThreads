@@ -14,27 +14,42 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package br.com.monetae.testes;
+package br.com.monetae.control;
 
-import br.com.monetae.model.Cliente;
+
 
 /**
  *
  * @author Rodrigo Ferreira Rodrigues
  * <Email: rodrigo2208@gmail.com GitHub: https://github.com/rfrodriguespe>
  */
-public class SuspendResumeStop implements Runnable {
-    
-    public static Thread t;
-    
+public class ThreadPadrao implements Runnable {
+
     private String nome;
     private boolean estaSuspensa;
     private boolean foiTerminada;
 
-    public SuspendResumeStop(String nome) {
+
+
+    public ThreadPadrao(String nome) {
         this.nome = nome;
-        this.estaSuspensa = false;
-        this.t = new Thread(this, nome);
+        new Thread(this, nome).start();
+    }
+
+    public boolean isEstaSuspensa() {
+        return estaSuspensa;
+    }
+
+    public void setEstaSuspensa(boolean estaSuspensa) {
+        this.estaSuspensa = estaSuspensa;
+    }
+
+    public boolean isFoiTerminada() {
+        return foiTerminada;
+    }
+
+    public void setFoiTerminada(boolean foiTerminada) {
+        this.foiTerminada = foiTerminada;
     }
 
     public String getNome() {
@@ -45,40 +60,11 @@ public class SuspendResumeStop implements Runnable {
         this.nome = nome;
     }
 
-    @Override
-    public void run() {        
-        System.out.println("A thread "+nome+" inicou sua execução");
-        try {
-            while(!foiTerminada){
-                int i = 1;
-                System.out.println("Thread "+nome+" está contando "+(i++));
-                System.out.println("Current Thread "+Thread.currentThread().getName());
-                Thread.sleep(500);
-                synchronized(this){
-                    while(estaSuspensa){
-                        System.out.println(getNome()+" está suspensa");
-                        wait();
-                    }
-                    if (this.foiTerminada){
-                        break;
-                    }
-                }
-            }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        
-        System.out.println("A thread "+nome+" foi terminada");
-        //FIM BLOCO TESTE
-
-    }
-
-    public synchronized void suspend() {
+    public void suspend() {
         this.estaSuspensa = true;
     }
 
     public synchronized void resume() {
-        System.out.println(getNome()+" voltou a executar");
         this.estaSuspensa = false;
         notify();
     }
@@ -86,5 +72,27 @@ public class SuspendResumeStop implements Runnable {
     public synchronized void stop() {
         this.foiTerminada = true;
         notify();
+    }
+
+    @Override
+    public void run() {
+        try {
+            while (!foiTerminada) {
+                /**
+                 * Monta a sua lógica aqui
+                 */
+                Thread.sleep(1000); //Pause de 1 segundo para  sua lógica se repetir
+                synchronized (this) {
+                    while (estaSuspensa) {
+                        wait();
+                    }
+                    if (this.foiTerminada) {
+                        break;
+                    }
+                }
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

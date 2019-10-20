@@ -121,7 +121,7 @@ public final class Cliente {
     public String toString() {
         String nacionalidade;
         return  "Id: " + id
-                + " ome: " + nome
+                + " Nome: " + nome
                 + " Nacionalidade: " + (ehBrasileiro ? nacionalidade = "brasileiro " : "estrangeiro ")
                 + " Serviço requerido: " + servico
                 + " Tempo total de atendimento: " + getTempoAtendimento();

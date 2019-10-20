@@ -14,9 +14,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package br.com.monetae.control;
+package br.com.monetae.testes;
 
 
+import br.com.monetae.control.ClienteControl;
 import br.com.monetae.testes.TelaTeste;
 import java.util.Timer;
 import java.util.TimerTask;

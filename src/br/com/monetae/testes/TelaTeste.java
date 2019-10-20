@@ -17,8 +17,6 @@
 package br.com.monetae.testes;
 
 import br.com.monetae.control.ClienteControl;
-import br.com.monetae.control.EstatisticasTESTE;
-import br.com.monetae.control.VerificaQtdeClientesTESTES;
 import br.com.monetae.model.Cliente;
 import br.com.monetae.utils.EnviarEmail;
 import br.com.monetae.utils.GeraPdf;

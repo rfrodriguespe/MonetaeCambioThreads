@@ -14,21 +14,19 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package br.com.monetae.control;
+package br.com.monetae.testes;
 
 import br.com.monetae.model.Cliente;
-import br.com.monetae.view.TelaAtendimento;
+import br.com.monetae.testes.TelaTeste;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  *
  * @author Rodrigo Ferreira Rodrigues
  * <Email: rodrigo2208@gmail.com GitHub: https://github.com/rfrodriguespe>
  */
-public class Estatisticas implements Runnable {
-
-    private String nome;
-    private boolean estaSuspensa;
-    private boolean foiTerminada;
+public class EstatisticasTESTE implements Runnable {
 
     private int totalCompra = 0;
     private int totalVenda = 0;
@@ -37,54 +35,19 @@ public class Estatisticas implements Runnable {
     private int totalSwift = 0;
     private int totalSeguro = 0;
 
-    public Estatisticas(String nome) {
-        this.nome = nome;
-        new Thread(this, nome).start();
-    }
+    public EstatisticasTESTE() {
 
-    public boolean isEstaSuspensa() {
-        return estaSuspensa;
-    }
-
-    public void setEstaSuspensa(boolean estaSuspensa) {
-        this.estaSuspensa = estaSuspensa;
-    }
-
-    public boolean isFoiTerminada() {
-        return foiTerminada;
-    }
-
-    public void setFoiTerminada(boolean foiTerminada) {
-        this.foiTerminada = foiTerminada;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public void suspend() {
-        this.estaSuspensa = true;
-    }
-
-    public synchronized void resume() {
-        this.estaSuspensa = false;
-        notify();
-    }
-
-    public synchronized void stop() {
-        this.foiTerminada = true;
-        notify();
+        new Thread(this).start();
     }
 
     @Override
     public void run() {
-        try {
-            while (!foiTerminada) {
-                for (Cliente cliente : TelaAtendimento.listaDeAtendidos) {
+
+        Timer tarefa = new Timer();
+        TimerTask tarefaTask = new TimerTask() {
+            @Override
+            public void run() {
+                for (Cliente cliente : TelaTeste.listaDeAtendidos) {
                     if (cliente.getServico().toString().equals("CompraMoeda")) {
                         totalCompra++;
                     }
@@ -105,13 +68,13 @@ public class Estatisticas implements Runnable {
                     }
                 }
                 //ATUALIZAR AS LABELS DA TELA
-                TelaAtendimento.jLabelTotalCompra.setText("" + totalCompra);
-                TelaAtendimento.jLabelTotalVenda.setText("" + totalVenda);
-                TelaAtendimento.jLabelTotalRecRemessa.setText("" + totalRecRemessa);
-                TelaAtendimento.jLabelTotalEnvRemessa.setText("" + totalEnvRemessa);
-                TelaAtendimento.jLabelTotalSwift.setText("" + totalSwift);
-                TelaAtendimento.jLabelTotalSeguro.setText("" + totalSeguro);
-                TelaAtendimento.jLabelTotalClientesAtendidos.setText("" + TelaAtendimento.listaDeAtendidos.size());
+                TelaTeste.jLabelTotalCompra.setText("" + totalCompra);
+                TelaTeste.jLabelTotalVenda.setText("" + totalVenda);
+                TelaTeste.jLabelTotalRecRemessa.setText("" + totalRecRemessa);
+                TelaTeste.jLabelTotalEnvRemessa.setText("" + totalEnvRemessa);
+                TelaTeste.jLabelTotalSwift.setText("" + totalSwift);
+                TelaTeste.jLabelTotalSeguro.setText("" + totalSeguro);
+                TelaTeste.jLabelTotalClientesAtendidos.setText("" + TelaTeste.listaDeAtendidos.size());
                 //ATUALIZAR AS LABELS DA TELA
 
                 //ZERANDO AS VARIAVEIS PARA A PROXIMA TAREFA
@@ -122,19 +85,10 @@ public class Estatisticas implements Runnable {
                 totalSwift = 0;
                 totalSeguro = 0;
                 //ZERANDO AS VARIAVEIS PARA A PROXIMA TAREFA
-                Thread.sleep(1000); //Pause de 1 segundo para  sua lógica se repetir
-                synchronized (this) {
-                    while (estaSuspensa) {
-                        wait();
-                    }
-                    if (this.foiTerminada) {
-                        break;
-                    }
-                }
             }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        };
+        tarefa.scheduleAtFixedRate(tarefaTask,
+                5000, 5000);
     }
 
 }
