@@ -151,7 +151,7 @@ public final class Cliente {
                 + " Nacionalidade: " + (ehBrasileiro ? nacionalidade = "Brasileiro" : "Estrangeiro")
                 + " Serviço requerido: " + servico
                 + " Serviço requerido: " + (foiAtendido ? atendido = "Sim" : "Não")
-                + " Atendido por: " + quemAtendeu
+                + " Atendido pelo caixa: " + quemAtendeu
                 + " Tempo total de atendimento: " + getTempoAtendimento();
     }
 

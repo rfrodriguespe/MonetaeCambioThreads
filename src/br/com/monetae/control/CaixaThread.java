@@ -51,18 +51,7 @@ public class CaixaThread implements Runnable {
     private final String inicioLog = "" + new SimpleDateFormat("[dd'/'MM'/'yyyy - HH:mm:ss]").format(GregorianCalendar.getInstance().getTime());
     private final JTextArea areaLog;
     //TESTE PRA CRIAÇÂO DO LOG
-
-    //CONTADORES PARA SOMAR AS ESTATISTICAS INDIVIDUAIS DOS CAIXAS
-    private int cx1 = 0;
-    private int cx2 = 0;
-    private int cx3 = 0;
-    private int cx4 = 0;
-    private int cx5 = 0;
-    private int cx6 = 0;
-    private int cx7 = 0;
-    private int cx8 = 0;
-    //CONTADORES PARA SOMAR AS ESTATISTICAS INDIVIDUAIS DOS CAIXAS
-
+ 
     public CaixaThread(String nome, JProgressBar barra, JLabel labelClienteDaVez, JLabel tempoCliente, JTextArea areaLog, JLabel servicoCliente) {
 
         this.nome = nome;
@@ -187,6 +176,7 @@ public class CaixaThread implements Runnable {
         areaLog.append(inicioLog + " Caixa: " + nome + " encerrou as suas atividades.\n");
         //ADD AO LOG
         this.foiTerminada = true;
+        barra.setString("Caixa Fechado");
         notify();
     }
 
@@ -201,16 +191,24 @@ public class CaixaThread implements Runnable {
         //ADD AO LOG
         try {
             while (!foiTerminada) {
+                barra.setString("Caixa disponível");
+                tempoCliente.setText("----");
+                labelClienteDaVez.setText("----");
+                servicoCliente.setText("----");
+                barra.setValue(0);
                 atendeCliente();
                 synchronized (this) {
                     while (estaSuspensa) {
+                        barra.setString("Caixa Pausado");
                         wait();
                     }
                     if (this.foiTerminada) {
+                        barra.setString("Caixa Fechado");
                         break;
                     }
                 }
             }
+            barra.setString("Caixa Fechado");
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -226,7 +224,7 @@ public class CaixaThread implements Runnable {
                 clienteDaVez.setFoiAtendido(true);
                 // Remove o cliente da lista dos gerados nesse momento e adiciona na de atendidos
                 TelaAtendimento.listaDeClientesGerados.remove(clienteDaVez);
-                clienteDaVez.setQuemAtendeu("Caixa: " + nome);
+                clienteDaVez.setQuemAtendeu(nome);
                 TelaAtendimento.listaDeAtendidos.add(clienteDaVez);
                 // Remove o cliente da lista dos gerados nesse momento e adiciona na de atendidos
 
@@ -244,15 +242,15 @@ public class CaixaThread implements Runnable {
                 barra.setMinimum(0);
                 barra.setMaximum(100);
                 barra.setValue(0);
-                tempoCliente.setText("" + tCliente);
                 // barras Setadas
 
-                //infromando o nome e id de quem está sendo atendido
+                //infromando tempo, nome e id de quem está sendo atendido
+                tempoCliente.setText("" + tCliente);
                 labelClienteDaVez.setText("ID: " + clienteAt.getId() + ". Nome: " + clienteAt.getNome());
                 servicoCliente.setText("" + clienteAt.getServico());
-
                 //incrementando a barra
                 for (int i = 0; i <= 100; i++) {
+                    barra.setString("Cliente: "+clienteAt.getNome());
                     barra.setValue(i);
                     try {
                         Thread.sleep(tCliente / 100);
@@ -263,48 +261,15 @@ public class CaixaThread implements Runnable {
                 //ADD AO LOG
                 areaLog.append(inicioLog + " Caixa: " + nome + " terminou o atendimento do cliente ID: " + clienteAt.getId() + "\n");
                 //ADD AO LOG
-
-                //ALIMENTA A ESTATISTICA DE ATEDNDIMENTO INDIVIDUAL POR CAIXA
-                switch (getNome()) {
-                    case "01":
-                        cx1 += 1;
-                        TelaAtendimento.jLabelTotalAtCx1.setText("" + cx1);
-                        break;
-                    case "02":
-                        cx2 += 1;
-                        TelaAtendimento.jLabelTotalAtCx2.setText("" + cx2);
-                        break;
-                    case "03":
-                        cx3 += 1;
-                        TelaAtendimento.jLabelTotalAtCx3.setText("" + cx3);
-                        break;
-                    case "04":
-                        cx4 += 1;
-                        TelaAtendimento.jLabelTotalAtCx4.setText("" + cx4);
-                        break;
-                    case "05":
-                        cx5 += 1;
-                        TelaAtendimento.jLabelTotalAtCx5.setText("" + cx5);
-                        break;
-                    case "06":
-                        cx6 += 1;
-                        TelaAtendimento.jLabelTotalAtCx6.setText("" + cx6);
-                        break;
-                    case "07":
-                        cx7 += 1;
-                        TelaAtendimento.jLabelTotalAtCx7.setText("" + cx7);
-                        break;
-                    case "08":
-                        cx8 += 1;
-                        TelaAtendimento.jLabelTotalAtCx8.setText("" + cx8);
-                        break;
-                    default:
-                        break;
-                }
-                //ALIMENTA A ESTATISTICA DE ATEDNDIMENTO INDIVIDUAL POR CAIXA
-
+                
+                // Zera as informações de quem foi atendido
+                tempoCliente.setText("----");
+                labelClienteDaVez.setText("----");
+                servicoCliente.setText("----");
+                barra.setValue(0);
+                // Zera as informações de quem foi atendido
             } else {
-                //JOptionPane.showMessageDialog(null, "Não há mais clientes para atender");
+                //JOptionPane.showMessageDialog(null, "Caixa " + nome + " não consegue atender o serviço requisitado pelo cliente.");
             }
         } else {
             JOptionPane.showMessageDialog(null, "Caixa " + nome + " informa que não há mais clientes para atender.");

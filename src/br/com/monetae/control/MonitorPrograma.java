@@ -24,8 +24,14 @@ import static br.com.monetae.view.TelaAtendimento.totalRecRemessa;
 import static br.com.monetae.view.TelaAtendimento.totalSeguro;
 import static br.com.monetae.view.TelaAtendimento.totalSwift;
 import static br.com.monetae.view.TelaAtendimento.totalVenda;
-
-
+import static br.com.monetae.view.TelaAtendimento.cx1;
+import static br.com.monetae.view.TelaAtendimento.cx2;
+import static br.com.monetae.view.TelaAtendimento.cx3;
+import static br.com.monetae.view.TelaAtendimento.cx4;
+import static br.com.monetae.view.TelaAtendimento.cx5;
+import static br.com.monetae.view.TelaAtendimento.cx6;
+import static br.com.monetae.view.TelaAtendimento.cx7;
+import static br.com.monetae.view.TelaAtendimento.cx8;
 
 /**
  *
@@ -37,8 +43,6 @@ public class MonitorPrograma implements Runnable {
     private String nome;
     private boolean estaSuspensa;
     private boolean foiTerminada;
-
-
 
     public MonitorPrograma(String nome) {
         this.nome = nome;
@@ -92,27 +96,65 @@ public class MonitorPrograma implements Runnable {
                     ClienteControl.geraCliente(10);
                 }
                 // BLOCO RESPONSÁVEL POR MONITORAR CLIENTES NA LOJA
-                
+
                 //BLOCO RESPONSÁVEL POR ALIMENTAR AS ESTATÍSTICAS
                 for (Cliente cliente : TelaAtendimento.listaDeAtendidos) {
-                    if (cliente.getServico().toString().equals("CompraMoeda")) {
-                        totalCompra++;
+                    // ALIMENTA AS ESTATÍSTICAS POR SERVIÇO
+                    switch (cliente.getServico().toString()) {
+                        case "CompraMoeda":
+                            totalCompra++;
+                            break;
+                        case "VendaMoeda":
+                            totalVenda++;
+                            break;
+                        case "RecRemessa":
+                            totalRecRemessa++;
+                            break;
+                        case "EnvRemessa":
+                            totalEnvRemessa++;
+                            break;
+                        case "Swift":
+                            totalSwift++;
+                            break;
+                        case "SeguroViagem":
+                            totalSeguro++;
+                            break;
+                        default:
+                            break;
                     }
-                    if (cliente.getServico().toString().equals("VendaMoeda")) {
-                        totalVenda++;
+                    // ALIMENTA AS ESTATÍSTICAS POR SERVIÇO
+
+                    //ALIMENTA A ESTATISTICA DE ATEDNDIMENTO INDIVIDUAL POR CAIXA
+                    switch (cliente.getQuemAtendeu()) {
+                        case "01":
+                            cx1 ++;
+                            break;
+                        case "02":
+                            cx2 ++;
+                            break;
+                        case "03":
+                            cx3 ++;
+                            break;
+                        case "04":
+                            cx4 ++;
+                            break;
+                        case "05":
+                            cx5 ++;
+                            break;
+                        case "06":
+                            cx6 ++;
+                            break;
+                        case "07":
+                            cx7 ++;
+                            break;
+                        case "08":
+                            cx8 ++;
+                            break;
+                        default:
+                            break;
                     }
-                    if (cliente.getServico().toString().equals("RecRemessa")) {
-                        totalRecRemessa++;
-                    }
-                    if (cliente.getServico().toString().equals("EnvRemessa")) {
-                        totalEnvRemessa++;
-                    }
-                    if (cliente.getServico().toString().equals("Swift")) {
-                        totalSwift++;
-                    }
-                    if (cliente.getServico().toString().equals("SeguroViagem")) {
-                        totalSeguro++;
-                    }
+                    //ALIMENTA A ESTATISTICA DE ATEDNDIMENTO INDIVIDUAL POR CAIXA
+
                 }
                 //ATUALIZAR AS LABELS DA TELA
                 TelaAtendimento.jLabelTotalCompra.setText("" + totalCompra);
@@ -124,6 +166,15 @@ public class MonitorPrograma implements Runnable {
                 TelaAtendimento.jLabelTotalClientesAtendidos.setText("" + TelaAtendimento.listaDeAtendidos.size());
                 TelaAtendimento.labelClientesGerados.setText("" + TelaAtendimento.listaDeClientesGerados.size());
                 TelaAtendimento.labelClientesAtendidos.setText("" + TelaAtendimento.listaDeAtendidos.size());
+                TelaAtendimento.jLabelTotalAtCx1.setText("" + cx1);
+                TelaAtendimento.jLabelTotalAtCx2.setText("" + cx2);
+                TelaAtendimento.jLabelTotalAtCx3.setText("" + cx3);
+                TelaAtendimento.jLabelTotalAtCx4.setText("" + cx4);
+                TelaAtendimento.jLabelTotalAtCx5.setText("" + cx5);
+                TelaAtendimento.jLabelTotalAtCx6.setText("" + cx6);
+                TelaAtendimento.jLabelTotalAtCx7.setText("" + cx7);
+                TelaAtendimento.jLabelTotalAtCx8.setText("" + cx8);
+                
                 //ATUALIZAR AS LABELS DA TELA
 
                 //ZERANDO AS VARIAVEIS PARA A PROXIMA TAREFA
@@ -133,8 +184,15 @@ public class MonitorPrograma implements Runnable {
                 totalEnvRemessa = 0;
                 totalSwift = 0;
                 totalSeguro = 0;
+                cx1 = 0;
+                cx2 = 0;
+                cx3 = 0;
+                cx4 = 0;
+                cx5 = 0;
+                cx6 = 0;
+                cx7 = 0;
+                cx8 = 0;
                 //BLOCO RESPONSÁVEL POR ALIMENTAR AS ESTATÍSTICAS
-                
                 // INTERVALO DE REPETIÇÃO DA THREAD
                 Thread.sleep(800);
                 // INTERVALO DE REPETIÇÃO DA THREAD
