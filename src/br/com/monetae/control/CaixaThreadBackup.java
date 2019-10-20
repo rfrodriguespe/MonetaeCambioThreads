@@ -34,12 +34,13 @@ import javax.swing.JTextArea;
  * @author Rodrigo Ferreira Rodrigues
  * <Email: rodrigo2208@gmail.com GitHub: https://github.com/rfrodriguespe>
  */
-public class CaixaThread implements Runnable {
+public class CaixaThreadBackup implements Runnable {
 
     private String nome;
     private boolean estaSuspensa;
+    private int flagSuspensao = 0;
+    private int flagInicio = 0;
     private boolean foiTerminada;
-    private boolean lojaFechando;
 
     private ArrayList<Servicos> listaServicos = new ArrayList<>();
     private final JProgressBar barra;
@@ -63,7 +64,7 @@ public class CaixaThread implements Runnable {
     private int cx8 = 0;
     //CONTADORES PARA SOMAR AS ESTATISTICAS INDIVIDUAIS DOS CAIXAS
 
-    public CaixaThread(String nome, JProgressBar barra, JLabel labelClienteDaVez, JLabel tempoCliente, JTextArea areaLog, JLabel servicoCliente) {
+    public CaixaThreadBackup(String nome, JProgressBar barra, JLabel labelClienteDaVez, JLabel tempoCliente, JTextArea areaLog, JLabel servicoCliente) {
 
         this.nome = nome;
 
@@ -125,14 +126,6 @@ public class CaixaThread implements Runnable {
         this.areaLog = areaLog;
         this.foiTerminada = false;
         new Thread(this, nome).start();
-    }
-
-    public boolean isLojaFechando() {
-        return lojaFechando;
-    }
-    
-    public void setLojaFechando(boolean lojaFechando) {
-        this.lojaFechando = lojaFechando;
     }
 
     public boolean isEstaSuspensa() {
@@ -201,7 +194,99 @@ public class CaixaThread implements Runnable {
         //ADD AO LOG
         try {
             while (!foiTerminada) {
-                atendeCliente();
+                if (!TelaAtendimento.listaDeClientesGerados.isEmpty()) {
+                    try {
+                        //Pegando o cliente fa vez//
+                        Cliente clienteDaVez = TelaAtendimento.listaDeClientesGerados.get(0);
+                        //TESTA SE O CLIENTE PEGO PODE SER ATENDIDO PELO CAIXA
+                        if (listaServicos.contains(clienteDaVez.getServico())) {
+                            //Tentativa de sincronizar o cliente
+                            synchronized (clienteDaVez) {
+                                //ADD AO LOG
+                                areaLog.append(inicioLog + " Caixa: " + nome + " está atendendo o cliente: " + clienteDaVez + "\n");
+                                //ADD AO LOG
+
+                                //Adicionando o cliente à lista dos atendidos e retire o da vez
+                                TelaAtendimento.listaDeAtendidos.add(clienteDaVez);
+                                TelaAtendimento.listaDeClientesGerados.remove(clienteDaVez);
+                                Cliente clienteEmAtendimento = TelaAtendimento.listaDeAtendidos.get(TelaAtendimento.listaDeAtendidos.size() - 1);
+                                //
+                                int tCliente = clienteEmAtendimento.getTempoAtendimento();
+                                //Cliente pego
+
+                                //Setando as propriedades da barra para o início da tarefa
+                                barra.setMinimum(0);
+                                barra.setMaximum(100);
+                                barra.setValue(0);
+                                tempoCliente.setText("" + tCliente);
+                                // barras Setadas
+
+                                //infromando o nome e id de quem está sendo atendido
+                                labelClienteDaVez.setText("ID: " + clienteEmAtendimento.getId() + ". Nome: " + clienteEmAtendimento.getNome());
+                                servicoCliente.setText("" + clienteDaVez.getServico());
+
+                                //incrementando a barra
+                                for (int i = 0; i <= 100; i++) {
+                                    barra.setValue(i);
+                                    Thread.sleep(tCliente / 100);
+                                }
+
+                                //Definindo que o cliente foi atendido, incrementando o espaço
+                                TelaAtendimento.labelClientesAtendidos.setText("" + TelaAtendimento.listaDeAtendidos.size());
+                                TelaAtendimento.labelClientesGerados.setText("" + TelaAtendimento.listaDeClientesGerados.size());
+
+                                //ADD AO LOG
+                                areaLog.append(inicioLog + " Caixa: " + nome + " terminou o atendimento do cliente ID: " + clienteEmAtendimento.getId() + "\n");
+                                //ADD AO LOG
+
+                                //ALIMENTA A ESTATISTICA DE ATEDNDIMENTO INDIVIDUAL POR CAIXA
+                                switch (getNome()) {
+                                    case "01":
+                                        cx1 += 1;
+                                        TelaAtendimento.jLabelTotalAtCx1.setText("" + cx1);
+                                        break;
+                                    case "02":
+                                        cx2 += 1;
+                                        TelaAtendimento.jLabelTotalAtCx2.setText("" + cx2);
+                                        break;
+                                    case "03":
+                                        cx3 += 1;
+                                        TelaAtendimento.jLabelTotalAtCx3.setText("" + cx3);
+                                        break;
+                                    case "04":
+                                        cx4 += 1;
+                                        TelaAtendimento.jLabelTotalAtCx4.setText("" + cx4);
+                                        break;
+                                    case "05":
+                                        cx5 += 1;
+                                        TelaAtendimento.jLabelTotalAtCx5.setText("" + cx5);
+                                        break;
+                                    case "06":
+                                        cx6 += 1;
+                                        TelaAtendimento.jLabelTotalAtCx6.setText("" + cx6);
+                                        break;
+                                    case "07":
+                                        cx7 += 1;
+                                        TelaAtendimento.jLabelTotalAtCx7.setText("" + cx7);
+                                        break;
+                                    case "08":
+                                        cx8 += 1;
+                                        TelaAtendimento.jLabelTotalAtCx8.setText("" + cx8);
+                                        break;
+                                    default:
+                                        break;
+                                }
+                                //ALIMENTA A ESTATISTICA DE ATEDNDIMENTO INDIVIDUAL POR CAIXA
+                            }
+                        } else {
+//                            JOptionPane.showMessageDialog(null, "Não há mais clientes para atender");
+                        }
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(CaixaThreadBackup.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Não há clientes para atender");
+                }
                 synchronized (this) {
                     while (estaSuspensa) {
                         wait();
@@ -213,101 +298,6 @@ public class CaixaThread implements Runnable {
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }
-    }
-
-    private synchronized void atendeCliente() {
-        if (!TelaAtendimento.listaDeClientesGerados.isEmpty()) {
-            //Pegando o cliente fa vez//
-            Cliente clienteDaVez = TelaAtendimento.listaDeClientesGerados.get(0);
-            //TESTA SE O CLIENTE PEGO PODE SER ATENDIDO PELO CAIXA
-            if (listaServicos.contains(clienteDaVez.getServico()) && !clienteDaVez.isFoiAtendido()) {
-                //Seta o cliente como atendido
-                clienteDaVez.setFoiAtendido(true);
-                // Remove o cliente da lista dos gerados nesse momento e adiciona na de atendidos
-                TelaAtendimento.listaDeClientesGerados.remove(clienteDaVez);
-                clienteDaVez.setQuemAtendeu("Caixa: " + nome);
-                TelaAtendimento.listaDeAtendidos.add(clienteDaVez);
-                // Remove o cliente da lista dos gerados nesse momento e adiciona na de atendidos
-
-                //ADD AO LOG
-                areaLog.append(inicioLog + " Caixa: " + nome + " está atendendo o cliente: " + clienteDaVez + "\n");
-                //ADD AO LOG
-
-                Cliente clienteAt = clienteDaVez;
-
-                //
-                int tCliente = clienteAt.getTempoAtendimento();
-                //Cliente pego
-
-                //Setando as propriedades da barra para o início da tarefa
-                barra.setMinimum(0);
-                barra.setMaximum(100);
-                barra.setValue(0);
-                tempoCliente.setText("" + tCliente);
-                // barras Setadas
-
-                //infromando o nome e id de quem está sendo atendido
-                labelClienteDaVez.setText("ID: " + clienteAt.getId() + ". Nome: " + clienteAt.getNome());
-                servicoCliente.setText("" + clienteAt.getServico());
-
-                //incrementando a barra
-                for (int i = 0; i <= 100; i++) {
-                    barra.setValue(i);
-                    try {
-                        Thread.sleep(tCliente / 100);
-                    } catch (InterruptedException ex) {
-                        Logger.getLogger(CaixaThread.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-                //ADD AO LOG
-                areaLog.append(inicioLog + " Caixa: " + nome + " terminou o atendimento do cliente ID: " + clienteAt.getId() + "\n");
-                //ADD AO LOG
-
-                //ALIMENTA A ESTATISTICA DE ATEDNDIMENTO INDIVIDUAL POR CAIXA
-                switch (getNome()) {
-                    case "01":
-                        cx1 += 1;
-                        TelaAtendimento.jLabelTotalAtCx1.setText("" + cx1);
-                        break;
-                    case "02":
-                        cx2 += 1;
-                        TelaAtendimento.jLabelTotalAtCx2.setText("" + cx2);
-                        break;
-                    case "03":
-                        cx3 += 1;
-                        TelaAtendimento.jLabelTotalAtCx3.setText("" + cx3);
-                        break;
-                    case "04":
-                        cx4 += 1;
-                        TelaAtendimento.jLabelTotalAtCx4.setText("" + cx4);
-                        break;
-                    case "05":
-                        cx5 += 1;
-                        TelaAtendimento.jLabelTotalAtCx5.setText("" + cx5);
-                        break;
-                    case "06":
-                        cx6 += 1;
-                        TelaAtendimento.jLabelTotalAtCx6.setText("" + cx6);
-                        break;
-                    case "07":
-                        cx7 += 1;
-                        TelaAtendimento.jLabelTotalAtCx7.setText("" + cx7);
-                        break;
-                    case "08":
-                        cx8 += 1;
-                        TelaAtendimento.jLabelTotalAtCx8.setText("" + cx8);
-                        break;
-                    default:
-                        break;
-                }
-                //ALIMENTA A ESTATISTICA DE ATEDNDIMENTO INDIVIDUAL POR CAIXA
-
-            } else {
-                //JOptionPane.showMessageDialog(null, "Não há mais clientes para atender");
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Caixa " + nome + " informa que não há mais clientes para atender.");
         }
     }
 }

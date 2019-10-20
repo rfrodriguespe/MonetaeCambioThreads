@@ -18,6 +18,7 @@ package br.com.monetae.view;
 
 import br.com.monetae.control.CaixaThread;
 import br.com.monetae.control.ClienteControl;
+import br.com.monetae.control.MonitorPrograma;
 import br.com.monetae.model.Cliente;
 import br.com.monetae.utils.EnviarEmail;
 import br.com.monetae.utils.GeraPdf;
@@ -77,12 +78,12 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
     public static int currentHora = 0;
     private int velocidade = 1000;
     //CRONOMETRO
-    
+
     // CONDIÇÃO DE ENCERRAMENTO DO PROGRAMA
     public static boolean encerrandoAtividades;
-    public static String tempoEstabelecido = "00:00:17"; //String pois compara com uma jLabel
+    public static String tempoEstabelecido = "00:00:10"; //String pois compara com uma jLabel
     // CONDIÇÃO DE ENCERRAMENTO DO PROGRAMA
-    
+
     //CAIXAS
     public static CaixaThread CxT01;
     public static CaixaThread CxT02;
@@ -99,7 +100,8 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
      */
     public TelaAtendimento() {
         initComponents();
-        ClienteControl.geraCliente(12);
+        ClienteControl.geraCliente(20);
+        MonitorPrograma monitor = new MonitorPrograma("Monitor #01");
         monitorarAtividades();
         timer.stop();
         // Adiciona rodapé com a data e hora atuais
@@ -238,6 +240,7 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
         jButtonPausar = new javax.swing.JButton();
         jButtonParar = new javax.swing.JButton();
         jToggleButton1 = new javax.swing.JToggleButton();
+        jButton3 = new javax.swing.JButton();
         jPanelLog = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         logDoPrograma = new javax.swing.JTextArea();
@@ -1045,6 +1048,13 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton3.setText("Imprimir Clientes Atendidos");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelAtendimentoLayout = new javax.swing.GroupLayout(jPanelAtendimento);
         jPanelAtendimento.setLayout(jPanelAtendimentoLayout);
         jPanelAtendimentoLayout.setHorizontalGroup(
@@ -1076,7 +1086,6 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
                         .addGap(16, 16, 16)
                         .addGroup(jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanelControleAtendimentos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanelControleCronometro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1089,7 +1098,11 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
                                 .addComponent(jButton1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnAtendimentoSair))
-                            .addComponent(jToggleButton1))
+                            .addComponent(jToggleButton1)
+                            .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
+                                .addComponent(jPanelControleCronometro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(67, 67, 67)
+                                .addComponent(jButton3)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -1103,20 +1116,25 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
                     .addComponent(jLabel21))
                 .addGroup(jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanelCaixa1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanelCaixa2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanelCaixa3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanelCaixa4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanelCaixa5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanelCaixa6, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanelCaixa7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jPanelCaixa1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jPanelCaixa2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jPanelCaixa3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jPanelCaixa4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jPanelCaixa5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jPanelCaixa6, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jPanelCaixa7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
+                                .addGap(43, 43, 43)
+                                .addComponent(jButton3)))
                         .addGroup(jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1722,6 +1740,27 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
         resetarLabels();
     }//GEN-LAST:event_jToggleButton2ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+
+        try {
+            final String os = System.getProperty("os.name");
+
+            if (os.contains("Windows")) {
+                Runtime.getRuntime().exec("cls");
+
+            } else {
+                Runtime.getRuntime().exec("clear");
+            }
+        } catch (final Exception e) {
+            //  Tratar Exceptions
+        }
+
+        for (Cliente atendidos : listaDeAtendidos) {
+            System.out.println(atendidos);
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JProgressBar barraProgressoCx1;
     public static javax.swing.JProgressBar barraProgressoCx2;
@@ -1735,6 +1774,7 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
     private javax.swing.ButtonGroup buttonGroupAnexoEmail;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton9;
     public static javax.swing.JButton jButtonIniciar;
@@ -1894,20 +1934,14 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
         currentSegundo = 0;
         //jLabelCronometro.setText("00:00:00");
     }
-    
-    private boolean tempoExeceu(){
+
+    private boolean tempoExeceu() {
         return jLabelCronometro.getText().equals(tempoEstabelecido);
     }
 
     private void monitorarAtividades() {
         ActionListener action = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // BLOCO RESPONSÁVEL POR MONITORAR CLIENTES NA LOJA
-                if (TelaAtendimento.listaDeClientesGerados.size() < 10 && !tempoExeceu()) {
-                    ClienteControl.geraCliente(10);
-                }
-                // BLOCO RESPONSÁVEL POR MONITORAR CLIENTES NA LOJA
-
                 //BLOCO RESPONSÁVEL PELO CRONÔMETRO
                 currentSegundo++;
 
@@ -1927,52 +1961,17 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
 
                 jLabelCronometro.setText(hr + ":" + min + ":" + seg);
                 //BLOCO RESPONSÁVEL PELO CRONÔOMETRO
-                
+
                 // MONITORA SE O TEMPO EXECEU E SE AINDA HÁ CLIENTES A SEREM ATENDIDOS
-                if (tempoExeceu() && !listaDeClientesGerados.isEmpty()) {
+                if (tempoExeceu() && listaDeClientesGerados.isEmpty()) {
                     pararCaixas();
-                    JOptionPane.showMessageDialog(null, "Atividades Encerradas pelo Timer de 17s");
+                    JOptionPane.showMessageDialog(null, "Atividades Encerradas pelo Timer de 10s");
+                }
+                
+                if (tempoExeceu() && !listaDeClientesGerados.isEmpty()) {
+                    
                 }
 
-                //BLOCO RESPONSÁVEL POR ALIMENTAR AS ESTATÍSTICAS
-                for (Cliente cliente : TelaAtendimento.listaDeAtendidos) {
-                    if (cliente.getServico().toString().equals("CompraMoeda")) {
-                        totalCompra++;
-                    }
-                    if (cliente.getServico().toString().equals("VendaMoeda")) {
-                        totalVenda++;
-                    }
-                    if (cliente.getServico().toString().equals("RecRemessa")) {
-                        totalRecRemessa++;
-                    }
-                    if (cliente.getServico().toString().equals("EnvRemessa")) {
-                        totalEnvRemessa++;
-                    }
-                    if (cliente.getServico().toString().equals("Swift")) {
-                        totalSwift++;
-                    }
-                    if (cliente.getServico().toString().equals("SeguroViagem")) {
-                        totalSeguro++;
-                    }
-                }
-                //ATUALIZAR AS LABELS DA TELA
-                TelaAtendimento.jLabelTotalCompra.setText("" + totalCompra);
-                TelaAtendimento.jLabelTotalVenda.setText("" + totalVenda);
-                TelaAtendimento.jLabelTotalRecRemessa.setText("" + totalRecRemessa);
-                TelaAtendimento.jLabelTotalEnvRemessa.setText("" + totalEnvRemessa);
-                TelaAtendimento.jLabelTotalSwift.setText("" + totalSwift);
-                TelaAtendimento.jLabelTotalSeguro.setText("" + totalSeguro);
-                TelaAtendimento.jLabelTotalClientesAtendidos.setText("" + TelaAtendimento.listaDeAtendidos.size());
-                //ATUALIZAR AS LABELS DA TELA
-
-                //ZERANDO AS VARIAVEIS PARA A PROXIMA TAREFA
-                totalCompra = 0;
-                totalVenda = 0;
-                totalRecRemessa = 0;
-                totalEnvRemessa = 0;
-                totalSwift = 0;
-                totalSeguro = 0;
-                //BLOCO RESPONSÁVEL POR ALIMENTAR AS ESTATÍSTICAS
             }
         };
         this.timer = new Timer(velocidade, action);
@@ -1980,12 +1979,21 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
     }
 
     private void resetarLabels() {
+        Cliente.setAutoIncrement(0);
         String cabecalhoLog = "Monetae Câmbio - Log de eventos\n";
         String inicioLog = "" + new SimpleDateFormat("[dd'/'MM'/'yyyy - HH:mm:ss]").format(GregorianCalendar.getInstance().getTime());
         logDoPrograma.setText("");
         logDoPrograma.append(cabecalhoLog);
         logDoPrograma.append(inicioLog + " Tela de atendimento aberta\n");
         jLabelCronometro.setText("00:00:00");
+        jLabelTotalCompra.setText("----");
+        jLabelTotalVenda.setText("----");
+        jLabelTotalRecRemessa.setText("----");
+        jLabelTotalEnvRemessa.setText("----");
+        jLabelTotalSeguro.setText("----");
+        jLabelTotalSwift.setText("----");
+        labelClientesAtendidos.setText("----");
+        labelClientesGerados.setText("----");
         jLabelTotalAtCx1.setText("----");
         jLabelTotalAtCx2.setText("----");
         jLabelTotalAtCx3.setText("----");
@@ -1994,8 +2002,6 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
         jLabelTotalAtCx6.setText("----");
         jLabelTotalAtCx7.setText("----");
         jLabelTotalAtCx8.setText("----");
-        labelClientesGerados.setText("----");
-        labelClientesAtendidos.setText("----");
         listaDeAtendidos.removeAll(listaDeAtendidos);
         listaDeClientesGerados.removeAll(listaDeClientesGerados);
     }
@@ -2025,19 +2031,19 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
         timer.restart();
         try {
             CxT01 = new CaixaThread("01", barraProgressoCx1, jLabelCaixa1, jLabelTempoClienteDaVezCx1, logDoPrograma, jLabelServicoCx1);
-            Thread.sleep(30);
+            Thread.sleep(35);
             CxT02 = new CaixaThread("02", barraProgressoCx2, jLabelCaixa2, jLabelTempoClienteDaVezCx2, logDoPrograma, jLabelServicoCx2);
-            Thread.sleep(30);
+            Thread.sleep(35);
             CxT03 = new CaixaThread("03", barraProgressoCx3, jLabelCaixa3, jLabelTempoClienteDaVezCx3, logDoPrograma, jLabelServicoCx3);
-            Thread.sleep(30);
+            Thread.sleep(35);
             CxT04 = new CaixaThread("04", barraProgressoCx4, jLabelCaixa4, jLabelTempoClienteDaVezCx4, logDoPrograma, jLabelServicoCx4);
-            Thread.sleep(30);
+            Thread.sleep(35);
             CxT05 = new CaixaThread("05", barraProgressoCx5, jLabelCaixa5, jLabelTempoClienteDaVezCx5, logDoPrograma, jLabelServicoCx5);
-            Thread.sleep(30);
+            Thread.sleep(35);
             CxT06 = new CaixaThread("06", barraProgressoCx6, jLabelCaixa6, jLabelTempoClienteDaVezCx6, logDoPrograma, jLabelServicoCx6);
-            Thread.sleep(30);
+            Thread.sleep(35);
             CxT07 = new CaixaThread("07", barraProgressoCx7, jLabelCaixa7, jLabelTempoClienteDaVezCx7, logDoPrograma, jLabelServicoCx7);
-            Thread.sleep(30);
+            Thread.sleep(35);
             CxT08 = new CaixaThread("08", barraProgressoCx8, jLabelCaixa8, jLabelTempoClienteDaVezCx8, logDoPrograma, jLabelServicoCx8);
         } catch (InterruptedException ex) {
             Logger.getLogger(TelaAtendimento.class.getName()).log(Level.SEVERE, null, ex);

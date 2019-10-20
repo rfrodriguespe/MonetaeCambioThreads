@@ -31,6 +31,8 @@ public final class Cliente {
     private boolean ehBrasileiro;
     private Servicos servico;
     private int tempoAtendimento;
+    private boolean foiAtendido;
+    private String quemAtendeu;
 
     /**
      * Classe Cliente,
@@ -41,6 +43,7 @@ public final class Cliente {
         this.ehBrasileiro = geraNacionalidade();
         this.servico = geraServico();
         this.tempoAtendimento = (isEhBrasileiro()) ? 1000 + getServico().getTempoServico() : getServico().getTempoServico() + 1500;
+        this.quemAtendeu = "";
     }
 
     public int getId() {
@@ -82,7 +85,29 @@ public final class Cliente {
     public void setTempoAtendimento(int tempoAtendimento) {
         this.tempoAtendimento = tempoAtendimento;
     }
+    
+     public boolean isFoiAtendido() {
+        return foiAtendido;
+    }
 
+    public void setFoiAtendido(boolean foiAtendido) {
+        this.foiAtendido = foiAtendido;
+    }
+
+    public String getQuemAtendeu() {
+        return quemAtendeu;
+    }
+
+    public void setQuemAtendeu(String quemAtendeu) {
+        this.quemAtendeu = quemAtendeu;
+    }
+
+    public static void setAutoIncrement(int autoIncrement) {
+        Cliente.autoIncrement = autoIncrement;
+    }
+
+    
+    
     /**
      *
      * @return Retoan o nome do cliente aleatoriamente, tendo um ENUM como fonte
@@ -120,10 +145,13 @@ public final class Cliente {
     @Override
     public String toString() {
         String nacionalidade;
+        String atendido;
         return  "Id: " + id
                 + " Nome: " + nome
-                + " Nacionalidade: " + (ehBrasileiro ? nacionalidade = "brasileiro " : "estrangeiro ")
+                + " Nacionalidade: " + (ehBrasileiro ? nacionalidade = "Brasileiro" : "Estrangeiro")
                 + " Serviço requerido: " + servico
+                + " Serviço requerido: " + (foiAtendido ? atendido = "Sim" : "Não")
+                + " Atendido por: " + quemAtendeu
                 + " Tempo total de atendimento: " + getTempoAtendimento();
     }
 
