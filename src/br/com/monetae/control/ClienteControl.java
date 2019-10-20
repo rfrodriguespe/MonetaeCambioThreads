@@ -17,9 +17,8 @@
 package br.com.monetae.control;
 
 import br.com.monetae.model.Cliente;
-import br.com.monetae.testes.TelaTeste;
+
 import br.com.monetae.view.TelaAtendimento;
-import java.util.ArrayList;
 
 /**
  *
@@ -38,11 +37,7 @@ public class ClienteControl {
         }
     }
     
-    public static void geraClienteTelaTeste(int quantidade){
-        for (int i = 0; i < quantidade; i++) {
-            TelaTeste.listaDeClientesGerados.add(new Cliente());
-        }
-    }
+  
     
     
 }

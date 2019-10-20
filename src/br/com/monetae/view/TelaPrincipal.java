@@ -16,7 +16,7 @@
  */
 package br.com.monetae.view;
 
-import br.com.monetae.testes.TelaTeste;
+
 import br.com.monetae.utils.Traduzir;
 import java.awt.Toolkit;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
@@ -234,10 +234,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-        TelaTeste tela = new TelaTeste();
-        ((BasicInternalFrameUI)tela.getUI()).setNorthPane(null); //retirar o painel superior
-        fundoTelaPrincipal.add(tela);
-        tela.setVisible(true);
+//        TelaTeste tela = new TelaTeste();
+//        ((BasicInternalFrameUI)tela.getUI()).setNorthPane(null); //retirar o painel superior
+//        fundoTelaPrincipal.add(tela);
+//        tela.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**

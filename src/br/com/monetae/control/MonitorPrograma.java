@@ -194,7 +194,7 @@ public class MonitorPrograma implements Runnable {
                 cx8 = 0;
                 //BLOCO RESPONSÁVEL POR ALIMENTAR AS ESTATÍSTICAS
                 // INTERVALO DE REPETIÇÃO DA THREAD
-                Thread.sleep(800);
+                Thread.sleep(2000);
                 // INTERVALO DE REPETIÇÃO DA THREAD
                 synchronized (this) {
                     while (estaSuspensa) {
