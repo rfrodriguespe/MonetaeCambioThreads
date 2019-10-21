@@ -88,7 +88,7 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
 
     // CONDIÇÃO DE ENCERRAMENTO DO PROGRAMA
     public static boolean encerrandoAtividades;
-    public static String tempoEstabelecido = "00:00:27"; //String pois compara com uma jLabel
+    public static String tempoEstabelecido = "00:02:00"; //String pois compara com uma jLabel
     // CONDIÇÃO DE ENCERRAMENTO DO PROGRAMA
 
     //CAIXAS
@@ -114,6 +114,7 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
         String inicioLog = "" + new SimpleDateFormat("[dd'/'MM'/'yyyy - HH:mm:ss]").format(GregorianCalendar.getInstance().getTime());
         logDoPrograma.append(cabecalhoLog);
         logDoPrograma.append(inicioLog + " Tela de atendimento aberta\n");
+        jLabelTempoDefinido.setText(tempoEstabelecido);
         //
 
     }
@@ -251,6 +252,17 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
         jLabelVermelho = new javax.swing.JLabel();
         jLabelAmarelo = new javax.swing.JLabel();
         jLabelVerde = new javax.swing.JLabel();
+        jPanelDefineTempo = new javax.swing.JPanel();
+        jLabel32 = new javax.swing.JLabel();
+        jComboBoxSegundos = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
+        jComboBoxMinutos = new javax.swing.JComboBox<>();
+        jComboBoxHoras = new javax.swing.JComboBox<>();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        jLabel33 = new javax.swing.JLabel();
+        jLabel34 = new javax.swing.JLabel();
+        jLabelTempoDefinido = new javax.swing.JLabel();
         jPanelLog = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         logDoPrograma = new javax.swing.JTextArea();
@@ -340,7 +352,7 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
             .addGroup(jPanelControleCronometroLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabelCronometro, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelControleCronometroLayout.setVerticalGroup(
             jPanelControleCronometroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1103,7 +1115,7 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
                 .addComponent(jButton3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton4)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Status"));
@@ -1140,6 +1152,108 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanelDefineTempo.setBorder(javax.swing.BorderFactory.createTitledBorder("Tempo de duração"));
+
+        jLabel32.setText("SS");
+
+        jComboBoxSegundos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
+        jComboBoxSegundos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxSegundosActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Definir Tempo");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jComboBoxMinutos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
+        jComboBoxMinutos.setSelectedIndex(2);
+        jComboBoxMinutos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxMinutosActionPerformed(evt);
+            }
+        });
+
+        jComboBoxHoras.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", " " }));
+        jComboBoxHoras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxHorasActionPerformed(evt);
+            }
+        });
+
+        jLabel13.setText("HH");
+
+        jLabel31.setText("MM");
+
+        jLabel33.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel33.setText("Duração das Threads");
+
+        jLabel34.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel34.setText("Tempo Atual:");
+
+        jLabelTempoDefinido.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabelTempoDefinido.setText("hh:mm:ss");
+
+        javax.swing.GroupLayout jPanelDefineTempoLayout = new javax.swing.GroupLayout(jPanelDefineTempo);
+        jPanelDefineTempo.setLayout(jPanelDefineTempoLayout);
+        jPanelDefineTempoLayout.setHorizontalGroup(
+            jPanelDefineTempoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelDefineTempoLayout.createSequentialGroup()
+                .addGroup(jPanelDefineTempoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelDefineTempoLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanelDefineTempoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelDefineTempoLayout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addComponent(jLabel13)
+                                .addGap(31, 31, 31)
+                                .addComponent(jLabel31)
+                                .addGap(27, 27, 27)
+                                .addComponent(jLabel32))
+                            .addGroup(jPanelDefineTempoLayout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jButton1))
+                            .addGroup(jPanelDefineTempoLayout.createSequentialGroup()
+                                .addComponent(jComboBoxHoras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBoxMinutos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBoxSegundos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanelDefineTempoLayout.createSequentialGroup()
+                        .addComponent(jLabel34)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelTempoDefinido))
+                    .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
+        jPanelDefineTempoLayout.setVerticalGroup(
+            jPanelDefineTempoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDefineTempoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel33)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelDefineTempoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel34)
+                    .addComponent(jLabelTempoDefinido))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanelDefineTempoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(jLabel31)
+                    .addComponent(jLabel32))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelDefineTempoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBoxHoras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxMinutos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxSegundos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout jPanelAtendimentoLayout = new javax.swing.GroupLayout(jPanelAtendimento);
         jPanelAtendimento.setLayout(jPanelAtendimentoLayout);
         jPanelAtendimentoLayout.setHorizontalGroup(
@@ -1157,16 +1271,16 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
                     .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addGroup(jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanelCaixa6, javax.swing.GroupLayout.DEFAULT_SIZE, 660, Short.MAX_VALUE)
+                            .addComponent(jPanelCaixa6, javax.swing.GroupLayout.DEFAULT_SIZE, 682, Short.MAX_VALUE)
                             .addComponent(jPanelCaixa5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanelCaixa4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanelCaixa3, javax.swing.GroupLayout.DEFAULT_SIZE, 660, Short.MAX_VALUE)
-                            .addComponent(jPanelCaixa2, javax.swing.GroupLayout.DEFAULT_SIZE, 660, Short.MAX_VALUE)
+                            .addComponent(jPanelCaixa3, javax.swing.GroupLayout.DEFAULT_SIZE, 682, Short.MAX_VALUE)
+                            .addComponent(jPanelCaixa2, javax.swing.GroupLayout.DEFAULT_SIZE, 682, Short.MAX_VALUE)
                             .addComponent(jPanelCaixa8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanelCaixa7, javax.swing.GroupLayout.DEFAULT_SIZE, 660, Short.MAX_VALUE)
+                            .addComponent(jPanelCaixa7, javax.swing.GroupLayout.DEFAULT_SIZE, 682, Short.MAX_VALUE)
                             .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
                                 .addComponent(jPanelServicosDisponiveis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                .addGap(0, 22, Short.MAX_VALUE))
                             .addComponent(jPanelCaixa1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(30, 30, 30)
                         .addGroup(jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1178,7 +1292,6 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(labelClientesAtendidos, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jPanelControleCronometro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jPanelControleAtendimentos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
@@ -1188,15 +1301,14 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
                                         .addComponent(jButtonAbrirLoja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jButtonReset, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(btnAtendimentoSair, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGap(0, 0, Short.MAX_VALUE))))))
-                .addGap(22, 22, 22)
+                                    .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(jPanelControleCronometro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)))
                 .addGroup(jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAtendimentoLayout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(82, 82, 82))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAtendimentoLayout.createSequentialGroup()
-                        .addComponent(jLabelLogo)
-                        .addContainerGap())))
+                    .addComponent(jLabelLogo)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanelDefineTempo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         jPanelAtendimentoLayout.setVerticalGroup(
             jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1209,17 +1321,18 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
                 .addGroup(jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
                         .addGap(23, 23, 23)
-                        .addGroup(jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabelLogo)
-                                .addContainerGap())
+                        .addGroup(jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
                                 .addComponent(jPanelControleCronometro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPanelControleAtendimentos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jPanelControleAtendimentos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jPanelDefineTempo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
+                                .addGap(107, 107, 107)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
+                                .addGap(27, 27, 27)
                                 .addGroup(jPanelAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel2)
                                     .addComponent(labelClientesGerados))
@@ -1235,8 +1348,10 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
                                         .addComponent(jButtonReset)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(btnAtendimentoSair))
-                                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabelLogo)
+                        .addContainerGap())
                     .addGroup(jPanelAtendimentoLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanelCaixa1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1888,6 +2003,27 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_jButtonImprimirActionPerformed
 
+    private void jComboBoxHorasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxHorasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxHorasActionPerformed
+
+    private void jComboBoxMinutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxMinutosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxMinutosActionPerformed
+
+    private void jComboBoxSegundosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxSegundosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxSegundosActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String horas = jComboBoxHoras.getSelectedItem().toString();
+        String minutos = jComboBoxMinutos.getSelectedItem().toString();
+        String segundos = jComboBoxSegundos.getSelectedItem().toString();
+        tempoEstabelecido = horas+":"+minutos+":"+segundos;
+        jLabelTempoDefinido.setText(tempoEstabelecido);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JProgressBar barraProgressoCx1;
     public static javax.swing.JProgressBar barraProgressoCx2;
@@ -1899,6 +2035,7 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
     public static javax.swing.JProgressBar barraProgressoCx8;
     public static javax.swing.JButton btnAtendimentoSair;
     private javax.swing.ButtonGroup buttonGroupAnexoEmail;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -1910,10 +2047,14 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
     public static javax.swing.JButton jButtonParar;
     public static javax.swing.JButton jButtonPausar;
     private javax.swing.JButton jButtonReset;
+    private javax.swing.JComboBox<String> jComboBoxHoras;
+    private javax.swing.JComboBox<String> jComboBoxMinutos;
+    private javax.swing.JComboBox<String> jComboBoxSegundos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
@@ -1933,6 +2074,10 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -2008,6 +2153,7 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
     public static javax.swing.JLabel jLabelTempoClienteDaVezCx6;
     public static javax.swing.JLabel jLabelTempoClienteDaVezCx7;
     public static javax.swing.JLabel jLabelTempoClienteDaVezCx8;
+    private javax.swing.JLabel jLabelTempoDefinido;
     public static javax.swing.JLabel jLabelTotalAtCx1;
     public static javax.swing.JLabel jLabelTotalAtCx2;
     public static javax.swing.JLabel jLabelTotalAtCx3;
@@ -2046,6 +2192,7 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanelCaixa8;
     private javax.swing.JPanel jPanelControleAtendimentos;
     private javax.swing.JPanel jPanelControleCronometro;
+    private javax.swing.JPanel jPanelDefineTempo;
     private javax.swing.JPanel jPanelLog;
     private javax.swing.JPanel jPanelRelatorios;
     private javax.swing.JPanel jPanelServicosDisponiveis;
@@ -2098,7 +2245,7 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
                 if (tempoExeceu()) {
                     pararCaixas();
                     jButtonReset.setEnabled(true);
-                    JOptionPane.showMessageDialog(null, "Atividades Encerradas pelo Timer definido");
+                    JOptionPane.showMessageDialog(null, "Atividades Encerradas pelo Timer definido\n"+tempoEstabelecido);
                     jLabelVermelho.setEnabled(true);
                     jLabelAmarelo.setEnabled(false);
                     jLabelVerde.setEnabled(false);

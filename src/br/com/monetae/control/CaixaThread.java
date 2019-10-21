@@ -223,7 +223,7 @@ public class CaixaThread implements Runnable {
                 //Seta o cliente como atendido
                 clienteDaVez.setFoiAtendido(true);
                 // Remove o cliente da lista dos gerados nesse momento e adiciona na de atendidos
-                TelaAtendimento.listaClientesNaFila.remove(clienteDaVez);
+                TelaAtendimento.listaClientesNaFila.remove(TelaAtendimento.listaClientesNaFila.get(0));
                 clienteDaVez.setQuemAtendeu(nome);
                 TelaAtendimento.listaDeAtendidos.add(clienteDaVez);
                 // Remove o cliente da lista dos gerados nesse momento e adiciona na de atendidos
@@ -250,7 +250,7 @@ public class CaixaThread implements Runnable {
                 servicoCliente.setText("" + clienteAt.getServico());
                 //incrementando a barra
                 for (int i = 0; i <= 100; i++) {
-                    barra.setString("Cliente: "+clienteAt.getNome());
+                    barra.setString("Atendendo o cliente: "+clienteAt.getNome());
                     barra.setValue(i);
                     try {
                         Thread.sleep(tCliente / 100);
