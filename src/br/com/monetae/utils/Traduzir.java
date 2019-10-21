@@ -18,7 +18,6 @@ package br.com.monetae.utils;
 
 import br.com.monetae.view.TelaAtendimento;
 import br.com.monetae.view.TelaPrincipal;
-import java.util.Locale;
 
 /**
  *

@@ -33,6 +33,8 @@ public enum Nomes {
     Roberto, Luana, Kelly, John, Noah, Jacob, Sidney, Andrea, Mikaela,
     Cal, Johnny, Giuseppe, Silvio, Silvia, Gabriela, Isadora, Lucca, Pietro,
     Sarah, Deborah, Yanny, Daniel, Daniela, Ester, Eduardo, Eloah, Nrian,
-    Dominic, Nycolas, Isabela;
+    Dominic, Nycolas, Isabela, Francisco, Neymar, James, Pelé, Ayrton, Joventina,
+    Giselda, Astrogildo, Chaves, Chiquinha, Quico, ProfGirafales, Helton,
+    Misael, Osvaldo, Natália, Juan, Jamirez, Gonzales, Schmidt;
     
 }
