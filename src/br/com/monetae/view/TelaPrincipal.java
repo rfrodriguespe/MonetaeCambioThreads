@@ -18,7 +18,12 @@ package br.com.monetae.view;
 
 
 import br.com.monetae.utils.Traduzir;
+import java.awt.Desktop;
 import java.awt.Toolkit;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 /**
@@ -59,8 +64,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         subMenuIdiomaEN = new javax.swing.JMenuItem();
         menuAbout = new javax.swing.JMenu();
         submenuSobre = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        submenuProjeto = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Monetae Câmbio - Gerenciamento de Atendimento (Projeto P1 - TAP)");
@@ -163,22 +167,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         menuAbout.add(submenuSobre);
 
-        menuTelaPrincipal.add(menuAbout);
-
-        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/monetae/imagens/iconBiohazard24x24.png"))); // NOI18N
-        jMenu1.setText("# TESTES");
-
-        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_BACK_SLASH, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/monetae/imagens/iconBiohazard24x24.png"))); // NOI18N
-        jMenuItem1.setText("Tela de Testes");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        submenuProjeto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/monetae/imagens/iconePdf24x24.png"))); // NOI18N
+        submenuProjeto.setText("Definições do Projeto");
+        submenuProjeto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                submenuProjetoActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        menuAbout.add(submenuProjeto);
 
-        menuTelaPrincipal.add(jMenu1);
+        menuTelaPrincipal.add(menuAbout);
 
         setJMenuBar(menuTelaPrincipal);
 
@@ -232,13 +230,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
         tela.setVisible(true);
     }//GEN-LAST:event_submenuSobreActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
-//        TelaTeste tela = new TelaTeste();
-//        ((BasicInternalFrameUI)tela.getUI()).setNorthPane(null); //retirar o painel superior
-//        fundoTelaPrincipal.add(tela);
-//        tela.setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    private void submenuProjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submenuProjetoActionPerformed
+        try {
+            // TODO add your handling code here:
+            Desktop.getDesktop().open(new File("projeto.pdf"));
+        } catch (IOException ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_submenuProjetoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -277,8 +276,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane fundoTelaPrincipal;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenuItem jMenuItem1;
     public static javax.swing.JMenu menuAbout;
     public static javax.swing.JMenu menuInicio;
     public static javax.swing.JMenu menuSettings;
@@ -288,6 +285,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     public static javax.swing.JMenuItem subMenuIdiomaBR;
     public static javax.swing.JMenuItem subMenuIdiomaEN;
     public static javax.swing.JMenuItem subMenuSair;
+    public static javax.swing.JMenuItem submenuProjeto;
     public static javax.swing.JMenuItem submenuSobre;
     // End of variables declaration//GEN-END:variables
 }

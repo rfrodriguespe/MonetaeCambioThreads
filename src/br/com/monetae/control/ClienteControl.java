@@ -33,7 +33,7 @@ public class ClienteControl {
     
     public static void geraCliente(int quantidade){
         for (int i = 0; i < quantidade; i++) {
-            TelaAtendimento.listaDeClientesGerados.add(new Cliente());
+            TelaAtendimento.listaClientesNaFila.add(new Cliente());
         }
     }
     

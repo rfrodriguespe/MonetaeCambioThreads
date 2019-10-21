@@ -92,7 +92,7 @@ public class MonitorPrograma implements Runnable {
         try {
             while (!foiTerminada) {
                 // BLOCO RESPONSÁVEL POR MONITORAR CLIENTES NA LOJA
-                if (TelaAtendimento.listaDeClientesGerados.size() < 20) {
+                if (TelaAtendimento.listaClientesNaFila.size() < 20) {
                     ClienteControl.geraCliente(10);
                 }
                 // BLOCO RESPONSÁVEL POR MONITORAR CLIENTES NA LOJA
@@ -164,7 +164,7 @@ public class MonitorPrograma implements Runnable {
                 TelaAtendimento.jLabelTotalSwift.setText("" + totalSwift);
                 TelaAtendimento.jLabelTotalSeguro.setText("" + totalSeguro);
                 TelaAtendimento.jLabelTotalClientesAtendidos.setText("" + TelaAtendimento.listaDeAtendidos.size());
-                TelaAtendimento.labelClientesGerados.setText("" + TelaAtendimento.listaDeClientesGerados.size());
+                TelaAtendimento.labelClientesGerados.setText("" + TelaAtendimento.listaClientesNaFila.size());
                 TelaAtendimento.labelClientesAtendidos.setText("" + TelaAtendimento.listaDeAtendidos.size());
                 TelaAtendimento.jLabelTotalAtCx1.setText("" + cx1);
                 TelaAtendimento.jLabelTotalAtCx2.setText("" + cx2);

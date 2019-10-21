@@ -194,10 +194,10 @@ public class CaixaThreadBackup implements Runnable {
         //ADD AO LOG
         try {
             while (!foiTerminada) {
-                if (!TelaAtendimento.listaDeClientesGerados.isEmpty()) {
+                if (!TelaAtendimento.listaClientesNaFila.isEmpty()) {
                     try {
                         //Pegando o cliente fa vez//
-                        Cliente clienteDaVez = TelaAtendimento.listaDeClientesGerados.get(0);
+                        Cliente clienteDaVez = TelaAtendimento.listaClientesNaFila.get(0);
                         //TESTA SE O CLIENTE PEGO PODE SER ATENDIDO PELO CAIXA
                         if (listaServicos.contains(clienteDaVez.getServico())) {
                             //Tentativa de sincronizar o cliente
@@ -208,7 +208,7 @@ public class CaixaThreadBackup implements Runnable {
 
                                 //Adicionando o cliente à lista dos atendidos e retire o da vez
                                 TelaAtendimento.listaDeAtendidos.add(clienteDaVez);
-                                TelaAtendimento.listaDeClientesGerados.remove(clienteDaVez);
+                                TelaAtendimento.listaClientesNaFila.remove(clienteDaVez);
                                 Cliente clienteEmAtendimento = TelaAtendimento.listaDeAtendidos.get(TelaAtendimento.listaDeAtendidos.size() - 1);
                                 //
                                 int tCliente = clienteEmAtendimento.getTempoAtendimento();
@@ -233,7 +233,7 @@ public class CaixaThreadBackup implements Runnable {
 
                                 //Definindo que o cliente foi atendido, incrementando o espaço
                                 TelaAtendimento.labelClientesAtendidos.setText("" + TelaAtendimento.listaDeAtendidos.size());
-                                TelaAtendimento.labelClientesGerados.setText("" + TelaAtendimento.listaDeClientesGerados.size());
+                                TelaAtendimento.labelClientesGerados.setText("" + TelaAtendimento.listaClientesNaFila.size());
 
                                 //ADD AO LOG
                                 areaLog.append(inicioLog + " Caixa: " + nome + " terminou o atendimento do cliente ID: " + clienteEmAtendimento.getId() + "\n");

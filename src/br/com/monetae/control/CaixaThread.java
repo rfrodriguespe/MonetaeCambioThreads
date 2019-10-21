@@ -215,15 +215,15 @@ public class CaixaThread implements Runnable {
     }
 
     private synchronized void atendeCliente() {
-        if (!TelaAtendimento.listaDeClientesGerados.isEmpty()) {
+        if (!TelaAtendimento.listaClientesNaFila.isEmpty()) {
             //Pegando o cliente fa vez//
-            Cliente clienteDaVez = TelaAtendimento.listaDeClientesGerados.get(0);
+            Cliente clienteDaVez = TelaAtendimento.listaClientesNaFila.get(0);
             //TESTA SE O CLIENTE PEGO PODE SER ATENDIDO PELO CAIXA
             if (listaServicos.contains(clienteDaVez.getServico()) && !clienteDaVez.isFoiAtendido()) {
                 //Seta o cliente como atendido
                 clienteDaVez.setFoiAtendido(true);
                 // Remove o cliente da lista dos gerados nesse momento e adiciona na de atendidos
-                TelaAtendimento.listaDeClientesGerados.remove(clienteDaVez);
+                TelaAtendimento.listaClientesNaFila.remove(clienteDaVez);
                 clienteDaVez.setQuemAtendeu(nome);
                 TelaAtendimento.listaDeAtendidos.add(clienteDaVez);
                 // Remove o cliente da lista dos gerados nesse momento e adiciona na de atendidos
