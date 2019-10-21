@@ -74,9 +74,8 @@ public class Traduzir {
         TelaPrincipal.menuAbout.setText(sobre[idioma]);
         String[] subMenuSobre = {"Sobre o Programa", "About Application"};
         TelaPrincipal.submenuSobre.setText(subMenuSobre[idioma]);
-        
-        String[] botaoFechar = {"Fechar","Close"};
-        TelaAtendimento.btnAtendimentoSair.setText(botaoFechar[idioma]);
+        String[] subMenuProjeto = {"Documentação do Projeto", "Project Documentation"};
+        TelaPrincipal.submenuProjeto.setText(subMenuProjeto[idioma]);
         
         
     }

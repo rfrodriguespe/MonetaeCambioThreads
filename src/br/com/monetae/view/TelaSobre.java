@@ -44,6 +44,8 @@ public class TelaSobre extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabelLGitHub1 = new javax.swing.JLabel();
         jPanelRedesSociais = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -54,8 +56,10 @@ public class TelaSobre extends javax.swing.JInternalFrame {
         jLabelLLinkdeIn = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabelLGitHub = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
 
         setTitle("Sobre o Programa");
+        setPreferredSize(new java.awt.Dimension(1373, 712));
 
         jLabel1.setText("Programa desenvolvimento para simular atendimentos a cliente de uma casa de cambio");
 
@@ -78,6 +82,18 @@ public class TelaSobre extends javax.swing.JInternalFrame {
 
         jLabel7.setText("usando threads.");
 
+        jLabel11.setText("Link do Projeto no GitHub:");
+
+        jLabelLGitHub1.setFont(new java.awt.Font("Tahoma", 3, 11)); // NOI18N
+        jLabelLGitHub1.setForeground(new java.awt.Color(51, 51, 255));
+        jLabelLGitHub1.setText("MonetaeCambioThreads");
+        jLabelLGitHub1.setToolTipText("@rodrigo2208");
+        jLabelLGitHub1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelLGitHub1MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -96,7 +112,12 @@ public class TelaSobre extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel7))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelLGitHub1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -118,7 +139,10 @@ public class TelaSobre extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel7)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabelLGitHub1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -231,28 +255,33 @@ public class TelaSobre extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/monetae/imagens/monetae-logo.png"))); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addComponent(jPanelRedesSociais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(525, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanelRedesSociais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(54, 878, Short.MAX_VALUE)
+                .addComponent(jLabel10)
+                .addGap(18, 18, 18))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanelRedesSociais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                .addComponent(jLabel10)
+                .addGap(44, 44, 44))
         );
 
         pack();
@@ -343,10 +372,26 @@ public class TelaSobre extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jLabelLGitHubMouseClicked
 
+    private void jLabelLGitHub1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelLGitHub1MouseClicked
+        // TODO add your handling code here:
+        try {
+            URL url = new URL("http://www.google.com");
+            URLConnection connection = url.openConnection();
+            connection.connect();
+            Desktop.getDesktop().browse(new URI("https://github.com/rfrodriguespe/MonetaeCambioThreads"));
+        } catch (IOException | URISyntaxException e) {
+            if (e.toString().substring(9, 29).equals("UnknownHostException")) {
+                JOptionPane.showMessageDialog(this, "Você precisa estar conectado na internet");
+            }
+        }
+    }//GEN-LAST:event_jLabelLGitHub1MouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -358,6 +403,7 @@ public class TelaSobre extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabelFacebook;
     private javax.swing.JLabel jLabelInsta;
     private javax.swing.JLabel jLabelLGitHub;
+    private javax.swing.JLabel jLabelLGitHub1;
     private javax.swing.JLabel jLabelLLinkdeIn;
     private javax.swing.JLabel jLabelLTwitter;
     private javax.swing.JLabel jLabelLogo;

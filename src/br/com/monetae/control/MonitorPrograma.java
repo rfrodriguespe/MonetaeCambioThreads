@@ -32,6 +32,7 @@ import static br.com.monetae.view.TelaAtendimento.cx5;
 import static br.com.monetae.view.TelaAtendimento.cx6;
 import static br.com.monetae.view.TelaAtendimento.cx7;
 import static br.com.monetae.view.TelaAtendimento.cx8;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -206,7 +207,9 @@ public class MonitorPrograma implements Runnable {
                 }
             }
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Probelma na Thread de monitoramento\n"+
+                    "As estatísticas podem ser prejudicadas\n"+
+                    "Reinicie a aplicação!");
         }
     }
 }

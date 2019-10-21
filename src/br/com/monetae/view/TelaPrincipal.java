@@ -24,6 +24,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 /**
@@ -54,6 +55,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         fundoTelaPrincipal = new javax.swing.JDesktopPane();
+        jLabelLogoMonetae = new javax.swing.JLabel();
+        jLabelFnr = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         menuTelaPrincipal = new javax.swing.JMenuBar();
         menuInicio = new javax.swing.JMenu();
         subMenuCostumer = new javax.swing.JMenuItem();
@@ -76,15 +82,70 @@ public class TelaPrincipal extends javax.swing.JFrame {
         fundoTelaPrincipal.setMaximumSize(new java.awt.Dimension(1920, 1080));
         fundoTelaPrincipal.setMinimumSize(new java.awt.Dimension(640, 480));
 
+        jLabelLogoMonetae.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelLogoMonetae.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/monetae/imagens/monetae-logo.png"))); // NOI18N
+        jLabelLogoMonetae.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        jLabelFnr.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelFnr.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/monetae/imagens/logo_fnr.png"))); // NOI18N
+        jLabelFnr.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("TAP - Técnicas Avançadas de Programação");
+        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Prof: Anderson Elias");
+        jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Aluno: Rodrigo Ferreira Rodrigues");
+        jLabel3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        fundoTelaPrincipal.setLayer(jLabelLogoMonetae, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        fundoTelaPrincipal.setLayer(jLabelFnr, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        fundoTelaPrincipal.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        fundoTelaPrincipal.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        fundoTelaPrincipal.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         javax.swing.GroupLayout fundoTelaPrincipalLayout = new javax.swing.GroupLayout(fundoTelaPrincipal);
         fundoTelaPrincipal.setLayout(fundoTelaPrincipalLayout);
         fundoTelaPrincipalLayout.setHorizontalGroup(
             fundoTelaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+            .addGroup(fundoTelaPrincipalLayout.createSequentialGroup()
+                .addGap(104, 104, 104)
+                .addGroup(fundoTelaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(fundoTelaPrincipalLayout.createSequentialGroup()
+                        .addGroup(fundoTelaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel3))
+                        .addGap(141, 141, 141))
+                    .addGroup(fundoTelaPrincipalLayout.createSequentialGroup()
+                        .addComponent(jLabelFnr)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelLogoMonetae)))
+                .addContainerGap(110, Short.MAX_VALUE))
         );
         fundoTelaPrincipalLayout.setVerticalGroup(
             fundoTelaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 574, Short.MAX_VALUE)
+            .addGroup(fundoTelaPrincipalLayout.createSequentialGroup()
+                .addGap(153, 153, 153)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addGap(34, 34, 34)
+                .addGroup(fundoTelaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fundoTelaPrincipalLayout.createSequentialGroup()
+                        .addComponent(jLabelLogoMonetae)
+                        .addGap(39, 39, 39))
+                    .addComponent(jLabelFnr, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap(159, Short.MAX_VALUE))
         );
 
         menuInicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/monetae/imagens/icoAtendimento24x24.png"))); // NOI18N
@@ -235,7 +296,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
             // TODO add your handling code here:
             Desktop.getDesktop().open(new File("projeto.pdf"));
         } catch (IOException ex) {
-            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "Probelma na abertura do arquivo\n"+
+                    "Verifique Se o arquivo 'Projeto.pdf' se encontra na raiz do projeto");
         }
     }//GEN-LAST:event_submenuProjetoActionPerformed
 
@@ -276,6 +338,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane fundoTelaPrincipal;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabelFnr;
+    private javax.swing.JLabel jLabelLogoMonetae;
     public static javax.swing.JMenu menuAbout;
     public static javax.swing.JMenu menuInicio;
     public static javax.swing.JMenu menuSettings;

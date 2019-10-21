@@ -21,6 +21,7 @@ import br.com.monetae.control.MonitorPrograma;
 import br.com.monetae.model.Cliente;
 import br.com.monetae.utils.EnviarEmail;
 import br.com.monetae.utils.GeraPdf;
+import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -1854,7 +1855,7 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
                     try {
                         Desktop.getDesktop().open(new File(file.getPath() + ".txt"));
                     } catch (IOException ex) {
-                        Logger.getLogger(TelaAtendimento.class.getName()).log(Level.SEVERE, null, ex);
+                        JOptionPane.showMessageDialog(null, "Probelma ne geração do arquivo");
                     }
                 } else if (selecionaOpcao == JOptionPane.CANCEL_OPTION) {
                     JOptionPane.showMessageDialog(this, "Ação Cancelada");
@@ -1864,7 +1865,7 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
                 try {
                     Desktop.getDesktop().open(new File(file.getPath() + ".txt"));
                 } catch (IOException ex) {
-                    Logger.getLogger(TelaAtendimento.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(null, "Probelma ne geração do arquivo");
                 }
             }
         } else if (escolha == JFileChooser.CANCEL_OPTION) {
@@ -1895,7 +1896,7 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
                 try {
                     arquivoRelatorio.createNewFile();
                 } catch (IOException ex) {
-                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Probelma ne geração do arquivo");
                 }
             } else {
                 GeraPdf.geraPdf(RELATORIO, quantidade);
@@ -1937,7 +1938,7 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
                     try {
                         Desktop.getDesktop().open(new File(file.getPath() + ".pdf"));
                     } catch (IOException ex) {
-                        Logger.getLogger(TelaAtendimento.class.getName()).log(Level.SEVERE, null, ex);
+                        JOptionPane.showMessageDialog(null, "Probelma na abertura do arquivo");
                     }
                 } else if (selecionaOpcao == JOptionPane.CANCEL_OPTION) {
                     JOptionPane.showMessageDialog(this, "Ação Cancelada");
@@ -1947,7 +1948,7 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
                 try {
                     Desktop.getDesktop().open(new File(file.getPath() + ".pdf"));
                 } catch (IOException ex) {
-                    Logger.getLogger(TelaAtendimento.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(null, "Probelma na abertura do arquivo");
                 }
             }
         } else if (resultado == JFileChooser.CANCEL_OPTION) {
@@ -1980,6 +1981,8 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
         jLabelVermelho.setEnabled(false);
         jLabelAmarelo.setEnabled(false);
         jLabelVerde.setEnabled(true);
+        jButtonIniciar.setEnabled(true);
+        jLabelCronometro.setForeground(Color.black);
     }//GEN-LAST:event_jButtonResetActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -1998,7 +2001,7 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
         try {
             Desktop.getDesktop().print(new File(RELATORIO));
         } catch (IOException ex) {
-            Logger.getLogger(TelaAtendimento.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Probelma na impressão do arquivo");
         }
 
     }//GEN-LAST:event_jButtonImprimirActionPerformed
@@ -2244,11 +2247,13 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
                 // MONITORA SE O TEMPO EXECEU E SE AINDA HÁ CLIENTES A SEREM ATENDIDOS
                 if (tempoExeceu()) {
                     pararCaixas();
+                    jLabelCronometro.setForeground(Color.RED);
                     jButtonReset.setEnabled(true);
                     JOptionPane.showMessageDialog(null, "Atividades Encerradas pelo Timer definido\n"+tempoEstabelecido);
                     jLabelVermelho.setEnabled(true);
                     jLabelAmarelo.setEnabled(false);
                     jLabelVerde.setEnabled(false);
+                    jButtonIniciar.setEnabled(false);
                 }
             }
         };
@@ -2325,7 +2330,7 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
             Thread.sleep(35);
             CxT08 = new CaixaThread("08", barraProgressoCx8, jLabelCaixa8, jLabelTempoClienteDaVezCx8, logDoPrograma, jLabelServicoCx8);
         } catch (InterruptedException ex) {
-            Logger.getLogger(TelaAtendimento.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Probelma na criação das Threads, reinicie o programa");
         }
         // ALTERANDO O ESTADO DOS BOTÕES
         jButtonIniciar.setEnabled(false);
@@ -2345,7 +2350,8 @@ public class TelaAtendimento extends javax.swing.JInternalFrame {
             bw.close();
             fw.close();
         } catch (IOException ex) {
-            Logger.getLogger(TelaAtendimento.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Probelma na geração do arquivo\n"+
+                    "Verifique o caminho e tente novamente");
         }
 
         //SALVA LOG

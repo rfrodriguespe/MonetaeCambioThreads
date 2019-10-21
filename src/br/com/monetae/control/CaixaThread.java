@@ -51,7 +51,7 @@ public class CaixaThread implements Runnable {
     private final String inicioLog = "" + new SimpleDateFormat("[dd'/'MM'/'yyyy - HH:mm:ss]").format(GregorianCalendar.getInstance().getTime());
     private final JTextArea areaLog;
     //TESTE PRA CRIAÇÂO DO LOG
- 
+
     public CaixaThread(String nome, JProgressBar barra, JLabel labelClienteDaVez, JLabel tempoCliente, JTextArea areaLog, JLabel servicoCliente) {
 
         this.nome = nome;
@@ -119,7 +119,7 @@ public class CaixaThread implements Runnable {
     public boolean isLojaFechando() {
         return lojaFechando;
     }
-    
+
     public void setLojaFechando(boolean lojaFechando) {
         this.lojaFechando = lojaFechando;
     }
@@ -210,7 +210,8 @@ public class CaixaThread implements Runnable {
             }
             barra.setString("Caixa Fechado");
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "A Thread do Caixa " + nome + " foi interrompiada\n"
+                    + "Reinicie o Programa");
         }
     }
 
@@ -250,18 +251,18 @@ public class CaixaThread implements Runnable {
                 servicoCliente.setText("" + clienteAt.getServico());
                 //incrementando a barra
                 for (int i = 0; i <= 100; i++) {
-                    barra.setString("Atendendo o cliente: "+clienteAt.getNome());
+                    barra.setString("Atendendo o cliente: " + clienteAt.getNome());
                     barra.setValue(i);
                     try {
                         Thread.sleep(tCliente / 100);
                     } catch (InterruptedException ex) {
-                        Logger.getLogger(CaixaThread.class.getName()).log(Level.SEVERE, null, ex);
+                        JOptionPane.showMessageDialog(null, "Problema na atualização da barra de progresso");
                     }
                 }
                 //ADD AO LOG
                 areaLog.append(inicioLog + " Caixa: " + nome + " terminou o atendimento do cliente ID: " + clienteAt.getId() + "\n");
                 //ADD AO LOG
-                
+
                 // Zera as informações de quem foi atendido
                 tempoCliente.setText("----");
                 labelClienteDaVez.setText("----");
